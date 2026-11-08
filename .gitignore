@@ -1,0 +1,48 @@
+# secrets and local config
+.env
+config.yaml
+gateway/tunnel/tunnel_key
+gateway/tunnel/tunnel_key.pub
+gateway/tunnel/known_hosts
+.youtube-cookies.txt
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# node / web
+node_modules/
+web/dist/
+hub/app/static/
+
+# local data
+.agent-work/
+data/
+eval/screenshots/
+eval/results/
+# manual design-review screenshots (only screenshot-test baselines go into git)
+design-review/after/
+design-review/shots/
+*.log
+
+# Android app: separate git repo (fork of Tempus), see android/ README
+android/
+
+# Agent instructions and journals are kept out of the public repository
+CLAUDE.md
+AGENTS.md
+**/CLAUDE.md
+**/AGENTS.md
+.claude/
+.agents/
+.codex/
+.codex-attachments/
+PROGRESS.md
+OPTIMIZE-TODO.md
+OPTIMIZE-DONE.md
+design-review/

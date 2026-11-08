@@ -1,0 +1,34 @@
+{
+ "data": [
+  {
+   "id": 502275921,
+   "title": "melancholia",
+   "link": "https://www.deezer.com/album/502275921",
+   "cover": "https://api.deezer.com/album/502275921/image",
+   "cover_small": "https://cdn-images.dzcdn.net/images/cover/821a2b12a891df3bb6ee7ed29ffd979a/56x56-000000-80-0-0.jpg",
+   "cover_medium": "https://cdn-images.dzcdn.net/images/cover/821a2b12a891df3bb6ee7ed29ffd979a/250x250-000000-80-0-0.jpg",
+   "cover_big": "https://cdn-images.dzcdn.net/images/cover/821a2b12a891df3bb6ee7ed29ffd979a/500x500-000000-80-0-0.jpg",
+   "cover_xl": "https://cdn-images.dzcdn.net/images/cover/821a2b12a891df3bb6ee7ed29ffd979a/1000x1000-000000-80-0-0.jpg",
+   "md5_image": "821a2b12a891df3bb6ee7ed29ffd979a",
+   "genre_id": 152,
+   "nb_tracks": 10,
+   "record_type": "album",
+   "tracklist": "https://api.deezer.com/album/502275921/tracks",
+   "explicit_lyrics": true,
+   "artist": {
+    "id": 73922432,
+    "name": "Три дня дождя",
+    "link": "https://www.deezer.com/artist/73922432",
+    "picture": "https://api.deezer.com/artist/73922432/image",
+    "picture_small": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/56x56-000000-80-0-0.jpg",
+    "picture_medium": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/250x250-000000-80-0-0.jpg",
+    "picture_big": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/500x500-000000-80-0-0.jpg",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/1000x1000-000000-80-0-0.jpg",
+    "tracklist": "https://api.deezer.com/artist/73922432/top?limit=50",
+    "type": "artist"
+   },
+   "type": "album"
+  }
+ ],
+ "total": 1
+}

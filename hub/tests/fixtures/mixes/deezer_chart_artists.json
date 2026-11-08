@@ -1,0 +1,26 @@
+{
+ "data": [
+  {
+   "id": 987373,
+   "name": "Ronnie Flex",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/30014f5d2749ff1bf4345288e7860d5f/1000x1000-000000-80-0-0.jpg",
+   "position": 1,
+   "type": "artist"
+  },
+  {
+   "id": 5327935,
+   "name": "Lil Kleine",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/09f183f6aa4a98bbeb050800db2183fa/1000x1000-000000-80-0-0.jpg",
+   "position": 2,
+   "type": "artist"
+  },
+  {
+   "id": 259,
+   "name": "Michael Jackson",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/97fae13b2b30e4aec2e8c9e0c7839d92/1000x1000-000000-80-0-0.jpg",
+   "position": 3,
+   "type": "artist"
+  }
+ ],
+ "total": 3
+}

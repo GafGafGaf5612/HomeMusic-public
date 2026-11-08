@@ -1,0 +1,78 @@
+# HomeMusic Hub settings that are not secrets. Copy to config.yaml (mounted read-only into the hub container).
+
+sources:
+  # Order of providers for downloads and listening. "ru" is used when artist/title contains Cyrillic, the user asked
+  # for ru, or the release is a CIS one. Official YouTube Music copies of Russian tracks are often edited since the
+  # 2026 law, so for them YouTube comes last: SoundCloud and re-uploads by small channels go first.
+  ru: [hitmoz, hitmos_fm, soundcloud, yt_reupload, ytdlp]
+  # hitmoz first: a YouTube file opens only after the ad before the video (seconds of waiting)
+  default: [hitmoz, ytdlp]
+  # A source's files uploaded on or after the date aren't taken by downloads and listening (the Files tab shows them).
+  uploaded_before: {soundcloud: 2026-05-01}
+  # Full-file fallback after regular sources fail (e.g. YouTube asks to sign in). Downloads and playback;
+  # the same artist/title/version, duration and post-download checks apply. [] disables it.
+  download_fallback: [soundcloud]
+  # Re-uploads by small channels (YouTube, SoundCloud). An explicit Russian track takes one, titled "(без цензуры)"
+  # or uploaded before 2026-03-01, when the sources above have no copy known to be uncensored.
+  reuploads: [yt_reupload, soundcloud]
+
+hitmoz:
+  # First healthy domain wins; the current host is re-detected via <link rel=canonical>.
+  domains: [ru.hitmoz.org, rus.hitmotop.com, hitmos.me]
+  accept_language: "ru-RU,ru;q=0.9"
+  rate_per_sec: 1.0
+  max_parallel_downloads: 2
+
+hitmos_fm:
+  domains: [rus.hitmos.fm]
+  rate_per_sec: 1.0
+
+ytdlp:
+  # bestaudio without re-encoding (opus/m4a) is playable by Tempus/Navidrome
+  prefer_original_codec: true
+  search_prefix: "ytsearch5:"
+  # Shared by regular YouTube and re-uploads; SoundCloud has its own limit.
+  max_parallel: 2
+  sleep_requests_s: 1.0
+  sleep_downloads_s: 5.0
+  refusal_cooldown_s: 900
+
+matching:
+  artist_min_ratio: 0.90
+  duration_tolerance_s: 3
+  auto_threshold: 0.90
+  auto_margin: 0.05
+  confirm_threshold: 0.65
+  enrich_top_n: 3
+  # uploads before this date are considered pre-censorship originals
+  original_before: "2026-03-01"
+  reject_words: [караоке, минус, минусовка, instrumental, инструментал, кавер, cover, remix, ремикс, slowed, "speed up", "sped up", nightcore, 8d]
+
+postcheck:
+  silence_warn_s: 0.7
+
+catalog:
+  deezer_rate: { requests: 45, per_seconds: 5 }
+  ttl_artist_s: 604800   # 7 days
+  ttl_album_s: 604800
+  ttl_search_s: 86400    # 1 day
+  musicbrainz_user_agent: "HomeMusic/0.1 (you@example.com)"
+
+jobs:
+  workers: 3
+  max_attempts: 5
+
+uploads:
+  max_file_mb: 500
+  extensions: [mp3, m4a, aac, flac, ogg, opus, wav]
+
+library:
+  trash_days: 30
+  backup_hour: 4   # local time; daily copy of Hub and Navidrome DBs to MUSIC_ROOT/.backups
+
+mixes:
+  taste_model: v2  # v1 is the rollback: new mixes and new wave sessions switch back
+  taste_shadow: false
+
+analytics:
+  exclude_users: []  # Hub user names left out of the admin's totals and taste matrix (a QA account)

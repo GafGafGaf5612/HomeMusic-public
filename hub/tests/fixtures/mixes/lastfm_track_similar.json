@@ -1,0 +1,88 @@
+{
+ "similartracks": {
+  "track": [
+   {
+    "name": "В наших глазах",
+    "playcount": 464622,
+    "mbid": "93c48c45-de05-428d-bf08-cc16d483363c",
+    "match": 1.0,
+    "url": "https://www.last.fm/music/%D0%9A%D0%B8%D0%BD%D0%BE/_/%D0%92+%D0%BD%D0%B0%D1%88%D0%B8%D1%85+%D0%B3%D0%BB%D0%B0%D0%B7%D0%B0%D1%85",
+    "duration": 213,
+    "artist": {
+     "name": "Кино",
+     "mbid": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+     "url": "https://www.last.fm/music/%D0%9A%D0%B8%D0%BD%D0%BE"
+    }
+   },
+   {
+    "name": "Закрой за мной дверь, я ухожу",
+    "playcount": 442391,
+    "mbid": "0a0a3c2e-9638-3237-8eae-280fdafc3212",
+    "match": 0.980326,
+    "url": "https://www.last.fm/music/%D0%9A%D0%B8%D0%BD%D0%BE/_/%D0%97%D0%B0%D0%BA%D1%80%D0%BE%D0%B9+%D0%B7%D0%B0+%D0%BC%D0%BD%D0%BE%D0%B9+%D0%B4%D0%B2%D0%B5%D1%80%D1%8C,+%D1%8F+%D1%83%D1%85%D0%BE%D0%B6%D1%83",
+    "duration": 257,
+    "artist": {
+     "name": "Кино",
+     "mbid": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+     "url": "https://www.last.fm/music/%D0%9A%D0%B8%D0%BD%D0%BE"
+    }
+   },
+   {
+    "name": "Как на войне",
+    "playcount": 727756,
+    "mbid": "320a14a7-07c6-4a53-ac59-2d9014aab78c",
+    "match": 0.243144,
+    "url": "https://www.last.fm/music/%D0%90%D0%B3%D0%B0%D1%82%D0%B0+%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8/_/%D0%9A%D0%B0%D0%BA+%D0%BD%D0%B0+%D0%B2%D0%BE%D0%B9%D0%BD%D0%B5",
+    "duration": 330,
+    "artist": {
+     "name": "Агата Кристи",
+     "mbid": "e4b06dc9-c196-49e1-a20a-554e72d95268",
+     "url": "https://www.last.fm/music/%D0%90%D0%B3%D0%B0%D1%82%D0%B0+%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8"
+    }
+   },
+   {
+    "name": "Полковнику никто не пишет",
+    "playcount": 548612,
+    "mbid": "e9c4dc5d-b028-43b3-8329-aec5a5603ff3",
+    "match": 0.21669,
+    "url": "https://www.last.fm/music/%D0%91%D0%B8-2/_/%D0%9F%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA%D1%83+%D0%BD%D0%B8%D0%BA%D1%82%D0%BE+%D0%BD%D0%B5+%D0%BF%D0%B8%D1%88%D0%B5%D1%82",
+    "duration": 577,
+    "artist": {
+     "name": "Би-2",
+     "mbid": "5ca35ace-4006-4d4a-af04-5cd91dafab14",
+     "url": "https://www.last.fm/music/%D0%91%D0%B8-2"
+    }
+   },
+   {
+    "name": "Что такое осень",
+    "playcount": 525581,
+    "mbid": "57255cf2-5677-3045-a9df-94adf0d0367b",
+    "match": 0.177489,
+    "url": "https://www.last.fm/music/%D0%94%D0%94%D0%A2/_/%D0%A7%D1%82%D0%BE+%D1%82%D0%B0%D0%BA%D0%BE%D0%B5+%D0%BE%D1%81%D0%B5%D0%BD%D1%8C",
+    "duration": 284,
+    "artist": {
+     "name": "ДДТ",
+     "mbid": "f7456b5b-e5a5-454e-b5db-047308210c8e",
+     "url": "https://www.last.fm/music/%D0%94%D0%94%D0%A2"
+    }
+   },
+   {
+    "name": "Линия жизни",
+    "playcount": 615936,
+    "mbid": "ee5fbf2e-9688-4a29-83d4-9e4c8f944bb0",
+    "match": 0.149939,
+    "url": "https://www.last.fm/music/%D0%A1%D0%BF%D0%BB%D0%B8%D0%BD/_/%D0%9B%D0%B8%D0%BD%D0%B8%D1%8F+%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8",
+    "duration": 181,
+    "artist": {
+     "name": "Сплин",
+     "mbid": "0783b768-6719-450b-a7e1-7e891da17af3",
+     "url": "https://www.last.fm/music/%D0%A1%D0%BF%D0%BB%D0%B8%D0%BD"
+    }
+   }
+  ],
+  "@attr": {
+   "artist": "Кино",
+   "track": "Группа крови"
+  }
+ }
+}

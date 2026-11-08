@@ -1,0 +1,721 @@
+{
+ "id": 10100,
+ "title": "Группа крови",
+ "metaType": "music",
+ "year": 1988,
+ "releaseDate": "1988-01-01T00:00:00+03:00",
+ "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+ "cover": {
+  "uri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+  "color": "#1e1e1e"
+ },
+ "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+ "genre": "rusrock",
+ "metaTagId": "58e3c0796ebb3476087d1920",
+ "trackCount": 11,
+ "likesCount": 80523,
+ "recent": false,
+ "veryImportant": false,
+ "artists": [
+  {
+   "id": 41075,
+   "name": "КИНО",
+   "various": false,
+   "composer": false,
+   "available": true,
+   "cover": {
+    "type": "from-artist-photos",
+    "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+    "prefix": "c6d507c7.p.41075/"
+   },
+   "genres": [],
+   "disclaimers": []
+  }
+ ],
+ "labels": [
+  {
+   "id": 5468362,
+   "name": "Цой В.Р. (наследники)"
+  }
+ ],
+ "available": true,
+ "availableForPremiumUsers": true,
+ "availableForOptions": [
+  "bookmate"
+ ],
+ "availableForMobile": true,
+ "availablePartially": false,
+ "bests": [
+  38634621,
+  38634622,
+  38634627
+ ],
+ "disclaimers": [],
+ "hasTrailer": true,
+ "trailer": {
+  "available": true
+ },
+ "derivedColors": {
+  "average": "#1e1e1e",
+  "waveText": "#e0e0e0",
+  "miniPlayer": "#b7b7b7",
+  "accent": "#999999"
+ },
+ "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/34161/10100.rnd-1905886731.playlist-branding/%%",
+ "customWave": {
+  "title": "Группа крови",
+  "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+  "header": "Моя волна по альбому",
+  "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-album-background.image/%%"
+ },
+ "sortOrder": "asc",
+ "volumes": [
+  [
+   {
+    "id": "38634621",
+    "realId": "38634621",
+    "title": "Группа крови",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 284000,
+    "fileSize": 0,
+    "r128": {
+     "i": -13.66,
+     "tp": -1.11
+    },
+    "fade": {
+     "inStart": 1.1,
+     "inStop": 6.1,
+     "outStart": 275.5,
+     "outStop": 280.5
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 41075,
+      "name": "КИНО",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+       "prefix": "c6d507c7.p.41075/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 10100,
+      "title": "Группа крови",
+      "metaType": "music",
+      "year": 1988,
+      "releaseDate": "1988-01-01T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "genre": "rusrock",
+      "trackCount": 11,
+      "likesCount": 80523,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 41075,
+        "name": "КИНО",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+         "prefix": "c6d507c7.p.41075/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 5468362,
+        "name": "Цой В.Р. (наследники)"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [
+       38634621,
+       38634622,
+       38634627
+      ],
+      "disclaimers": [],
+      "hasTrailer": false,
+      "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/34161/10100.rnd-1905886731.playlist-branding/%%",
+      "trackPosition": {
+       "volume": 1,
+       "index": 1
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "derivedColors": {
+     "average": "#8f663c",
+     "waveText": "#ffe0c1",
+     "miniPlayer": "#d4b79a",
+     "accent": "#c2996f"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "lyricsAvailable": false,
+    "best": true,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "karaoke",
+     "smart_preview"
+    ]
+   },
+   {
+    "id": "38634622",
+    "realId": "38634622",
+    "title": "Закрой за мной дверь, я ухожу",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 256090,
+    "fileSize": 0,
+    "r128": {
+     "i": -14.68,
+     "tp": -1.11
+    },
+    "fade": {
+     "inStart": 0.5,
+     "inStop": 1.5,
+     "outStart": 247.3,
+     "outStop": 252.3
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 41075,
+      "name": "КИНО",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+       "prefix": "c6d507c7.p.41075/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 10100,
+      "title": "Группа крови",
+      "metaType": "music",
+      "year": 1988,
+      "releaseDate": "1988-01-01T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "genre": "rusrock",
+      "trackCount": 11,
+      "likesCount": 80523,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 41075,
+        "name": "КИНО",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+         "prefix": "c6d507c7.p.41075/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 5468362,
+        "name": "Цой В.Р. (наследники)"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [
+       38634621,
+       38634622,
+       38634627
+      ],
+      "disclaimers": [],
+      "hasTrailer": false,
+      "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/34161/10100.rnd-1905886731.playlist-branding/%%",
+      "trackPosition": {
+       "volume": 1,
+       "index": 2
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "derivedColors": {
+     "average": "#8f663c",
+     "waveText": "#ffe0c1",
+     "miniPlayer": "#d4b79a",
+     "accent": "#c2996f"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "lyricsAvailable": false,
+    "best": true,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "karaoke",
+     "smart_preview"
+    ]
+   },
+   {
+    "id": "38634623",
+    "realId": "38634623",
+    "title": "Война",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 244700,
+    "fileSize": 0,
+    "r128": {
+     "i": -13.93,
+     "tp": -1.09
+    },
+    "fade": {
+     "inStart": 0.4,
+     "inStop": 1.5,
+     "outStart": 236.9,
+     "outStop": 241.9
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 41075,
+      "name": "КИНО",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+       "prefix": "c6d507c7.p.41075/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 10100,
+      "title": "Группа крови",
+      "metaType": "music",
+      "year": 1988,
+      "releaseDate": "1988-01-01T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "genre": "rusrock",
+      "trackCount": 11,
+      "likesCount": 80523,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 41075,
+        "name": "КИНО",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+         "prefix": "c6d507c7.p.41075/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 5468362,
+        "name": "Цой В.Р. (наследники)"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [
+       38634621,
+       38634622,
+       38634627
+      ],
+      "disclaimers": [],
+      "hasTrailer": false,
+      "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/34161/10100.rnd-1905886731.playlist-branding/%%",
+      "trackPosition": {
+       "volume": 1,
+       "index": 3
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "derivedColors": {
+     "average": "#8f663c",
+     "waveText": "#ffe0c1",
+     "miniPlayer": "#d4b79a",
+     "accent": "#c2996f"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "lyricsAvailable": false,
+    "best": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "karaoke",
+     "smart_preview"
+    ]
+   },
+   {
+    "id": "38634624",
+    "realId": "38634624",
+    "title": "Спокойная ночь",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 364000,
+    "fileSize": 0,
+    "r128": {
+     "i": -14.68,
+     "tp": -1.1
+    },
+    "fade": {
+     "inStart": 0.7,
+     "inStop": 5.7,
+     "outStart": 358.4,
+     "outStop": 362.7
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 41075,
+      "name": "КИНО",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+       "prefix": "c6d507c7.p.41075/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 10100,
+      "title": "Группа крови",
+      "metaType": "music",
+      "year": 1988,
+      "releaseDate": "1988-01-01T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "genre": "rusrock",
+      "trackCount": 11,
+      "likesCount": 80523,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 41075,
+        "name": "КИНО",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+         "prefix": "c6d507c7.p.41075/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 5468362,
+        "name": "Цой В.Р. (наследники)"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [
+       38634621,
+       38634622,
+       38634627
+      ],
+      "disclaimers": [],
+      "hasTrailer": false,
+      "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/34161/10100.rnd-1905886731.playlist-branding/%%",
+      "trackPosition": {
+       "volume": 1,
+       "index": 4
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "derivedColors": {
+     "average": "#8f663c",
+     "waveText": "#ffe0c1",
+     "miniPlayer": "#d4b79a",
+     "accent": "#c2996f"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "lyricsAvailable": false,
+    "best": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "karaoke",
+     "smart_preview"
+    ]
+   },
+   {
+    "id": "38634625",
+    "realId": "38634625",
+    "title": "Мама, мы все сошли с ума",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 247260,
+    "fileSize": 0,
+    "r128": {
+     "i": -13.73,
+     "tp": -1.08
+    },
+    "fade": {
+     "inStart": 0.4,
+     "inStop": 1.5,
+     "outStart": 238.9,
+     "outStop": 243.9
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 41075,
+      "name": "КИНО",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+       "prefix": "c6d507c7.p.41075/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 10100,
+      "title": "Группа крови",
+      "metaType": "music",
+      "year": 1988,
+      "releaseDate": "1988-01-01T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+      "genre": "rusrock",
+      "trackCount": 11,
+      "likesCount": 80523,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 41075,
+        "name": "КИНО",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+         "prefix": "c6d507c7.p.41075/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 5468362,
+        "name": "Цой В.Р. (наследники)"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [
+       38634621,
+       38634622,
+       38634627
+      ],
+      "disclaimers": [],
+      "hasTrailer": false,
+      "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/34161/10100.rnd-1905886731.playlist-branding/%%",
+      "trackPosition": {
+       "volume": 1,
+       "index": 5
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "derivedColors": {
+     "average": "#8f663c",
+     "waveText": "#ffe0c1",
+     "miniPlayer": "#d4b79a",
+     "accent": "#c2996f"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "lyricsAvailable": false,
+    "best": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "karaoke",
+     "smart_preview"
+    ]
+   }
+  ]
+ ],
+ "pager": {
+  "page": 0,
+  "perPage": 11,
+  "total": 11
+ }
+}

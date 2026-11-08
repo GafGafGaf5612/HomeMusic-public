@@ -1,0 +1,37 @@
+{
+ "data": [
+  {
+   "id": 4179069,
+   "name": "Наутилус Помпилиус",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/14b16c5fddeb254cc4213c4900f1e88f/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 20,
+   "nb_fan": 138919,
+   "type": "artist"
+  },
+  {
+   "id": 4913467,
+   "name": "Земфира",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/ee51a02702532b92e39ef4927b4ee2cd/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 17,
+   "nb_fan": 175407,
+   "type": "artist"
+  },
+  {
+   "id": 4549736,
+   "name": "Виктор Цой",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/2928a4cc9d353eabdfa9e37431c4e1d4/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 12,
+   "nb_fan": 53002,
+   "type": "artist"
+  },
+  {
+   "id": 4546074,
+   "name": "Би-2",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/0b171ab5a6d302accbe2ee3e6d70bac1/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 71,
+   "nb_fan": 262494,
+   "type": "artist"
+  }
+ ],
+ "total": 4
+}

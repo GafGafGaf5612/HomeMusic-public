@@ -1,0 +1,506 @@
+{
+ "contents": {
+  "singleColumnMusicWatchNextResultsRenderer": {
+   "tabbedRenderer": {
+    "watchNextTabbedResultsRenderer": {
+     "tabs": [
+      {
+       "tabRenderer": {
+        "content": {
+         "musicQueueRenderer": {
+          "content": {
+           "playlistPanelRenderer": {
+            "contents": [
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "Группа крови"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCL9NQ06h7I0CRUcGxPWMtkQ",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ARTIST"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "Группа крови",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "MPREb_OLmD8O5IYNS",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ALBUM"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "1988"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "4:45"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "4 minutes, 45 seconds"
+                 }
+                }
+               },
+               "videoId": "xtxjm7ciwmc"
+              }
+             },
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "В наших глазах"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCL9NQ06h7I0CRUcGxPWMtkQ",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ARTIST"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "Группа крови",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "MPREb_OLmD8O5IYNS",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ALBUM"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "1988"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "3:35"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "3 minutes, 35 seconds"
+                 }
+                }
+               },
+               "videoId": "Rng6M38as1A"
+              }
+             },
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "Судно (Борис Рыжий)"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "Molchat Doma",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCNUsdRytQ6oXzN_8rXf-iEg",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ARTIST"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "Этажи",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "MPREb_U5udnReW3qL",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ALBUM"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "2018"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "Molchat Doma"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "2:22"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "2 minutes, 22 seconds"
+                 }
+                }
+               },
+               "videoId": "s1ATTIQrmIQ"
+              }
+             },
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "Дворы"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "Улица Восток",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCD3RFTlama3N1VDtn6hL5mQ",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ARTIST"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "Дворы",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "MPREb_XFytRJyChTq",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ALBUM"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "2021"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "Улица Восток"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "2:36"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "2 minutes, 36 seconds"
+                 }
+                }
+               },
+               "videoId": "0VGRiPjx7qc"
+              }
+             },
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "Chernikovskaya Hata - Belaya Noch"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "DOOM GENERATION",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCLQ9WghmLAmZLU2ODtuL7SQ",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_USER_CHANNEL"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "2.7M views"
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "46K likes"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "DOOM GENERATION"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "4:05"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "4 minutes, 5 seconds"
+                 }
+                }
+               },
+               "videoId": "sKMccxgUD9s"
+              }
+             },
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "Хочу перемен"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCL9NQ06h7I0CRUcGxPWMtkQ",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ARTIST"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "Последний герой",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "MPREb_xMOm3jP71nS",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ALBUM"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "1989"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "4:53"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "4 minutes, 53 seconds"
+                 }
+                }
+               },
+               "videoId": "-vdfEZwPd3M"
+              }
+             },
+             {
+              "playlistPanelVideoRenderer": {
+               "title": {
+                "runs": [
+                 {
+                  "text": "Закрой за мной дверь, я ухожу"
+                 }
+                ]
+               },
+               "longBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "UCL9NQ06h7I0CRUcGxPWMtkQ",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ARTIST"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "Группа крови",
+                  "navigationEndpoint": {
+                   "browseEndpoint": {
+                    "browseId": "MPREb_OLmD8O5IYNS",
+                    "browseEndpointContextSupportedConfigs": {
+                     "browseEndpointContextMusicConfig": {
+                      "pageType": "MUSIC_PAGE_TYPE_ALBUM"
+                     }
+                    }
+                   }
+                  }
+                 },
+                 {
+                  "text": " • "
+                 },
+                 {
+                  "text": "1988"
+                 }
+                ]
+               },
+               "shortBylineText": {
+                "runs": [
+                 {
+                  "text": "Кино"
+                 }
+                ]
+               },
+               "lengthText": {
+                "runs": [
+                 {
+                  "text": "4:17"
+                 }
+                ],
+                "accessibility": {
+                 "accessibilityData": {
+                  "label": "4 minutes, 17 seconds"
+                 }
+                }
+               },
+               "videoId": "SIjGAzFOPTg"
+              }
+             }
+            ]
+           }
+          }
+         }
+        }
+       }
+      }
+     ]
+    }
+   }
+  }
+ }
+}

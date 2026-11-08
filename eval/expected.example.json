@@ -1,0 +1,23 @@
+{
+  "yandex_playlist_dark_01.png": {
+    "source_app": "yandex_music",
+    "items": [
+      {"artist": "КИНО", "title": "Группа крови"},
+      {"artist": "Сплин", "title": "Выхода нет"},
+      {"artist": "Мумий Тролль", "title": "Владивосток 2000"}
+    ]
+  },
+  "vk_my_music_light_01.jpg": {
+    "source_app": "vk",
+    "items": [
+      {"artist": "Земфира", "title": "Хочешь?"},
+      {"artist": "Мияги & Эндшпиль", "title": "Самурай"}
+    ]
+  },
+  "shazam_history_01.png": {
+    "source_app": "shazam",
+    "items": [
+      {"artist": "Daft Punk", "title": "One More Time"}
+    ]
+  }
+}

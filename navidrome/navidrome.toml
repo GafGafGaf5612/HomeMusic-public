@@ -1,0 +1,17 @@
+# Navidrome config (mounted read-only at /config/navidrome.toml).
+# Most settings come from ND_* env vars in docker-compose.yml; this file holds what env vars can't express.
+
+# Stable IDs: the Hub writes its own UUID tags into every file it imports.
+# Navidrome builds track/album PIDs from them, so renaming, retagging and moving files
+# keeps the same IDs (playlists, stars and play counts survive library edits).
+# Files without these tags (added by hand) fall back to Navidrome's default PID rules.
+# WARNING: changing PID rules later re-keys the whole library. Back up /data first.
+Tags.homemusic_track_id.Aliases = ["homemusic_track_id", "txxx:homemusic_track_id", "----:com.apple.itunes:homemusic_track_id"]
+Tags.homemusic_album_id.Aliases = ["homemusic_album_id", "txxx:homemusic_album_id", "----:com.apple.itunes:homemusic_album_id"]
+Tags.homemusic_album_id.Album = true
+
+PID.Track = "homemusic_track_id|musicbrainz_trackid|albumid,discnumber,tracknumber,title"
+PID.Album = "homemusic_album_id|musicbrainz_albumid|albumartistid,album,albumversion,releasedate"
+
+# Keep missing files in the DB so playlists/stars are re-linked when a file reappears after a move.
+Scanner.PurgeMissing = "never"

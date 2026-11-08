@@ -1,0 +1,39 @@
+{
+ "similarartists": {
+  "artist": [
+   {
+    "name": "Nautilus Pompilius",
+    "mbid": "247efe0f-80f1-477c-a4a0-b5cb1b8c832e",
+    "match": "1",
+    "url": "https://www.last.fm/music/Nautilus+Pompilius"
+   },
+   {
+    "name": "ДДТ",
+    "mbid": "f7456b5b-e5a5-454e-b5db-047308210c8e",
+    "match": "0.803392",
+    "url": "https://www.last.fm/music/%D0%94%D0%94%D0%A2"
+   },
+   {
+    "name": "Виктор Цой",
+    "mbid": "7da030e4-3b08-4e29-b497-344d809589fd",
+    "match": "0.777931",
+    "url": "https://www.last.fm/music/%D0%92%D0%B8%D0%BA%D1%82%D0%BE%D1%80+%D0%A6%D0%BE%D0%B9"
+   },
+   {
+    "name": "Альянс",
+    "mbid": "e1325488-3808-4331-9e7a-38a89fac6597",
+    "match": "0.760415",
+    "url": "https://www.last.fm/music/%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81"
+   },
+   {
+    "name": "Агата Кристи",
+    "mbid": "e4b06dc9-c196-49e1-a20a-554e72d95268",
+    "match": "0.639456",
+    "url": "https://www.last.fm/music/%D0%90%D0%B3%D0%B0%D1%82%D0%B0+%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B8"
+   }
+  ],
+  "@attr": {
+   "artist": "Кино"
+  }
+ }
+}

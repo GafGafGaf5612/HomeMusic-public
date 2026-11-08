@@ -1,0 +1,77 @@
+{
+ "_type": "playlist",
+ "id": "OLAK5uy_nRndsUhiMCq2wRW3JCnDgDwD33CUalJZU",
+ "title": "Album - Группа крови",
+ "uploader": null,
+ "channel": null,
+ "webpage_url": "https://www.youtube.com/playlist?list=OLAK5uy_nRndsUhiMCq2wRW3JCnDgDwD33CUalJZU",
+ "extractor_key": "YoutubeTab",
+ "entries": [
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "xtxjm7ciwmc",
+   "url": "https://music.youtube.com/watch?v=xtxjm7ciwmc",
+   "title": "Группа крови",
+   "duration": 285,
+   "channel": "Группа КИНО",
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "SIjGAzFOPTg",
+   "url": "https://music.youtube.com/watch?v=SIjGAzFOPTg",
+   "title": "Закрой за мной дверь, я ухожу",
+   "duration": 257,
+   "channel": "Группа КИНО",
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "Pb7_Azq9pXE",
+   "url": "https://music.youtube.com/watch?v=Pb7_Azq9pXE",
+   "title": "Война",
+   "duration": 245,
+   "channel": "Группа КИНО",
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "LRPmZ_ALkmY",
+   "url": "https://music.youtube.com/watch?v=LRPmZ_ALkmY",
+   "title": "Спокойная ночь",
+   "duration": 365,
+   "channel": "Группа КИНО",
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "jVlwtapN0yc",
+   "url": "https://music.youtube.com/watch?v=jVlwtapN0yc",
+   "title": "Мама, мы все сошли с ума",
+   "duration": 248,
+   "channel": "Группа КИНО",
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "86lHZMGWWiQ",
+   "url": "https://music.youtube.com/watch?v=86lHZMGWWiQ",
+   "title": "Бошетунмай",
+   "duration": 248,
+   "channel": "Группа КИНО",
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО"
+  }
+ ]
+}

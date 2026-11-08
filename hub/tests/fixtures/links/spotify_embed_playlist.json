@@ -1,0 +1,193 @@
+{
+ "props": {
+  "pageProps": {
+   "state": {
+    "data": {
+     "entity": {
+      "type": "playlist",
+      "name": "Today’s Top Hits",
+      "uri": "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M",
+      "id": "37i9dQZF1DXcBWIGoYBM5M",
+      "title": "Today’s Top Hits",
+      "subtitle": "Spotify",
+      "authors": null,
+      "releaseDate": null,
+      "duration": 0,
+      "isPlayable": true,
+      "playabilityReason": "UNKNOWN",
+      "isExplicit": false,
+      "hasVideo": false,
+      "relatedEntityUri": "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M",
+      "trackList": [
+       {
+        "uri": "spotify:track:3XmwAZpIMNpTJy8faw3ajD",
+        "uid": "6e4a782b54436844635930",
+        "title": "expectations (feat. Chappell Roan)",
+        "subtitle": "Olivia Rodrigo, Chappell Roan",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 223935,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:70cHKK8bHAfJrOGVnfRG9J",
+        "uid": "6b754146414d5346426877",
+        "title": "Nicole Kidman",
+        "subtitle": "ADÉLA",
+        "isExplicit": true,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": [
+          "EXPLICIT"
+         ]
+        },
+        "duration": 181270,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:3zOYmiNOuyDL0ClxJcEJ0T",
+        "uid": "654e44597543482f767755",
+        "title": "Stop The Wedding!",
+        "subtitle": "Ashe",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 198840,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:11hcBLPtbMp4aQI6zGQLub",
+        "uid": "65384a4654507478686867",
+        "title": "Patient Zero",
+        "subtitle": "Taylor Swift",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 225868,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:0eAuGrXyGFYwur9ARUe7LJ",
+        "uid": "556b796e4767396e376263",
+        "title": "Earrings",
+        "subtitle": "Malcolm Todd",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 151500,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:3h5T5JypYU7huFiVYhv1dr",
+        "uid": "526e6338483751544d4338",
+        "title": "BbY WOW",
+        "subtitle": "KAROL G, Judeline, rusowsky",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 225834,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       }
+      ],
+      "attributes": [
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "uri",
+        "value": "spotify:user:spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "status",
+        "value": "PUBLISHED"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "isAlgotorial",
+        "value": "false"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "editorial_profile",
+        "value": "true"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "moveFollowersJobId",
+        "value": "f4e857d1-a699-47fe-b5ea-d3d036ebc357"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "primary_color",
+        "value": "#FFFFFF"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "clips_header_entrypoint",
+        "value": "enabled"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "recs.hasArtists",
+        "value": "spotify:artist:1McMsnEElThX1knmY4oliG,spotify:artist:2qanRMyA5bNuTvz1dK45OP,spotify:artist:6P5NO5hzJbuOqSdyPB7SJM,spotify:artist:06HL4z0CvFAxyc27GXpf02,spotify:artist:7eKkW1zo5uzW8kUntiiBvz"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "autoplay",
+        "value": "spotify:playlist:37i9dQZF1DX0kbJZpiYdZl"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "header_image_url_desktop",
+        "value": "https://i.scdn.co/image/ab6768640000fe894e761c46e8afb1b51669f790"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "image_url",
+        "value": "https://i.scdn.co/image/ab67686d00003ae0ced68ffb662c97b7dffafa5b"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "episode_description",
+        "value": "The hottest 50. Cover: Chappell Roan & Olivia Rodrigo"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "is_video_first",
+        "value": "false"
+       },
+       {
+        "__typename": "PlaylistAttribute",
+        "key": "correlation-id",
+        "value": "ssp~065e1f7367dcbbba457e43c2f50d33d29e0e"
+       }
+      ],
+      "format": "format-shows-shuffle"
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,244 @@
+{
+ "likes": {
+  "library": {
+   "uid": 103372440,
+   "revision": 2346,
+   "playlistUuid": "lk.b133eab3-42b6-498b-8855-18aafa130456",
+   "tracks": [
+    {
+     "id": "20935722",
+     "albumId": "8825951",
+     "timestamp": "2026-09-16T11:40:55+00:00"
+    },
+    {
+     "id": "149972244",
+     "albumId": "41455532",
+     "timestamp": "2026-08-03T11:38:00+00:00"
+    },
+    {
+     "id": "24142847",
+     "albumId": "42957112",
+     "timestamp": "2026-07-16T08:33:59+00:00"
+    }
+   ]
+  }
+ },
+ "tracks": [
+  {
+   "id": "20935722",
+   "title": "Falling",
+   "durationMs": 216500,
+   "available": true,
+   "type": "music",
+   "coverUri": "avatars.yandex.net/get-music-content/16485602/59867001.a.8825951-4/%%",
+   "artists": [
+    {
+     "id": 532339,
+     "name": "Hospital"
+    }
+   ],
+   "albums": [
+    {
+     "id": 8825951,
+     "title": "When the Trees Were Higher",
+     "year": 2013,
+     "trackCount": 7
+    }
+   ]
+  },
+  {
+   "id": "149972244",
+   "title": "Обнял, поцеловал",
+   "durationMs": 158110,
+   "available": true,
+   "type": "music",
+   "coverUri": "avatars.yandex.net/get-music-content/16616584/e9ddbe1e.a.41455532-1/%%",
+   "artists": [
+    {
+     "id": 17760331,
+     "name": "Whole Lotta Swag"
+    }
+   ],
+   "albums": [
+    {
+     "id": 41455532,
+     "title": "First Day In Therapy",
+     "year": 2026,
+     "trackCount": 15
+    }
+   ]
+  },
+  {
+   "id": "24142847",
+   "title": "Lush Life",
+   "durationMs": 201130,
+   "available": true,
+   "type": "music",
+   "coverUri": "avatars.yandex.net/get-music-content/21498071/abf39e08.a.4207671-4/%%",
+   "artists": [
+    {
+     "id": 3395554,
+     "name": "Zara Larsson"
+    }
+   ],
+   "albums": [
+    {
+     "id": 4207671,
+     "title": "So Good",
+     "year": 2017,
+     "trackCount": 14
+    }
+   ]
+  }
+ ],
+ "playlists_list": [
+  {
+   "uid": 103372440,
+   "kind": 2581,
+   "title": "Они взлетели в Нитро: фоновая музыка",
+   "trackCount": 79,
+   "visibility": "public",
+   "owner": {
+    "uid": 103372440,
+    "login": "music-blog"
+   }
+  }
+ ],
+ "playlist": {
+  "uid": 103372440,
+  "kind": 2581,
+  "title": "Они взлетели в Нитро: фоновая музыка",
+  "trackCount": 79,
+  "visibility": "public",
+  "owner": {
+   "uid": 103372440,
+   "login": "music-blog"
+  },
+  "tracks": [
+   {
+    "id": 154662270,
+    "timestamp": "2026-10-09T08:31:09+00:00",
+    "track": {
+     "id": "154662270",
+     "title": "Heart Errore_404 (I fall for you)",
+     "durationMs": 135420,
+     "available": true,
+     "type": "music",
+     "coverUri": "avatars.yandex.net/get-music-content/21498071/db626588.a.43488135-1/%%",
+     "artists": [
+      {
+       "id": 25120154,
+       "name": "TØRLINE"
+      }
+     ],
+     "albums": [
+      {
+       "id": 43488135,
+       "title": "Heart Errore_404 (I fall for you)",
+       "year": 2026,
+       "trackCount": 1
+      }
+     ]
+    }
+   },
+   {
+    "id": 153812010,
+    "timestamp": "2026-10-09T08:31:09+00:00",
+    "track": {
+     "id": "153812010",
+     "title": "Ritual",
+     "durationMs": 195300,
+     "available": true,
+     "type": "music",
+     "coverUri": "avatars.yandex.net/get-music-content/17696724/a28f9aee.a.43132716-1/%%",
+     "artists": [
+      {
+       "id": 26191266,
+       "name": "El'dar"
+      }
+     ],
+     "albums": [
+      {
+       "id": 43132716,
+       "title": "Ritual",
+       "year": 2026,
+       "trackCount": 1
+      }
+     ]
+    }
+   },
+   {
+    "id": 155968317,
+    "timestamp": "2026-10-09T08:31:09+00:00",
+    "track": {
+     "id": "155968317",
+     "title": "drowning",
+     "durationMs": 103650,
+     "available": true,
+     "type": "music",
+     "coverUri": "avatars.yandex.net/get-music-content/20031403/406baf0a.a.44038015-1/%%",
+     "artists": [
+      {
+       "id": 22857967,
+       "name": "everysxde"
+      }
+     ],
+     "albums": [
+      {
+       "id": 44038015,
+       "title": "drowning",
+       "year": 2026,
+       "trackCount": 3
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "likes_albums": [
+  {
+   "timestamp": "2025-11-14T07:12:06+00:00",
+   "album": {
+    "id": 39103358,
+    "title": "Престиж",
+    "year": 2025,
+    "trackCount": 30,
+    "version": "Deluxe",
+    "coverUri": "avatars.yandex.net/get-music-content/15499524/93aff917.a.39103358-1/%%",
+    "artists": [
+     {
+      "id": 20626921,
+      "name": "Джон Гарик"
+     }
+    ]
+   }
+  },
+  {
+   "timestamp": "2025-10-24T14:00:02+00:00",
+   "album": {
+    "id": 38804253,
+    "title": "Теряю себя",
+    "year": 2025,
+    "trackCount": 1,
+    "version": null,
+    "coverUri": "avatars.yandex.net/get-music-content/16616584/8fdc8bdc.a.38804253-1/%%",
+    "artists": [
+     {
+      "id": 23812975,
+      "name": "Яна Динамика"
+     }
+    ]
+   }
+  }
+ ],
+ "likes_artists": [
+  {
+   "id": "26203490",
+   "name": "Варя Пипко"
+  },
+  {
+   "id": "19782186",
+   "name": "Cosa Nostra (since 2010)"
+  }
+ ]
+}

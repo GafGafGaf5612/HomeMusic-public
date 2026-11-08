@@ -1,0 +1,174 @@
+# HomeMusic: Navidrome (library + streaming) + Hub (search, downloads, uploads, AI) + reverse SSH tunnel to the VPS.
+# Start / update:  docker compose up -d --build        Stop: docker compose down
+# Settings come from .env (copy .env.example). MUSIC_ROOT is a Windows folder, e.g. B:\Music.
+name: homemusic
+
+x-logging: &logging
+  driver: local
+  options:
+    max-size: "5m"
+    max-file: "3"
+
+services:
+  navidrome:
+    image: deluan/navidrome:0.64.2
+    container_name: homemusic_navidrome
+    restart: unless-stopped
+    ports:
+      - "4533:4533"
+    environment:
+      ND_CONFIGFILE: /config/navidrome.toml
+      ND_MUSICFOLDER: /music
+      ND_DATAFOLDER: /data
+      ND_DEFAULTLANGUAGE: ru
+      ND_LASTFM_LANGUAGE: ru  # artist bios from Last.fm in Russian where they exist
+      # inotify events don't cross the Windows -> WSL2 bind mount; the Hub calls startScan after every import
+      ND_SCANSCHEDULE: 1h
+      ND_SCANNER_WATCHERENABLED: "false"
+      ND_AUTOIMPORTPLAYLISTS: "false"
+      ND_ENABLEINSIGHTSCOLLECTOR: "false"
+      ND_ENABLESHARING: "true"
+      ND_LOGLEVEL: info
+      # the Hub links its files to Navidrome song ids by path
+      ND_SUBSONIC_DEFAULTREPORTREALPATH: "true"
+      ND_BACKUP_PATH: /backups
+      ND_BACKUP_SCHEDULE: "30 4 * * *"
+      ND_BACKUP_COUNT: "7"
+      ND_PASSWORDENCRYPTIONKEY: ${ND_PASSWORDENCRYPTIONKEY:?set ND_PASSWORDENCRYPTIONKEY in .env}
+    volumes:
+      - navidrome-data:/data
+      - ./navidrome/navidrome.toml:/config/navidrome.toml:ro
+      - ${MUSIC_ROOT:?set MUSIC_ROOT in .env}/library:/music:ro
+      - ${MUSIC_ROOT}/.backups/navidrome:/backups
+    logging: *logging
+
+  hub:
+    build:
+      context: .
+      dockerfile: hub/Dockerfile
+    image: homemusic-hub:local
+    container_name: homemusic_hub
+    restart: unless-stopped
+    depends_on:
+      navidrome:
+        condition: service_started
+      youtube-pot:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    env_file: .env
+    environment:
+      MUSIC_ROOT: /music
+      DATA_DIR: /data
+      CONFIG_FILE: /config/config.yaml
+      NAVIDROME_URL: http://navidrome:4533
+      YTDLP_POT_BASE_URL: http://youtube-pot:4416
+      YTDLP_CACHE_DIR: /data/yt-dlp-cache
+    volumes:
+      - hub-data:/data
+      - ${MUSIC_ROOT}:/music
+      - ./config.yaml:/config/config.yaml:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=5).status == 200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    logging: *logging
+
+  # PO tokens for yt-dlp's mweb client. Internal only: no host port or cookie/music mounts.
+  # Keep the image version in sync with bgutil-ytdlp-pot-provider in hub/pyproject.toml.
+  youtube-pot:
+    image: brainicism/bgutil-ytdlp-pot-provider:2.0.2
+    container_name: homemusic_youtube_pot
+    restart: unless-stopped
+    init: true
+    expose:
+      - "4416"
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4416/ping').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging: *logging
+
+  # Audio/text vectors (MuQ-MuLan) for mixes and «Моя волна» — MIXES.md, section 4.2. Only the compose network
+  # reaches it (no published port): the Hub calls http://embedder:8090 (EMBEDDER_URL).
+  embedder:
+    build: ./embedder
+    image: homemusic-embedder:local
+    container_name: homemusic_embedder
+    restart: unless-stopped
+    expose:
+      - "8090"
+    environment:
+      EMBEDDER_TOKEN: ${EMBEDDER_TOKEN:-}
+      DATA_DIR: /data
+      MODELS_DIR: /models
+      HF_HOME: /models/hf
+      MUSIC_ROOT: /music
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - embedder-data:/data
+      # weights (~3 GB) are downloaded on the first job and kept here, not in the image
+      - embedder-models:/models
+      - ${MUSIC_ROOT}/library:/music:ro
+    # loading the model onto the GPU peaks at ~3.4 GB (with the checkpoint's page cache), working ~2.5 GB; a runaway
+    # is killed here, not the whole WSL VM and Docker Desktop with it (Windows' page file is small). No swap.
+    # EMBEDDER_DEVICE=cpu needs ~7 GB: raise both limits first.
+    mem_limit: 4g
+    memswap_limit: 4g
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8090/healthz', timeout=5).status == 200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    logging: *logging
+
+  # Reverse SSH tunnel: the VPS listens on 127.0.0.1:4533 / 127.0.0.1:8080 and Caddy serves them over HTTPS.
+  # The tunnel key only allows these two remote listens.
+  tunnel:
+    build: ./gateway/tunnel
+    image: homemusic-tunnel:local
+    container_name: homemusic_tunnel
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:mode=1777,size=1m
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    environment:
+      VPS_HOST: ${VPS_HOST:?set VPS_HOST in .env}
+      VPS_PORT: "22"
+      VPS_USER: homemusic-tunnel
+      FORWARDS: "127.0.0.1:4533:navidrome:4533 127.0.0.1:8080:hub:8080"
+      RETRY_DELAY: "10"
+      HOME: /tmp
+    volumes:
+      - ./gateway/tunnel/tunnel_key:/config/tunnel_key:ro
+      - ./gateway/tunnel/known_hosts:/config/known_hosts:ro
+    logging:
+      driver: local
+      options:
+        max-size: "1m"
+        max-file: "3"
+
+volumes:
+  # SQLite databases live on the WSL2 ext4 disk, not on the Windows bind mount (locking/WAL are unreliable there).
+  # The Hub copies daily backups of both into MUSIC_ROOT/.backups.
+  navidrome-data:
+  hub-data:
+  embedder-data:
+  embedder-models:

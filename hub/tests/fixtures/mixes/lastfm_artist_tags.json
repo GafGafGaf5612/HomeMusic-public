@@ -1,0 +1,39 @@
+{
+ "toptags": {
+  "tag": [
+   {
+    "count": 100,
+    "name": "russian rock",
+    "url": "https://www.last.fm/tag/russian+rock"
+   },
+   {
+    "count": 87,
+    "name": "post-punk",
+    "url": "https://www.last.fm/tag/post-punk"
+   },
+   {
+    "count": 54,
+    "name": "rock",
+    "url": "https://www.last.fm/tag/rock"
+   },
+   {
+    "count": 42,
+    "name": "russian",
+    "url": "https://www.last.fm/tag/russian"
+   },
+   {
+    "count": 17,
+    "name": "80s",
+    "url": "https://www.last.fm/tag/80s"
+   },
+   {
+    "count": 6,
+    "name": "new wave",
+    "url": "https://www.last.fm/tag/new+wave"
+   }
+  ],
+  "@attr": {
+   "artist": "Кино"
+  }
+ }
+}

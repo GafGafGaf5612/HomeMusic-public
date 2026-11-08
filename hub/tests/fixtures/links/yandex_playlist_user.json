@@ -1,0 +1,1608 @@
+{
+ "owner": {
+  "uid": 653503978,
+  "login": "yandexmusic",
+  "name": "Яндекс Музыка",
+  "sex": "female",
+  "verified": true
+ },
+ "playlistUuid": "ddf290f9-f730-1769-8450-1e76eb97a515",
+ "available": true,
+ "uid": 653503978,
+ "kind": 1636,
+ "title": "Русский рэп в машину",
+ "description": "Идеальный фон для вашего движения. Включайте погромче и почувствуйте ритм улиц",
+ "descriptionFormatted": "Идеальный фон для вашего движения. Включайте погромче и почувствуйте ритм улиц",
+ "revision": 111,
+ "snapshot": 245,
+ "trackCount": 302,
+ "visibility": "public",
+ "collective": false,
+ "created": "2026-03-30T08:56:32+00:00",
+ "modified": "2026-10-16T10:01:40+00:00",
+ "isBanner": false,
+ "isPremiere": false,
+ "durationMs": 42578540,
+ "cover": {
+  "type": "pic",
+  "dir": "/get-music-user-playlist/38125/653503978.1636.80034/",
+  "version": "1775463680034",
+  "uri": "avatars.yandex.net/get-music-user-playlist/38125/653503978.1636.80034/%%?1775463680034",
+  "custom": true
+ },
+ "ogImage": "avatars.yandex.net/get-music-user-playlist/38125/653503978.1636.80034/%%?1775463680034",
+ "tracks": [
+  {
+   "id": 156906907,
+   "originalIndex": 17,
+   "timestamp": "2026-10-16T10:01:40+00:00",
+   "track": {
+    "id": "156906907",
+    "realId": "156906907",
+    "title": "Сплит",
+    "version": "prod. Epishin",
+    "contentWarning": "explicit",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [
+     "age18",
+     "age18Icon:671a23afcec5646906723a53",
+     "descriptionText:67370c8e13b92b0a60256675"
+    ],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 154480,
+    "fileSize": 0,
+    "r128": {
+     "i": -7.23,
+     "tp": 0.16
+    },
+    "fade": {
+     "inStart": 0.0,
+     "inStop": 1.5,
+     "outStart": 152.8,
+     "outStop": 154.3
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 3344970,
+      "name": "БРАТУБРАТ",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/192707/4a730d0a.p.3344970/%%",
+       "prefix": "4a730d0a.p.3344970/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 44379178,
+      "title": "Сплит",
+      "type": "single",
+      "metaType": "music",
+      "version": "prod. Epishin",
+      "contentWarning": "explicit",
+      "year": 2026,
+      "releaseDate": "2026-10-16T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/17770778/380996a7.a.44379178-1/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/17770778/380996a7.a.44379178-1/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/17770778/380996a7.a.44379178-1/%%",
+      "genre": "rusrap",
+      "trackCount": 1,
+      "likesCount": 109,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 3344970,
+        "name": "БРАТУБРАТ",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/192707/4a730d0a.p.3344970/%%",
+         "prefix": "4a730d0a.p.3344970/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 1401185,
+        "name": "Doma"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [],
+      "disclaimers": [
+       "age18",
+       "age18Icon:671a23afcec5646906723a53",
+       "descriptionText:67370c8e13b92b0a60256675"
+      ],
+      "hasTrailer": false,
+      "trackPosition": {
+       "volume": 1,
+       "index": 1
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/17770778/380996a7.a.44379178-1/%%",
+    "derivedColors": {
+     "average": "#2b2e33",
+     "waveText": "#e0e0e0",
+     "miniPlayer": "#b1b6bd",
+     "accent": "#9096a1"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/17770778/380996a7.a.44379178-1/%%",
+    "lyricsAvailable": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN"
+   },
+   "recent": false,
+   "originalShuffleIndex": 17
+  },
+  {
+   "id": 156828512,
+   "originalIndex": 19,
+   "timestamp": "2026-10-16T10:01:40+00:00",
+   "track": {
+    "id": "156828512",
+    "realId": "156828512",
+    "title": "В рутине будней",
+    "version": "prod. MILKY FLIGHT",
+    "contentWarning": "explicit",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [
+     "age18",
+     "age18Icon:671a23afcec5646906723a53",
+     "descriptionText:67370c8e13b92b0a60256675"
+    ],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 200430,
+    "fileSize": 0,
+    "r128": {
+     "i": -7.61,
+     "tp": -0.1
+    },
+    "fade": {
+     "inStart": 0.0,
+     "inStop": 4.4,
+     "outStart": 197.0,
+     "outStop": 200.4
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 4339776,
+      "name": "POLTABLETKI",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/15134515/1f318108.p.4339776/%%",
+       "prefix": "1f318108.p.4339776/"
+      },
+      "genres": [],
+      "disclaimers": []
+     },
+     {
+      "id": 9335867,
+      "name": "РАВС",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-album-cover",
+       "uri": "avatars.yandex.net/get-music-content/9837520/caefb640.a.31668398-1/%%",
+       "prefix": "caefb640.a.31668398-1"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 44345085,
+      "title": "В рутине будней",
+      "type": "single",
+      "metaType": "music",
+      "version": "prod. MILKY FLIGHT",
+      "contentWarning": "explicit",
+      "year": 2026,
+      "releaseDate": "2026-10-16T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/20322863/70398c69.a.44345085-1/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/20322863/70398c69.a.44345085-1/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/20322863/70398c69.a.44345085-1/%%",
+      "genre": "rusrap",
+      "trackCount": 1,
+      "likesCount": 31,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 4339776,
+        "name": "POLTABLETKI",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/15134515/1f318108.p.4339776/%%",
+         "prefix": "1f318108.p.4339776/"
+        },
+        "genres": [],
+        "disclaimers": []
+       },
+       {
+        "id": 9335867,
+        "name": "РАВС",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-album-cover",
+         "uri": "avatars.yandex.net/get-music-content/9837520/caefb640.a.31668398-1/%%",
+         "prefix": "caefb640.a.31668398-1"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 4584498,
+        "name": "ДСХХ"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [],
+      "disclaimers": [
+       "age18",
+       "age18Icon:671a23afcec5646906723a53",
+       "descriptionText:67370c8e13b92b0a60256675"
+      ],
+      "hasTrailer": false,
+      "trackPosition": {
+       "volume": 1,
+       "index": 1
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/20322863/70398c69.a.44345085-1/%%",
+    "derivedColors": {
+     "average": "#6da8c4",
+     "waveText": "#c1ebff",
+     "miniPlayer": "#99c2d5",
+     "accent": "#6da8c4"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/20322863/70398c69.a.44345085-1/%%",
+    "lyricsAvailable": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN"
+   },
+   "recent": false,
+   "originalShuffleIndex": 19
+  },
+  {
+   "id": 156165513,
+   "originalIndex": 0,
+   "timestamp": "2026-10-16T10:01:40+00:00",
+   "track": {
+    "id": "156165513",
+    "realId": "156165513",
+    "title": "Я делал когда-то",
+    "contentWarning": "explicit",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [
+     "age18",
+     "age18Icon:671a23afcec5646906723a53",
+     "descriptionText:67370c8e13b92b0a60256675"
+    ],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 118820,
+    "fileSize": 0,
+    "r128": {
+     "i": -8.39,
+     "tp": 1.23
+    },
+    "fade": {
+     "inStart": 0.0,
+     "inStop": 1.5,
+     "outStart": 115.6,
+     "outStop": 117.2
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 2965347,
+      "name": "Kunteynir",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/16469857/8e42388b.p.2965347/%%",
+       "prefix": "8e42388b.p.2965347/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "albums": [
+     {
+      "id": 44111980,
+      "title": "Я делал когда-то",
+      "type": "single",
+      "metaType": "music",
+      "contentWarning": "explicit",
+      "year": 2026,
+      "releaseDate": "2026-10-14T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/20305588/dff9593a.a.44111980-1/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/20305588/dff9593a.a.44111980-1/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/20305588/dff9593a.a.44111980-1/%%",
+      "genre": "rusrap",
+      "trackCount": 1,
+      "likesCount": 86,
+      "recent": true,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 2965347,
+        "name": "Kunteynir",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/16469857/8e42388b.p.2965347/%%",
+         "prefix": "8e42388b.p.2965347/"
+        },
+        "genres": [],
+        "disclaimers": []
+       }
+      ],
+      "labels": [
+       {
+        "id": 1753050,
+        "name": "KUNTEYNIR"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [],
+      "disclaimers": [
+       "age18",
+       "age18Icon:671a23afcec5646906723a53",
+       "descriptionText:67370c8e13b92b0a60256675"
+      ],
+      "hasTrailer": false,
+      "trackPosition": {
+       "volume": 1,
+       "index": 1
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/20305588/dff9593a.a.44111980-1/%%",
+    "derivedColors": {
+     "average": "#6e675d",
+     "waveText": "#e0e0e0",
+     "miniPlayer": "#bdb8b1",
+     "accent": "#a19a90"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/20305588/dff9593a.a.44111980-1/%%",
+    "lyricsAvailable": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "smart_preview"
+    ]
+   },
+   "recent": false,
+   "originalShuffleIndex": 0
+  },
+  {
+   "id": 156395945,
+   "originalIndex": 1,
+   "timestamp": "2026-10-16T10:01:40+00:00",
+   "track": {
+    "id": "156395945",
+    "realId": "156395945",
+    "title": "Осень",
+    "contentWarning": "explicit",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [
+     "age18",
+     "age18Icon:671a23afcec5646906723a53",
+     "descriptionText:67370c8e13b92b0a60256675"
+    ],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 177660,
+    "fileSize": 0,
+    "r128": {
+     "i": -7.06,
+     "tp": -0.01
+    },
+    "fade": {
+     "inStart": 0.0,
+     "inStop": 1.5,
+     "outStart": 173.7,
+     "outStop": 177.0
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 8577867,
+      "name": "#DanyDef",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/15142616/42852e8d.p.8577867/%%",
+       "prefix": "42852e8d.p.8577867/"
+      },
+      "genres": [],
+      "disclaimers": [],
+      "cutoutCover": {
+       "uri": "avatars.yandex.net/get-music-content/18132539/85f0de40.c.129762/%%"
+      }
+     }
+    ],
+    "albums": [
+     {
+      "id": 44206988,
+      "title": "Осень",
+      "type": "single",
+      "metaType": "music",
+      "contentWarning": "explicit",
+      "year": 2026,
+      "releaseDate": "2026-10-14T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/20622967/1a9b0694.a.44206988-1/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/20622967/1a9b0694.a.44206988-1/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/20622967/1a9b0694.a.44206988-1/%%",
+      "genre": "rap",
+      "trackCount": 1,
+      "likesCount": 41,
+      "recent": true,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 8577867,
+        "name": "#DanyDef",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/15142616/42852e8d.p.8577867/%%",
+         "prefix": "42852e8d.p.8577867/"
+        },
+        "genres": [],
+        "disclaimers": [],
+        "cutoutCover": {
+         "uri": "avatars.yandex.net/get-music-content/18132539/85f0de40.c.129762/%%"
+        }
+       }
+      ],
+      "labels": [
+       {
+        "id": 2412747,
+        "name": "Green Groove"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [],
+      "disclaimers": [
+       "age18",
+       "age18Icon:671a23afcec5646906723a53",
+       "descriptionText:67370c8e13b92b0a60256675"
+      ],
+      "hasTrailer": false,
+      "trackPosition": {
+       "volume": 1,
+       "index": 1
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/20622967/1a9b0694.a.44206988-1/%%",
+    "derivedColors": {
+     "average": "#241c18",
+     "waveText": "#ffd6c1",
+     "miniPlayer": "#c5b2a9",
+     "accent": "#ad9284"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/20622967/1a9b0694.a.44206988-1/%%",
+    "lyricsAvailable": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "smart_preview"
+    ]
+   },
+   "recent": false,
+   "originalShuffleIndex": 1
+  },
+  {
+   "id": 155007642,
+   "originalIndex": 2,
+   "timestamp": "2026-10-16T10:01:40+00:00",
+   "track": {
+    "id": "155007642",
+    "realId": "155007642",
+    "title": "да мы пошутили",
+    "contentWarning": "explicit",
+    "major": {
+     "id": 0,
+     "name": "-"
+    },
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableFullWithoutPermission": false,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "disclaimers": [
+     "age18",
+     "age18Icon:671a23afcec5646906723a53",
+     "descriptionText:67370c8e13b92b0a60256675"
+    ],
+    "storageDir": "51327_109b74ca.36526310.1.609676",
+    "durationMs": 181160,
+    "fileSize": 0,
+    "r128": {
+     "i": -13.92,
+     "tp": -2.21
+    },
+    "fade": {
+     "inStart": 0.1,
+     "inStop": 1.5,
+     "outStart": 179.6,
+     "outStop": 181.0
+    },
+    "previewDurationMs": 30000,
+    "artists": [
+     {
+      "id": 25484358,
+      "name": "Mongo@L",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/20164422/36511691.p.25484358/%%",
+       "prefix": "36511691.p.25484358/"
+      },
+      "genres": [],
+      "disclaimers": [],
+      "cutoutCover": {
+       "uri": "avatars.yandex.net/get-music-content/20712233/0edad3ea.c.1064492/%%"
+      }
+     }
+    ],
+    "albums": [
+     {
+      "id": 43631431,
+      "title": "да мы пошутили",
+      "type": "single",
+      "metaType": "music",
+      "contentWarning": "explicit",
+      "year": 2026,
+      "releaseDate": "2026-10-16T00:00:00+03:00",
+      "coverUri": "avatars.yandex.net/get-music-content/20322863/a052e6d9.a.43631431-1/%%",
+      "cover": {
+       "uri": "avatars.yandex.net/get-music-content/20322863/a052e6d9.a.43631431-1/%%"
+      },
+      "ogImage": "avatars.yandex.net/get-music-content/20322863/a052e6d9.a.43631431-1/%%",
+      "genre": "rap",
+      "trackCount": 1,
+      "likesCount": 4,
+      "recent": false,
+      "veryImportant": false,
+      "artists": [
+       {
+        "id": 25484358,
+        "name": "Mongo@L",
+        "various": false,
+        "composer": false,
+        "available": true,
+        "cover": {
+         "type": "from-artist-photos",
+         "uri": "avatars.yandex.net/get-music-content/20164422/36511691.p.25484358/%%",
+         "prefix": "36511691.p.25484358/"
+        },
+        "genres": [],
+        "disclaimers": [],
+        "cutoutCover": {
+         "uri": "avatars.yandex.net/get-music-content/20712233/0edad3ea.c.1064492/%%"
+        }
+       }
+      ],
+      "labels": [
+       {
+        "id": 6395301,
+        "name": "gosilk.ru по лицензии"
+       },
+       {
+        "id": 5058104,
+        "name": "ФОРМАНТА"
+       }
+      ],
+      "available": true,
+      "availableForPremiumUsers": true,
+      "availableForOptions": [
+       "bookmate"
+      ],
+      "availableForMobile": true,
+      "availablePartially": false,
+      "bests": [],
+      "disclaimers": [
+       "age18",
+       "age18Icon:671a23afcec5646906723a53",
+       "descriptionText:67370c8e13b92b0a60256675"
+      ],
+      "hasTrailer": false,
+      "trackPosition": {
+       "volume": 1,
+       "index": 1
+      }
+     }
+    ],
+    "coverUri": "avatars.yandex.net/get-music-content/20322863/a052e6d9.a.43631431-1/%%",
+    "derivedColors": {
+     "average": "#1c201c",
+     "waveText": "#e0e0e0",
+     "miniPlayer": "#b3bbb3",
+     "accent": "#939e93"
+    },
+    "ogImage": "avatars.yandex.net/get-music-content/20322863/a052e6d9.a.43631431-1/%%",
+    "lyricsAvailable": false,
+    "type": "music",
+    "rememberPosition": false,
+    "trackSharingFlag": "COVER_ONLY",
+    "lyricsInfo": {
+     "hasAvailableSyncLyrics": false,
+     "hasAvailableTextLyrics": false
+    },
+    "trackSource": "OWN",
+    "specialAudioResources": [
+     "smart_preview"
+    ]
+   },
+   "recent": false,
+   "originalShuffleIndex": 2
+  }
+ ],
+ "tags": [
+  {
+   "id": "5795cfac77d30f7fda41bcb2",
+   "value": "driving music"
+  },
+  {
+   "id": "5c11f0963f9b6400bb442654",
+   "value": "rusrap"
+  }
+ ],
+ "likesCount": 16672,
+ "similarPlaylists": [
+  {
+   "owner": {
+    "uid": 103372440,
+    "login": "music-blog",
+    "name": "Яндекс Музыка",
+    "sex": "male",
+    "verified": true
+   },
+   "playlistUuid": "2a92a43b-f4ac-176b-1282-48cc83611a78",
+   "available": true,
+   "uid": 103372440,
+   "kind": 2200,
+   "title": "Фонк на большой скорости",
+   "description": "Громкие басы и динамичные каубеллы для поездки, захватывающей дух. Аккуратнее на дороге!",
+   "descriptionFormatted": "Громкие басы и динамичные каубеллы для поездки, захватывающей дух. Аккуратнее на дороге!",
+   "revision": 405,
+   "snapshot": 666,
+   "trackCount": 294,
+   "visibility": "public",
+   "collective": false,
+   "created": "2015-09-28T12:55:46+00:00",
+   "modified": "2026-10-15T21:00:02+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 33026280,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/10311229/103372440.2200.40488/",
+    "version": "1722511540488",
+    "uri": "avatars.yandex.net/get-music-user-playlist/10311229/103372440.2200.40488/%%?1722511540488",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/10311229/103372440.2200.40488/%%?1722511540488",
+   "tags": [
+    {
+     "id": "5795cfac77d30f7fda41bcb2",
+     "value": "driving music"
+    },
+    {
+     "id": "6489b04dde0ce55e08e520fa",
+     "value": "phonk"
+    }
+   ],
+   "actionButton": {
+    "text": "Спецпроект про фонк",
+    "url": "https://music.yandex.ru/post/65ddc1ead3bb9b6474544a8a",
+    "color": "#9800df"
+   },
+   "customWave": {
+    "title": "Фонк на большой скорости",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#7d3986",
+    "waveText": "#f8c1ff",
+    "miniPlayer": "#cd9bd3",
+    "accent": "#b870c1"
+   }
+  },
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "5f95d456-8e47-5ca1-b245-76de498a47e1",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1354,
+   "title": "На пульсе: рэп",
+   "description": "На обложке: Josodo\r\nТрендовые рэп-новинки от артистов, уже завоевавших сердца слушателей",
+   "descriptionFormatted": "На обложке: Josodo\r\nТрендовые рэп-новинки от артистов, уже завоевавших сердца слушателей",
+   "revision": 683,
+   "snapshot": 1530,
+   "trackCount": 283,
+   "visibility": "public",
+   "collective": false,
+   "created": "2024-05-06T07:31:57+00:00",
+   "modified": "2026-10-16T06:22:01+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 38969240,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/21174237/653503978.1354.2793/",
+    "version": "1792131602793",
+    "uri": "avatars.yandex.net/get-music-user-playlist/21174237/653503978.1354.2793/%%?1792131602793",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/21174237/653503978.1354.2793/%%?1792131602793",
+   "tags": [
+    {
+     "id": "66472c6fde69207fbe58b3d4",
+     "value": "impulse"
+    },
+    {
+     "id": "5c11f0963f9b6400bb442654",
+     "value": "rusrap"
+    },
+    {
+     "id": "5795cf3993aee1813dc8e187",
+     "value": "rap"
+    }
+   ],
+   "backgroundImageUrl": "avatars.yandex.net/get-music-user-playlist/19252516/653503978.1354.rnd-329990725.playlist-branding/%%",
+   "customWave": {
+    "title": "На пульсе: рэп",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#1c7059",
+    "waveText": "#c1ffee",
+    "miniPlayer": "#8ce2ca",
+    "accent": "#5bd6b4"
+   }
+  },
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "56f7ca9c-6a2d-4e42-b6ec-f6a68a2f75f8",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1327,
+   "title": "Стиль и клаут",
+   "description": "Треклист с новомодными веяниями хип-хопа: от рейджа и гипертрэпа до нью-джаза, джерка и худтрэпа",
+   "descriptionFormatted": "Треклист с новомодными веяниями хип-хопа: от рейджа и гипертрэпа до нью-джаза, джерка и худтрэпа",
+   "revision": 767,
+   "snapshot": 1183,
+   "trackCount": 305,
+   "visibility": "public",
+   "collective": false,
+   "created": "2024-01-26T06:52:58+00:00",
+   "modified": "2026-10-16T10:01:58+00:00",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 36869210,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/11423738/653503978.1327.35622/",
+    "version": "1751266549639",
+    "uri": "avatars.yandex.net/get-music-user-playlist/11407514/653503978.1327.49639/%%?1751266549639",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/11407514/653503978.1327.49639/%%?1751266549639",
+   "tags": [
+    {
+     "id": "5c11f0963f9b6400bb442654",
+     "value": "rusrap"
+    }
+   ],
+   "customWave": {
+    "title": "Стиль и клаут",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#0c3025",
+    "waveText": "#c1ffec",
+    "miniPlayer": "#70ffd3",
+    "accent": "#33ffc0"
+   }
+  },
+  {
+   "owner": {
+    "uid": 103372440,
+    "login": "music-blog",
+    "name": "Яндекс Музыка",
+    "sex": "male",
+    "verified": true
+   },
+   "playlistUuid": "ad3edc50-602d-9728-d6da-dba672970b57",
+   "available": true,
+   "uid": 103372440,
+   "kind": 1090,
+   "title": "Русский рок в дорогу",
+   "description": "Олдовый рок и представители новой волны в одном плейлисте с дорожным настроением",
+   "descriptionFormatted": "Олдовый рок и представители новой волны в одном плейлисте с дорожным настроением",
+   "revision": 370,
+   "snapshot": 832,
+   "trackCount": 308,
+   "visibility": "public",
+   "collective": false,
+   "created": "2013-11-18T10:13:51+00:00",
+   "modified": "2026-10-16T10:01:35+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 61707580,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/59900/103372440.1090.92807/",
+    "version": "1701382592807",
+    "uri": "avatars.yandex.net/get-music-user-playlist/59900/103372440.1090.92807/%%?1701382592807",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/59900/103372440.1090.92807/%%?1701382592807",
+   "tags": [
+    {
+     "id": "5c11f05b3f9b6400bb442647",
+     "value": "rusrock"
+    },
+    {
+     "id": "5795cfac77d30f7fda41bcb2",
+     "value": "driving music"
+    }
+   ],
+   "customWave": {
+    "title": "Русский рок в дорогу",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#786953",
+    "waveText": "#ffe6c1",
+    "miniPlayer": "#c4baaa",
+    "accent": "#ab9c86"
+   }
+  },
+  {
+   "owner": {
+    "uid": 2285405970,
+    "login": "ml-playlists",
+    "name": "Редакция х Алгоритмы",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "8e0dbba7-feef-e28c-ad99-82f9fc8f7adb",
+   "available": true,
+   "uid": 2285405970,
+   "kind": 1000,
+   "title": "Дорога зовёт",
+   "description": "Плейлист для тех, кто уже в пути. Рекомендовано редакцией, собрано алгоритмами",
+   "descriptionFormatted": "Плейлист для тех, кто уже в пути. Рекомендовано редакцией, собрано алгоритмами",
+   "revision": 50,
+   "snapshot": 105,
+   "trackCount": 199,
+   "visibility": "public",
+   "collective": false,
+   "created": "2025-11-05T12:14:32+00:00",
+   "modified": "2026-10-01T21:00:14+00:00",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 32464040,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/11184076/2285405970.1000.82861/",
+    "version": "1762498182861",
+    "uri": "avatars.yandex.net/get-music-user-playlist/11184076/2285405970.1000.82861/%%?1762498182861",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/11184076/2285405970.1000.82861/%%?1762498182861",
+   "tags": [
+    {
+     "id": "5795cfbe77d30f7fda41bcb5",
+     "value": "sad"
+    },
+    {
+     "id": "5795cf3193aee1813dc8e186",
+     "value": "energetic"
+    },
+    {
+     "id": "618a5ae8b4c4683bfe1c0b8f",
+     "value": "dreamy"
+    },
+    {
+     "id": "5795cf6177d30f7fda41bca7",
+     "value": "for the road"
+    },
+    {
+     "id": "5795cfac77d30f7fda41bcb2",
+     "value": "driving music"
+    }
+   ],
+   "customWave": {
+    "title": "Дорога зовёт",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#3b71ce",
+    "waveText": "#c1d8ff",
+    "miniPlayer": "#74a5fa",
+    "accent": "#397ff8"
+   }
+  },
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "c1beef4f-eb0b-3db5-8ec8-ba4c9d284a04",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1144,
+   "title": "Джерси-клаб",
+   "description": "Жанр-мутант, рожденный благодаря хип-хопу, ускоренному балтиморскому хаусу и звуку скрипучей кровати. ",
+   "descriptionFormatted": "Жанр-мутант, рожденный благодаря хип-хопу, ускоренному балтиморскому хаусу и звуку скрипучей кровати. ",
+   "revision": 80,
+   "snapshot": 147,
+   "trackCount": 112,
+   "visibility": "public",
+   "collective": false,
+   "created": "2022-10-26T09:53:59+00:00",
+   "modified": "2026-08-20T21:00:11+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 14737670,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/59900/653503978.1144.89487/",
+    "version": "1701383189487",
+    "uri": "avatars.yandex.net/get-music-user-playlist/59900/653503978.1144.89487/%%?1701383189487",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/59900/653503978.1144.89487/%%?1701383189487",
+   "tags": [
+    {
+     "id": "5c11f0963f9b6400bb442654",
+     "value": "rusrap"
+    },
+    {
+     "id": "5795cf4a77d30f7fda41bca3",
+     "value": "electronic"
+    }
+   ],
+   "customWave": {
+    "title": "Джерси-клаб",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#441e79",
+    "waveText": "#dbc1ff",
+    "miniPlayer": "#af81ee",
+    "accent": "#8c4be6"
+   }
+  },
+  {
+   "owner": {
+    "uid": 105590476,
+    "login": "ya.playlist",
+    "name": "Музыкальные подборки",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "99b90fab-4e66-5867-1100-b3ba0b2a2ebd",
+   "available": true,
+   "uid": 105590476,
+   "kind": 1161,
+   "title": "Русский рэп про любовь",
+   "description": "Речитативы о сильных чувствах",
+   "descriptionFormatted": "Речитативы о сильных чувствах",
+   "revision": 329,
+   "snapshot": 714,
+   "trackCount": 298,
+   "visibility": "public",
+   "collective": false,
+   "created": "2014-01-27T10:44:59+00:00",
+   "modified": "2026-10-15T21:00:01+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 42375930,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/71140/105590476.1161.69449/",
+    "version": "1707733069449",
+    "uri": "avatars.yandex.net/get-music-user-playlist/71140/105590476.1161.69449/%%?1707733069449",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/71140/105590476.1161.69449/%%?1707733069449",
+   "tags": [
+    {
+     "id": "5795cfea77d30f7fda41bcbc",
+     "value": "valentinesday"
+    },
+    {
+     "id": "5795cf9f77d30f7fda41bcb0",
+     "value": "romantic"
+    },
+    {
+     "id": "5795cf3993aee1813dc8e187",
+     "value": "rap"
+    },
+    {
+     "id": "5c11f0963f9b6400bb442654",
+     "value": "rusrap"
+    }
+   ],
+   "customWave": {
+    "title": "Русский рэп про любовь",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#6387ce",
+    "waveText": "#c1d6ff",
+    "miniPlayer": "#92abdd",
+    "accent": "#6387ce"
+   }
+  },
+  {
+   "owner": {
+    "uid": 103372440,
+    "login": "music-blog",
+    "name": "Яндекс Музыка",
+    "sex": "male",
+    "verified": true
+   },
+   "playlistUuid": "d78c716a-2b64-d788-96ab-c72c09d1945f",
+   "available": true,
+   "uid": 103372440,
+   "kind": 2147,
+   "title": "Драйв «Форсажа»",
+   "description": "Нет ничего важнее семьи. Саундтрек культовой франшизы о стритрейсинге.",
+   "descriptionFormatted": "Нет ничего важнее семьи. Саундтрек культовой франшизы о стритрейсинге.",
+   "revision": 106,
+   "snapshot": 197,
+   "trackCount": 45,
+   "visibility": "public",
+   "collective": false,
+   "created": "2019-08-11T18:56:27+00:00",
+   "modified": "2021-10-27T09:36:19+00:00",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 18671950,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/27701/103372440.2147.41203/",
+    "version": "1701686741203",
+    "uri": "avatars.yandex.net/get-music-user-playlist/27701/103372440.2147.41203/%%?1701686741203",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/27701/103372440.2147.41203/%%?1701686741203",
+   "tags": [
+    {
+     "id": "57b454bb2d321384e9b87770",
+     "value": "cinema"
+    },
+    {
+     "id": "5eb5759ba982241da8618135",
+     "value": "music from films"
+    },
+    {
+     "id": "5795cfac77d30f7fda41bcb2",
+     "value": "driving music"
+    }
+   ],
+   "customWave": {
+    "title": "Драйв «Форсажа»",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#71675a",
+    "waveText": "#ffe3c1",
+    "miniPlayer": "#bfb8af",
+    "accent": "#a49a8d"
+   }
+  },
+  {
+   "owner": {
+    "uid": 103372440,
+    "login": "music-blog",
+    "name": "Яндекс Музыка",
+    "sex": "male",
+    "verified": true
+   },
+   "playlistUuid": "3561d959-20dd-a9b7-d2c7-4a221a64054b",
+   "available": true,
+   "uid": 103372440,
+   "kind": 2075,
+   "title": "Русский хип-хоп 90-х",
+   "description": "Уличная жизнь первых русских рэперов в битах и рифмах.",
+   "descriptionFormatted": "Уличная жизнь первых русских рэперов в битах и рифмах.",
+   "revision": 30,
+   "snapshot": 126,
+   "trackCount": 16,
+   "visibility": "public",
+   "collective": false,
+   "created": "2019-03-05T15:16:32+00:00",
+   "modified": "2019-04-17T13:25:37+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 4078880,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/10311229/103372440.2075.97214/",
+    "version": "1748958397214",
+    "uri": "avatars.yandex.net/get-music-user-playlist/10311229/103372440.2075.97214/%%?1748958397214",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/10311229/103372440.2075.97214/%%?1748958397214",
+   "tags": [
+    {
+     "id": "5c11f0963f9b6400bb442654",
+     "value": "rusrap"
+    },
+    {
+     "id": "5795cf3993aee1813dc8e187",
+     "value": "rap"
+    },
+    {
+     "id": "5795cf5677d30f7fda41bca5",
+     "value": "90s"
+    }
+   ],
+   "customWave": {
+    "title": "Русский хип-хоп 90-х",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#0c2530",
+    "waveText": "#c1ecff",
+    "miniPlayer": "#73d2fc",
+    "accent": "#37bffb"
+   }
+  }
+ ],
+ "lastOwnerPlaylists": [
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "20ed45de-5a22-f3b9-b0de-9a0bcc452210",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1714,
+   "title": "Плейлист Нади",
+   "description": "Новинки, которые Надя из редакции Яндекс Музыки добавила себе в Коллекцию",
+   "descriptionFormatted": "Новинки, которые Надя из редакции Яндекс Музыки добавила себе в Коллекцию",
+   "revision": 11,
+   "snapshot": 84,
+   "trackCount": 139,
+   "visibility": "public",
+   "collective": false,
+   "created": "2026-08-07T09:40:41+00:00",
+   "modified": "2026-10-16T17:31:17+00:00",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 30786290,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/11407514/653503978.1714.52369/",
+    "version": "1786444252369",
+    "uri": "avatars.yandex.net/get-music-user-playlist/11407514/653503978.1714.52369/%%?1786444252369",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/11407514/653503978.1714.52369/%%?1786444252369",
+   "tags": [],
+   "customWave": {
+    "title": "Плейлист Нади",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#977d8d",
+    "waveText": "#ffc1e6",
+    "miniPlayer": "#bfafb9",
+    "accent": "#a38e9b"
+   }
+  },
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "470a8d81-1c5a-826e-90d9-82949e481d14",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1429,
+   "title": "Метал: открытия",
+   "description": "На обложке: .моесердцесправа.\r\nНовое поколение тяжёлой музыки",
+   "descriptionFormatted": "На обложке: .моесердцесправа.\r\nНовое поколение тяжёлой музыки",
+   "revision": 245,
+   "snapshot": 809,
+   "trackCount": 304,
+   "visibility": "public",
+   "collective": false,
+   "created": "2024-10-24T09:57:19+00:00",
+   "modified": "2026-10-16T12:20:02+00:00",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 81223810,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/19252516/653503978.1429.92023/",
+    "version": "1792152892023",
+    "uri": "avatars.yandex.net/get-music-user-playlist/19252516/653503978.1429.92023/%%?1792152892023",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/19252516/653503978.1429.92023/%%?1792152892023",
+   "tags": [
+    {
+     "id": "5efb73f7e630943eea37ed89",
+     "value": "newartists"
+    },
+    {
+     "id": "5795cf8777d30f7fda41bcad",
+     "value": "metal"
+    }
+   ],
+   "backgroundImageUrl": "avatars.yandex.net/get-music-user-playlist/17884433/653503978.1429.rnd-1598076184.playlist-branding/%%",
+   "customWave": {
+    "title": "Метал: открытия",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#242854",
+    "waveText": "#c1c6ff",
+    "miniPlayer": "#9b9fd4",
+    "accent": "#7077c1"
+   }
+  },
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "d67219e3-bdd2-6e4b-a667-bafcf6dd6aac",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1357,
+   "title": "На пульсе: поп",
+   "description": "На обложке: ALLERGIA\nТрендовые поп-новинки от артистов, уже завоевавших сердца слушателей",
+   "descriptionFormatted": "На обложке: ALLERGIA\nТрендовые поп-новинки от артистов, уже завоевавших сердца слушателей",
+   "revision": 805,
+   "snapshot": 1584,
+   "trackCount": 246,
+   "visibility": "public",
+   "collective": false,
+   "created": "2024-05-08T09:38:21+00:00",
+   "modified": "2026-10-16T10:49:02+00:00",
+   "backgroundColor": "",
+   "textColor": "#000000",
+   "image": "",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 38994050,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/19252516/653503978.1357.58970/",
+    "version": "1792053958970",
+    "uri": "avatars.yandex.net/get-music-user-playlist/19252516/653503978.1357.58970/%%?1792053958970",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/19252516/653503978.1357.58970/%%?1792053958970",
+   "tags": [
+    {
+     "id": "5795cf1793aee1813dc8e182",
+     "value": "pop"
+    },
+    {
+     "id": "5c11f00a3f9b6400bb44263b",
+     "value": "ruspop"
+    },
+    {
+     "id": "66472c6fde69207fbe58b3d4",
+     "value": "impulse"
+    }
+   ],
+   "backgroundImageUrl": "avatars.yandex.net/get-music-user-playlist/19252516/653503978.1357.rnd-2057125848.playlist-branding/%%",
+   "customWave": {
+    "title": "На пульсе: поп",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#d55ccb",
+    "waveText": "#ffc1f9",
+    "miniPlayer": "#e28dda",
+    "accent": "#d55ccb"
+   }
+  },
+  {
+   "owner": {
+    "uid": 653503978,
+    "login": "yandexmusic",
+    "name": "Яндекс Музыка",
+    "sex": "female",
+    "verified": true
+   },
+   "playlistUuid": "7b266df9-a320-ecb3-8f3f-de1801e6cd47",
+   "available": true,
+   "uid": 653503978,
+   "kind": 1423,
+   "title": "Шансон-рэп",
+   "description": "Подстиль хип-хопа на стыке двух жанров.",
+   "descriptionFormatted": "Подстиль хип-хопа на стыке двух жанров.",
+   "revision": 179,
+   "snapshot": 325,
+   "trackCount": 300,
+   "visibility": "public",
+   "collective": false,
+   "created": "2024-10-11T08:31:05+00:00",
+   "modified": "2026-10-16T10:02:19+00:00",
+   "isBanner": false,
+   "isPremiere": false,
+   "durationMs": 50607810,
+   "cover": {
+    "type": "pic",
+    "dir": "/get-music-user-playlist/30088/653503978.1423.92435/",
+    "version": "1729492943843",
+    "uri": "avatars.yandex.net/get-music-user-playlist/30088/653503978.1423.92435/%%?1729492943843",
+    "custom": true
+   },
+   "ogImage": "avatars.yandex.net/get-music-user-playlist/30088/653503978.1423.92435/%%?1729492943843",
+   "tags": [],
+   "customWave": {
+    "title": "Шансон-рэп",
+    "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+    "position": "default",
+    "header": "Моя волна по плейлисту",
+    "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+    "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+   },
+   "derivedColors": {
+    "average": "#32251e",
+    "waveText": "#ffd7c1",
+    "miniPlayer": "#c9b2a5",
+    "accent": "#b2917f"
+   }
+  }
+ ],
+ "customWave": {
+  "title": "Русский рэп в машину",
+  "animationUrl": "https://music-custom-wave-media.s3.yandex.net/base.json",
+  "position": "default",
+  "header": "Моя волна по плейлисту",
+  "backgroundImageUrl": "avatars.mds.yandex.net/get-music-misc/28052/custom-wave-default-playlist-background.image/%%",
+  "squareAgentAnimation": "https://music-custom-wave-media.music.yandex.net/OLRwjRlyUe"
+ },
+ "pager": {
+  "total": 304,
+  "page": 0,
+  "perPage": 304
+ },
+ "hasTrailer": true,
+ "trailer": {
+  "available": true
+ },
+ "derivedColors": {
+  "average": "#186128",
+  "waveText": "#c1ffce",
+  "miniPlayer": "#76f992",
+  "accent": "#3bf663"
+ }
+}

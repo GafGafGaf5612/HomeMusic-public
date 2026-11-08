@@ -1,0 +1,118 @@
+{
+ "props": {
+  "pageProps": {
+   "state": {
+    "data": {
+     "entity": {
+      "type": "album",
+      "name": "Discovery",
+      "uri": "spotify:album:2noRn2Aes5aoNVsU6iWThc",
+      "id": "2noRn2Aes5aoNVsU6iWThc",
+      "title": "Discovery",
+      "subtitle": "Daft Punk",
+      "isPreRelease": false,
+      "releaseDate": null,
+      "duration": 0,
+      "isPlayable": true,
+      "playabilityReason": "PLAYABLE",
+      "isExplicit": false,
+      "hasVideo": false,
+      "relatedEntityUri": "spotify:album:2noRn2Aes5aoNVsU6iWThc",
+      "trackList": [
+       {
+        "uri": "spotify:track:0DiWol3AO6WpXZgp0goxAV",
+        "uid": "dfa1496435df51db7a50",
+        "title": "One More Time",
+        "subtitle": "Daft Punk",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 320357,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:3H3cOQ6LBLSvmcaV7QkZEu",
+        "uid": "488787eb8ff1792e028e",
+        "title": "Aerodynamic",
+        "subtitle": "Daft Punk",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 212546,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:2VEZx7NWsZ1D0eJ4uv5Fym",
+        "uid": "15f99cbe1978416bed21",
+        "title": "Digital Love",
+        "subtitle": "Daft Punk",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 301373,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:5W3cjX2J3tjhG8zb6u0qHn",
+        "uid": "b328e7027f6bfe371438",
+        "title": "Harder, Better, Faster, Stronger",
+        "subtitle": "Daft Punk",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 226413,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:6vuPZX9fWESg5js2JFTQRJ",
+        "uid": "53a5d9f886c346f3df53",
+        "title": "Crescendolls",
+        "subtitle": "Daft Punk",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 211640,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       },
+       {
+        "uri": "spotify:track:63JXZZRbmzooashakb0zbu",
+        "uid": "e85424e3ae1686f14433",
+        "title": "Nightvision",
+        "subtitle": "Daft Punk",
+        "isExplicit": false,
+        "isNineteenPlus": false,
+        "contentRatings": {
+         "labels": []
+        },
+        "duration": 104466,
+        "isPlayable": true,
+        "playabilityReason": "PLAYABLE",
+        "entityType": "track"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0b0b0b;
+  --color-surface: #161616;
+  --color-raised: #212121;
+  --color-line: #2c2c2c;
+  --color-fg: #f2f2f2;
+  --color-muted: #a8a8a8;
+  --color-dim: #6e6e6e;
+  --color-accent: #1ed760;
+  --color-accent-strong: #1db954;
+  --color-danger: #f26b63;
+  --color-warn: #f2b84b;
+  --color-info: #5aa9f0;
+  --color-hover: #2a2a2a; /* hover / pressed surface of buttons and chips */
+  --color-on-accent: #000000; /* text on accent backgrounds */
+  /* taste facets and chart series (admin insights): apart from each other and from the background */
+  --color-facet-1: #5ab8ff;
+  --color-facet-2: #ffa94d;
+  --color-facet-3: #b98cff;
+  --color-facet-4: #f5d547;
+  --color-facet-5: #ff7eb6;
+  /* Inter, as in the Android app (bundled, Latin + Cyrillic) */
+  --font-sans: 'Inter Variable', 'Roboto', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+:root {
+  --tabbar-h: 64px; /* TabBar height; fixed bottom bars sit above it */
+  /* --player-h: MiniPlayer height while it shows (set by it); fixed bottom bars sit above it too */
+}
+:root.hm-embedded {
+  --tabbar-h: 0px; /* inside the Android app: no PWA tab bar */
+  /* the app's own background (sent by the app as --hm-bg): no seam at its status bar and players */
+  --color-bg: var(--hm-bg, #000000);
+}
+/* Inside the app in its light theme (the app sets .hm-light): the app's light colors, green as its accent. */
+:root.hm-embedded.hm-light {
+  color-scheme: light;
+  --color-bg: var(--hm-bg, #f6fbf3);
+  --color-surface: #ecf1ea;
+  --color-raised: #e4eae2;
+  --color-line: #d3dad1;
+  --color-fg: #181d18;
+  --color-muted: #535b53;
+  --color-dim: #737c73;
+  --color-accent: #006e2d;
+  --color-accent-strong: #005320;
+  --color-danger: #ba1a1a;
+  --color-warn: #845400;
+  --color-info: #00629d;
+  --color-hover: #d9e0d7;
+  --color-on-accent: #ffffff;
+  --color-facet-1: #0b6bcb;
+  --color-facet-2: #b85400;
+  --color-facet-3: #7a3fd1;
+  --color-facet-4: #7d6400;
+  --color-facet-5: #c2306f;
+  --track: #c4ccc2;
+  --skeleton-a: #e4eae2;
+  --skeleton-b: #d6ddd4;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scrollbar-gutter: stable; /* Keep page alignment when routes gain or lose vertical overflow. */
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: contain;
+  }
+  button,
+  [role='button'],
+  a,
+  label {
+    touch-action: manipulation;
+  }
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* no zoom-on-focus on mobile */
+  }
+  input[type='search']::-webkit-search-cancel-button {
+    appearance: none; /* our own clear button is drawn instead */
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-lg border border-line bg-raised px-3 py-2.5 text-fg placeholder:text-dim outline-none transition-colors focus:border-accent;
+  }
+  .label {
+    @apply mb-1 block text-[13px] font-medium text-muted;
+  }
+  .card {
+    @apply rounded-xl bg-surface;
+  }
+  .hm-range {
+    appearance: none;
+    height: 20px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .hm-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--color-fg) var(--p, 0%), var(--track, #4a4a4a) var(--p, 0%));
+  }
+  .hm-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: var(--color-fg);
+  }
+  .hm-range::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--track, #4a4a4a);
+  }
+  .hm-range::-moz-range-progress {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-fg);
+  }
+  .hm-range::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-fg);
+  }
+  .hm-range:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+@keyframes hm-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.anim-up {
+  animation: hm-fade-up 0.18s ease-out;
+}
+
+@keyframes hm-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-a, #1b1b1b) 0, var(--skeleton-b, #262626) 40%, var(--skeleton-a, #1b1b1b) 80%);
+  background-size: 400px 100%;
+  animation: hm-shimmer 1.2s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-up,
+  .skeleton {
+    animation: none;
+  }
+}

@@ -1,0 +1,125 @@
+[
+ {
+  "id": "38634621",
+  "realId": "38634621",
+  "title": "Группа крови",
+  "major": {
+   "id": 0,
+   "name": "-"
+  },
+  "available": true,
+  "availableForPremiumUsers": true,
+  "availableFullWithoutPermission": false,
+  "availableForOptions": [
+   "bookmate"
+  ],
+  "disclaimers": [],
+  "storageDir": "51327_109b74ca.36526310.1.609676",
+  "durationMs": 284000,
+  "fileSize": 0,
+  "r128": {
+   "i": -13.66,
+   "tp": -1.11
+  },
+  "fade": {
+   "inStart": 1.1,
+   "inStop": 6.1,
+   "outStart": 275.5,
+   "outStop": 280.5
+  },
+  "previewDurationMs": 30000,
+  "artists": [
+   {
+    "id": 41075,
+    "name": "КИНО",
+    "various": false,
+    "composer": false,
+    "available": true,
+    "cover": {
+     "type": "from-artist-photos",
+     "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+     "prefix": "c6d507c7.p.41075/"
+    },
+    "genres": [],
+    "disclaimers": []
+   }
+  ],
+  "albums": [
+   {
+    "id": 10100,
+    "title": "Группа крови",
+    "metaType": "music",
+    "year": 1988,
+    "releaseDate": "1988-01-01T00:00:00+03:00",
+    "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+    "genre": "rusrock",
+    "trackCount": 11,
+    "likesCount": 80523,
+    "recent": false,
+    "veryImportant": false,
+    "artists": [
+     {
+      "id": 41075,
+      "name": "КИНО",
+      "various": false,
+      "composer": false,
+      "available": true,
+      "cover": {
+       "type": "from-artist-photos",
+       "uri": "avatars.yandex.net/get-music-content/33216/c6d507c7.p.41075/%%",
+       "prefix": "c6d507c7.p.41075/"
+      },
+      "genres": [],
+      "disclaimers": []
+     }
+    ],
+    "labels": [
+     {
+      "id": 5468362,
+      "name": "Цой В.Р. (наследники)"
+     }
+    ],
+    "available": true,
+    "availableForPremiumUsers": true,
+    "availableForOptions": [
+     "bookmate"
+    ],
+    "availableForMobile": true,
+    "availablePartially": false,
+    "bests": [
+     38634621,
+     38634622,
+     38634627
+    ],
+    "disclaimers": [],
+    "listeningFinished": false,
+    "trackPosition": {
+     "volume": 1,
+     "index": 1
+    }
+   }
+  ],
+  "coverUri": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+  "derivedColors": {
+   "average": "#8f663c",
+   "waveText": "#ffe0c1",
+   "miniPlayer": "#d4b79a",
+   "accent": "#c2996f"
+  },
+  "ogImage": "avatars.yandex.net/get-music-content/5853241/3fde3856.a.10100-7/%%",
+  "lyricsAvailable": false,
+  "type": "music",
+  "rememberPosition": false,
+  "trackSharingFlag": "COVER_ONLY",
+  "lyricsInfo": {
+   "hasAvailableSyncLyrics": false,
+   "hasAvailableTextLyrics": false
+  },
+  "trackSource": "OWN",
+  "specialAudioResources": [
+   "karaoke",
+   "smart_preview"
+  ]
+ }
+]

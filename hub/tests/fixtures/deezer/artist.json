@@ -1,0 +1,16 @@
+{
+ "id": 73922432,
+ "name": "Три дня дождя",
+ "link": "https://www.deezer.com/artist/73922432",
+ "share": "https://www.deezer.com/artist/73922432?utm_source=deezer&utm_content=artist-73922432&utm_term=0_1792340738&utm_medium=web",
+ "picture": "https://api.deezer.com/artist/73922432/image",
+ "picture_small": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/56x56-000000-80-0-0.jpg",
+ "picture_medium": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/250x250-000000-80-0-0.jpg",
+ "picture_big": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/500x500-000000-80-0-0.jpg",
+ "picture_xl": "https://cdn-images.dzcdn.net/images/artist/88d4df0fa8487ad909983d202395a04b/1000x1000-000000-80-0-0.jpg",
+ "nb_album": 47,
+ "nb_fan": 20888,
+ "radio": true,
+ "tracklist": "https://api.deezer.com/artist/73922432/top?limit=50",
+ "type": "artist"
+}

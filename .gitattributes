@@ -1,0 +1,5 @@
+# cmd.exe misreads labels and gotos in batch files with LF line endings
+*.bat text eol=crlf
+
+# Append-only agent journal: parallel branches add entries at the end without rebase conflicts
+OPTIMIZE-TODO.md merge=union

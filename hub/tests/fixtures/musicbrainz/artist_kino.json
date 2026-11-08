@@ -1,0 +1,256 @@
+{
+ "created": "2026-10-18T16:26:09.167Z",
+ "count": 18,
+ "offset": 0,
+ "artists": [
+  {
+   "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+   "type": "Group",
+   "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+   "score": 100,
+   "name": "Кино",
+   "sort-name": "Kino",
+   "country": "RU",
+   "area": {
+    "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+    "type": "Country",
+    "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+    "name": "Russia",
+    "sort-name": "Russia",
+    "life-span": {
+     "ended": null
+    }
+   },
+   "begin-area": {
+    "id": "808e1ef8-5390-4300-a615-c4df977cc349",
+    "type": "City",
+    "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+    "name": "Sankt-Peterburg",
+    "sort-name": "Sankt-Peterburg",
+    "life-span": {
+     "ended": null
+    }
+   },
+   "disambiguation": "Soviet rock band active in 1980s",
+   "life-span": {
+    "begin": "1981",
+    "ended": null
+   },
+   "aliases": [
+    {
+     "sort-name": "Абсолютное кино",
+     "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+     "name": "Абсолютное кино",
+     "locale": null,
+     "type": "Search hint",
+     "primary": null,
+     "begin-date": null,
+     "end-date": null
+    },
+    {
+     "sort-name": "Kino",
+     "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+     "name": "Kino",
+     "locale": "en",
+     "type": "Artist name",
+     "primary": true,
+     "begin-date": null,
+     "end-date": null
+    },
+    {
+     "sort-name": "Кіно",
+     "name": "Кіно",
+     "locale": "uk",
+     "type": null,
+     "primary": null,
+     "begin-date": null,
+     "end-date": null
+    },
+    {
+     "sort-name": "Кино",
+     "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+     "name": "Кино",
+     "locale": "ru",
+     "type": "Artist name",
+     "primary": true,
+     "begin-date": null,
+     "end-date": null
+    },
+    {
+     "sort-name": "Gruppa Kino",
+     "name": "Gruppa Kino",
+     "locale": null,
+     "type": null,
+     "primary": null,
+     "begin-date": null,
+     "end-date": null
+    },
+    {
+     "sort-name": "Êèíî",
+     "name": "Êèíî",
+     "locale": null,
+     "type": null,
+     "primary": null,
+     "begin-date": null,
+     "end-date": null
+    }
+   ],
+   "tags": [
+    {
+     "count": -1,
+     "name": "punk"
+    },
+    {
+     "count": 7,
+     "name": "post-punk"
+    },
+    {
+     "count": 3,
+     "name": "new wave"
+    },
+    {
+     "count": 3,
+     "name": "russian"
+    },
+    {
+     "count": 0,
+     "name": "gothic rock"
+    },
+    {
+     "count": 9,
+     "name": "russian rock"
+    },
+    {
+     "count": 4,
+     "name": "soviet"
+    },
+    {
+     "count": -1,
+     "name": "russia"
+    },
+    {
+     "count": 3,
+     "name": "saint petersburg"
+    },
+    {
+     "count": 0,
+     "name": "rock 'n' roll"
+    },
+    {
+     "count": 0,
+     "name": "coldwave"
+    },
+    {
+     "count": 4,
+     "name": "soviet rock"
+    },
+    {
+     "count": 0,
+     "name": "рок-н-ролл"
+    },
+    {
+     "count": 1,
+     "name": "_private tag 1"
+    }
+   ]
+  },
+  {
+   "id": "e9c9406f-20dc-4c10-a4c7-e7bedc7fc28e",
+   "type": "Group",
+   "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+   "score": 71,
+   "name": "Симфоническое Кино",
+   "sort-name": "Simfonicheskoe Kino",
+   "country": "RU",
+   "area": {
+    "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+    "type": "Country",
+    "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+    "name": "Russia",
+    "sort-name": "Russia",
+    "life-span": {
+     "ended": null
+    }
+   },
+   "life-span": {
+    "ended": null
+   },
+   "aliases": [
+    {
+     "sort-name": "Simfonicheskoe Kino",
+     "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+     "name": "Simfonicheskoe Kino",
+     "locale": "en",
+     "type": "Artist name",
+     "primary": null,
+     "begin-date": null,
+     "end-date": null
+    }
+   ]
+  },
+  {
+   "id": "228ebc0c-5294-4c6f-ba73-531479ae10a0",
+   "type": "Group",
+   "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+   "score": 69,
+   "name": "Кино ФРГ",
+   "sort-name": "Кино ФРГ",
+   "begin-area": {
+    "id": "ed8c8c0a-721d-45b8-a4f4-3ad95bdc9622",
+    "type": "City",
+    "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+    "name": "Tolyatti",
+    "sort-name": "Tolyatti",
+    "life-span": {
+     "ended": null
+    }
+   },
+   "end-area": {
+    "id": "ed8c8c0a-721d-45b8-a4f4-3ad95bdc9622",
+    "type": "City",
+    "type-id": "6fd8f29a-3d0a-32fc-980d-ea697b69da78",
+    "name": "Tolyatti",
+    "sort-name": "Tolyatti",
+    "life-span": {
+     "ended": null
+    }
+   },
+   "life-span": {
+    "begin": "1996",
+    "end": "2021",
+    "ended": true
+   }
+  },
+  {
+   "id": "50552751-18f8-47d6-b1c4-15dd516d9ae4",
+   "score": 69,
+   "name": "Чёрное кино",
+   "sort-name": "Чёрное кино",
+   "life-span": {
+    "ended": null
+   }
+  },
+  {
+   "id": "cc1c7695-4db1-44c5-b1e6-a04febb66c4d",
+   "type": "Group",
+   "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+   "score": 62,
+   "name": "Музыканты Группы \"Кино\"",
+   "sort-name": "Музыканты Группы \"Кино\"",
+   "country": "RU",
+   "area": {
+    "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+    "type": "Country",
+    "type-id": "06dd0ae4-8c74-30bb-b43d-95dcedf961de",
+    "name": "Russia",
+    "sort-name": "Russia",
+    "life-span": {
+     "ended": null
+    }
+   },
+   "life-span": {
+    "ended": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "data": [
+  {
+   "id": 448266002,
+   "readable": true,
+   "title": "Война",
+   "title_short": "Война",
+   "title_version": "",
+   "duration": 240,
+   "rank": 312485,
+   "explicit_lyrics": false,
+   "preview": "https://cdnt-preview.dzcdn.net/api/1/1/2/3/d/0/23d07d54faf7a07a43b05408e1d43f3f.mp3",
+   "artist": {
+    "id": 4505880,
+    "name": "Кино",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/ec428d21f614b586a7b647f8da435913/1000x1000-000000-80-0-0.jpg",
+    "type": "artist"
+   },
+   "album": {
+    "id": 54718362,
+    "title": "Последний герой",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/db588cbe37c78a037e8eeb382dff1753/1000x1000-000000-80-0-0.jpg",
+    "type": "album"
+   },
+   "type": "track"
+  },
+  {
+   "id": 405131022,
+   "readable": true,
+   "title": "Чёрное солнце",
+   "title_short": "Чёрное солнце",
+   "duration": 289,
+   "rank": 328107,
+   "explicit_lyrics": false,
+   "preview": "https://cdnt-preview.dzcdn.net/api/1/1/e/a/c/0/eac1ea54e572befc20a3abc1a7c36e6b.mp3",
+   "artist": {
+    "id": 4546074,
+    "name": "Би-2",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/0b171ab5a6d302accbe2ee3e6d70bac1/1000x1000-000000-80-0-0.jpg",
+    "type": "artist"
+   },
+   "album": {
+    "id": 47857752,
+    "title": "Горизонт событий",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/e1935785e42797574922f4cc2306925e/1000x1000-000000-80-0-0.jpg",
+    "type": "album"
+   },
+   "type": "track"
+  },
+  {
+   "id": 491201122,
+   "readable": true,
+   "title": "Бошетунмай",
+   "title_short": "Бошетунмай",
+   "title_version": "",
+   "duration": 250,
+   "rank": 112511,
+   "explicit_lyrics": false,
+   "preview": "https://cdnt-preview.dzcdn.net/api/1/1/0/3/4/0/034db932b4f9dea8bdac480ff6f08ff3.mp3",
+   "artist": {
+    "id": 4505880,
+    "name": "Кино",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/ec428d21f614b586a7b647f8da435913/1000x1000-000000-80-0-0.jpg",
+    "type": "artist"
+   },
+   "album": {
+    "id": 62145332,
+    "title": "Легенда",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/72854c811a50236b48b8998221bd764e/1000x1000-000000-80-0-0.jpg",
+    "type": "album"
+   },
+   "type": "track"
+  },
+  {
+   "id": 114023104,
+   "readable": true,
+   "title": "Доктор твоего тела",
+   "title_short": "Доктор твоего тела",
+   "duration": 271,
+   "rank": 114248,
+   "explicit_lyrics": false,
+   "preview": "https://cdnt-preview.dzcdn.net/api/1/1/d/a/c/0/dac9959514abd8775e204f708b8c34aa.mp3",
+   "artist": {
+    "id": 4179069,
+    "name": "Наутилус Помпилиус",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/14b16c5fddeb254cc4213c4900f1e88f/1000x1000-000000-80-0-0.jpg",
+    "type": "artist"
+   },
+   "album": {
+    "id": 11809162,
+    "title": "Золотой век",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/6ca68403228498b3c7a51350b9bda97d/1000x1000-000000-80-0-0.jpg",
+    "type": "album"
+   },
+   "type": "track"
+  },
+  {
+   "id": 491201762,
+   "readable": true,
+   "title": "Муравейник",
+   "title_short": "Муравейник",
+   "title_version": "",
+   "duration": 319,
+   "rank": 233806,
+   "explicit_lyrics": false,
+   "preview": "https://cdnt-preview.dzcdn.net/api/1/1/2/c/2/0/2c29ddad8971245e62c87e641d80cb85.mp3",
+   "artist": {
+    "id": 4505880,
+    "name": "Кино",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/ec428d21f614b586a7b647f8da435913/1000x1000-000000-80-0-0.jpg",
+    "type": "artist"
+   },
+   "album": {
+    "id": 62145332,
+    "title": "Легенда",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/72854c811a50236b48b8998221bd764e/1000x1000-000000-80-0-0.jpg",
+    "type": "album"
+   },
+   "type": "track"
+  },
+  {
+   "id": 2738179801,
+   "readable": true,
+   "title": "Что такое осень",
+   "title_short": "Что такое осень",
+   "title_version": "",
+   "duration": 299,
+   "rank": 361641,
+   "explicit_lyrics": false,
+   "preview": "https://cdnt-preview.dzcdn.net/api/1/1/0/5/8/0/05895d2bdf79fdf0b77ee68cc5da8607.mp3",
+   "artist": {
+    "id": 4487263,
+    "name": "ДДТ",
+    "picture_xl": "https://cdn-images.dzcdn.net/images/artist/f0fb0744455c58b17a2f29b0456ee7ef/1000x1000-000000-80-0-0.jpg",
+    "type": "artist"
+   },
+   "album": {
+    "id": 569384251,
+    "title": "Просвистела",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/c7545629cc5fefce220ff059e288506a/1000x1000-000000-80-0-0.jpg",
+    "type": "album"
+   },
+   "type": "track"
+  }
+ ]
+}

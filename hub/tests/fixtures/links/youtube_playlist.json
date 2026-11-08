@@ -1,0 +1,77 @@
+{
+ "_type": "playlist",
+ "id": "PLiwqEJs7pw6KwZx-h1eLRkYUVWaprllgs",
+ "title": "1988 - Группа крови (Maschina Records, 2019)",
+ "uploader": "Gavril Kim",
+ "channel": "Gavril Kim",
+ "webpage_url": "https://www.youtube.com/playlist?list=PLiwqEJs7pw6KwZx-h1eLRkYUVWaprllgs",
+ "extractor_key": "YoutubeTab",
+ "entries": [
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "Au1RGWBowP0",
+   "url": "https://www.youtube.com/watch?v=Au1RGWBowP0",
+   "title": "01-01. Группа Крови",
+   "duration": 290,
+   "channel": "Gavril Kim",
+   "channel_id": "UCexGhXNBUZbsq4T2VDzya3g",
+   "uploader": "Gavril Kim"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "_7pMeOOxMVc",
+   "url": "https://www.youtube.com/watch?v=_7pMeOOxMVc",
+   "title": "01-02. Закрой за мной дверь, я ухожу",
+   "duration": 265,
+   "channel": "Gavril Kim",
+   "channel_id": "UCexGhXNBUZbsq4T2VDzya3g",
+   "uploader": "Gavril Kim"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "xAOwHklExdo",
+   "url": "https://www.youtube.com/watch?v=xAOwHklExdo",
+   "title": "01-03. Война",
+   "duration": 250,
+   "channel": "Gavril Kim",
+   "channel_id": "UCexGhXNBUZbsq4T2VDzya3g",
+   "uploader": "Gavril Kim"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "8NiuOZgmIE0",
+   "url": "https://www.youtube.com/watch?v=8NiuOZgmIE0",
+   "title": "01-04. Спокойная ночь",
+   "duration": 380,
+   "channel": "Gavril Kim",
+   "channel_id": "UCexGhXNBUZbsq4T2VDzya3g",
+   "uploader": "Gavril Kim"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "3YsF2czgSZ4",
+   "url": "https://www.youtube.com/watch?v=3YsF2czgSZ4",
+   "title": "01-05. Мама, мы все тяжело больны",
+   "duration": 250,
+   "channel": "Gavril Kim",
+   "channel_id": "UCexGhXNBUZbsq4T2VDzya3g",
+   "uploader": "Gavril Kim"
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "4tqM3PFdC1o",
+   "url": "https://www.youtube.com/watch?v=4tqM3PFdC1o",
+   "title": "01-06. Бошетунмай",
+   "duration": 255,
+   "channel": "Gavril Kim",
+   "channel_id": "UCexGhXNBUZbsq4T2VDzya3g",
+   "uploader": "Gavril Kim"
+  }
+ ]
+}

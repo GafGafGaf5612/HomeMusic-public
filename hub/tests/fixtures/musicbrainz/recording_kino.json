@@ -1,0 +1,1885 @@
+{
+ "created": "2026-10-18T16:26:04.474Z",
+ "count": 25,
+ "offset": 0,
+ "recordings": [
+  {
+   "id": "cd8cfc02-31af-4b53-9410-50f852ec88bb",
+   "score": 100,
+   "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+   "title": "Группа крови",
+   "length": 292280,
+   "disambiguation": "Запись/Сведение: Москва '89",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Кино",
+     "artist": {
+      "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+      "name": "Кино",
+      "sort-name": "Kino",
+      "disambiguation": "Soviet rock band active in 1980s",
+      "aliases": [
+       {
+        "sort-name": "Абсолютное кино",
+        "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+        "name": "Абсолютное кино",
+        "locale": null,
+        "type": "Search hint",
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Kino",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Kino",
+        "locale": "en",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кіно",
+        "name": "Кіно",
+        "locale": "uk",
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кино",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Кино",
+        "locale": "ru",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Gruppa Kino",
+        "name": "Gruppa Kino",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Êèíî",
+        "name": "Êèíî",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "2023-01-16",
+   "releases": [
+    {
+     "id": "41c1d649-2275-4f72-935a-33c88e6e53a5",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "2023-01-16",
+     "country": "XW",
+     "release-events": [
+      {
+       "date": "2023-01-16",
+       "area": {
+        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+        "name": "[Worldwide]",
+        "sort-name": "[Worldwide]",
+        "iso-3166-1-codes": [
+         "XW"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "638666da-d5fa-3a8e-bafc-9b360b6f3985",
+       "position": 1,
+       "format": "Digital Media",
+       "track": [
+        {
+         "id": "2e7d218c-fbee-4a39-922a-35785fe7e402",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 292280
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "80daf4d2-4718-4527-ad31-500c4fbe218f",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 3,
+     "title": "Последний герой",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "2023-06-16",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2023-06-16",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 26,
+     "media": [
+      {
+       "id": "470c99d2-50ef-3b39-b011-9fa57c9de88e",
+       "position": 2,
+       "format": "CD",
+       "track": [
+        {
+         "id": "572a52b1-07eb-4e3d-8350-d037569ad88e",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 292280
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "0026cc05-be60-4723-a399-e69e53c7e327",
+   "score": 100,
+   "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+   "title": "Группа крови",
+   "length": 214000,
+   "disambiguation": "live, 1988-10-28: СКК имени Ленина, Leningrad, USSR",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Кино",
+     "artist": {
+      "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+      "name": "Кино",
+      "sort-name": "Kino",
+      "disambiguation": "Soviet rock band active in 1980s",
+      "aliases": [
+       {
+        "sort-name": "Абсолютное кино",
+        "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+        "name": "Абсолютное кино",
+        "locale": null,
+        "type": "Search hint",
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Kino",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Kino",
+        "locale": "en",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кіно",
+        "name": "Кіно",
+        "locale": "uk",
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кино",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Кино",
+        "locale": "ru",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Gruppa Kino",
+        "name": "Gruppa Kino",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Êèíî",
+        "name": "Êèíî",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "2008",
+   "releases": [
+    {
+     "id": "e84ca7f8-53bb-45bb-b0d5-948d2c9f5dfb",
+     "artist-credit-id": "30e43bf6-1c9e-4bb8-8d04-95d930d288ae",
+     "count": 1,
+     "title": "Полное собрание сочинений, mp3 коллекция в XI томах",
+     "artist-credit": [
+      {
+       "joinphrase": ", ",
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      },
+      {
+       "name": "Виктор Цой",
+       "artist": {
+        "id": "7da030e4-3b08-4e29-b497-344d809589fd",
+        "name": "Виктор Цой",
+        "sort-name": "Tsoy, Viktor"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "03deea60-202d-4c87-b6e2-99d49ecff4b6",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Полное собрание сочинений, mp3 коллекция в XI томах",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "2008",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2008",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 894,
+     "media": [
+      {
+       "id": "f233a8c6-133d-30e6-8915-68e41dad01cd",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "226f2719-645b-431f-bb32-30c16935abc0",
+         "number": "745",
+         "title": "Группа крови"
+        }
+       ],
+       "track-count": 894,
+       "track-offset": 744
+      }
+     ]
+    },
+    {
+     "id": "825208c8-839a-44ea-ad1c-8b6fd5a871d1",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Концерт в СКК имени Ленина (Ленинград, 28 октября 1988 г.)",
+     "status": "Bootleg",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "b613f5cd-12a9-4599-ae83-91c9b324fe97",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Концерт в СКК имени Ленина (Ленинград, 28 октября 1988 г.)",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "2015-07-27",
+     "country": "XW",
+     "release-events": [
+      {
+       "date": "2015-07-27",
+       "area": {
+        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+        "name": "[Worldwide]",
+        "sort-name": "[Worldwide]",
+        "iso-3166-1-codes": [
+         "XW"
+        ]
+       }
+      }
+     ],
+     "track-count": 15,
+     "media": [
+      {
+       "id": "a5df3e8b-f915-34ca-a3d7-ddc699eb00fd",
+       "position": 1,
+       "format": "Digital Media",
+       "track": [
+        {
+         "id": "d1786bad-fc5d-4610-a853-edec63bd942e",
+         "number": "9",
+         "title": "Группа крови",
+         "length": 214000
+        }
+       ],
+       "track-count": 15,
+       "track-offset": 8
+      }
+     ]
+    }
+   ],
+   "isrcs": [
+    "FRX871523721"
+   ]
+  },
+  {
+   "id": "c517fe18-e6b2-4e87-8da0-96993d5e2184",
+   "score": 100,
+   "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+   "title": "Группа крови",
+   "length": 252000,
+   "disambiguation": "live, 1989-01-14: Freetown Christiania, Copenhagen, Denmark",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Кино",
+     "artist": {
+      "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+      "name": "Кино",
+      "sort-name": "Kino",
+      "disambiguation": "Soviet rock band active in 1980s",
+      "aliases": [
+       {
+        "sort-name": "Абсолютное кино",
+        "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+        "name": "Абсолютное кино",
+        "locale": null,
+        "type": "Search hint",
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Kino",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Kino",
+        "locale": "en",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кіно",
+        "name": "Кіно",
+        "locale": "uk",
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кино",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Кино",
+        "locale": "ru",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Gruppa Kino",
+        "name": "Gruppa Kino",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Êèíî",
+        "name": "Êèíî",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "2021-03-01",
+   "releases": [
+    {
+     "id": "a31fadb0-bd12-469e-8647-cab34413d9d2",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Кино в Дании. Христания x Фестиваль «Next Stop Sovjet» 14.01.1989",
+     "status": "Official",
+     "disambiguation": "red vinyl",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "c1f39065-fe30-4638-a2ee-e3c4660c363c",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Кино в Дании. Христания x Фестиваль «Next Stop Sovjet» 14.01.1989",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "2021-03-01",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2021-03-01",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 11,
+     "media": [
+      {
+       "id": "dac7de8b-a9fd-3c62-bb2a-254428567b8a",
+       "position": 1,
+       "format": "12\" Vinyl",
+       "track": [
+        {
+         "id": "0b3c1014-cd3e-42db-abfe-9e4af24d56b7",
+         "number": "B4",
+         "title": "Группа крови",
+         "length": 252000
+        }
+       ],
+       "track-count": 11,
+       "track-offset": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a66b770a-19c3-4feb-8cb3-4b9d3edec390",
+   "score": 100,
+   "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+   "title": "Группа крови",
+   "length": 239906,
+   "disambiguation": "Последний герой album version",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Кино",
+     "artist": {
+      "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+      "name": "Кино",
+      "sort-name": "Kino",
+      "disambiguation": "Soviet rock band active in 1980s",
+      "aliases": [
+       {
+        "sort-name": "Абсолютное кино",
+        "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+        "name": "Абсолютное кино",
+        "locale": null,
+        "type": "Search hint",
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Kino",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Kino",
+        "locale": "en",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кіно",
+        "name": "Кіно",
+        "locale": "uk",
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кино",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Кино",
+        "locale": "ru",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Gruppa Kino",
+        "name": "Gruppa Kino",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Êèíî",
+        "name": "Êèíî",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "1989",
+   "releases": [
+    {
+     "id": "6e345743-8186-4844-a4da-f0a4b2bc4058",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 8,
+     "title": "Коллекция",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "cefaf46b-a85d-43ac-839a-5d44c9ece9ff",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Коллекция",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "2012",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2012",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 85,
+     "media": [
+      {
+       "id": "3ebbbff5-5385-3da3-9fa5-326eac2f301a",
+       "position": 6,
+       "format": "12\" Vinyl",
+       "track": [
+        {
+         "id": "ea13c838-2e77-447e-8db6-d842592c2b3f",
+         "number": "L2",
+         "title": "Группа крови",
+         "length": 242000
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "e84ca7f8-53bb-45bb-b0d5-948d2c9f5dfb",
+     "artist-credit-id": "30e43bf6-1c9e-4bb8-8d04-95d930d288ae",
+     "count": 1,
+     "title": "Полное собрание сочинений, mp3 коллекция в XI томах",
+     "artist-credit": [
+      {
+       "joinphrase": ", ",
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      },
+      {
+       "name": "Виктор Цой",
+       "artist": {
+        "id": "7da030e4-3b08-4e29-b497-344d809589fd",
+        "name": "Виктор Цой",
+        "sort-name": "Tsoy, Viktor"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "03deea60-202d-4c87-b6e2-99d49ecff4b6",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Полное собрание сочинений, mp3 коллекция в XI томах",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "2008",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2008",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 894,
+     "media": [
+      {
+       "id": "f233a8c6-133d-30e6-8915-68e41dad01cd",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "3847abf0-448a-43b0-88f8-d8f3df8375c0",
+         "number": "197",
+         "title": "Группа Крови"
+        }
+       ],
+       "track-count": 894,
+       "track-offset": 196
+      }
+     ]
+    },
+    {
+     "id": "3b337aa3-d838-4280-ae16-71ce72d2e04b",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Le dernier des héros",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1989",
+     "country": "FR",
+     "release-events": [
+      {
+       "date": "1989",
+       "area": {
+        "id": "08310658-51eb-3801-80de-5a0739207115",
+        "name": "France",
+        "sort-name": "France",
+        "iso-3166-1-codes": [
+         "FR"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "ece2cc55-bd0c-35be-a93f-7d4c0d6206dd",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "b7c2e5fc-4804-3524-8b2d-0a6be0f86c67",
+         "number": "7",
+         "title": "Groupe sanguin",
+         "length": 242200
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "65f41d4e-102f-3f5d-bc30-3ced65064560",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Le dernier des héros",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1991",
+     "country": "SU",
+     "release-events": [
+      {
+       "date": "1991",
+       "area": {
+        "id": "32f90933-b4b4-3248-b98c-e573d5329f57",
+        "name": "Soviet Union",
+        "sort-name": "Soviet Union",
+        "iso-3166-1-codes": [
+         "SU"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "d72607d9-935f-30d7-9eeb-8df508972b02",
+       "position": 1,
+       "format": "12\" Vinyl",
+       "track": [
+        {
+         "id": "7c78c699-bd7b-3138-9379-507461b4c89e",
+         "number": "B2",
+         "title": "Groupe sanguin",
+         "length": 242000
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "e60c04c9-2068-48e9-84bb-e86c31fea53c",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 15,
+     "title": "Коллекция",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "cefaf46b-a85d-43ac-839a-5d44c9ece9ff",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Коллекция",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "2012",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2012",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 213,
+     "media": [
+      {
+       "id": "0ce4b026-24c3-30e8-925b-e122b98b3629",
+       "position": 10,
+       "format": "CD",
+       "track": [
+        {
+         "id": "3a55a9a1-559f-4ac9-98c9-6408c1c135da",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 239826
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "b1470c70-88c8-4a6a-800f-cc9b8065c4dc",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "352b6597-2599-42c3-ac0e-bc5d627f320e",
+     "count": 1,
+     "title": "변화 (Change)",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Victor Choi",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "7a6fdde5-d7e0-4a4f-8997-fe63159c6a7c",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "변화 (Change)",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "1995",
+     "country": "KR",
+     "release-events": [
+      {
+       "date": "1995",
+       "area": {
+        "id": "b9f7d640-46e8-313e-b158-ded6d18593b3",
+        "name": "South Korea",
+        "sort-name": "South Korea",
+        "iso-3166-1-codes": [
+         "KR"
+        ]
+       }
+      }
+     ],
+     "track-count": 12,
+     "media": [
+      {
+       "id": "f83e1203-5833-32d0-b8eb-2ec7845254ec",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "93fd7cbb-8c68-4320-89e7-721f6b103510",
+         "number": "10",
+         "title": "혈액형 (Группа крови)",
+         "length": 239906
+        }
+       ],
+       "track-count": 12,
+       "track-offset": 9
+      }
+     ]
+    },
+    {
+     "id": "cc36992f-d70b-32d7-8ce0-1a9fa62e91c7",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "disambiguation": "made in Austria",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1993",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "1993",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "152e4b73-8c84-31c9-bd62-56ec674cec40",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "4911dbf3-481a-303f-804a-cadd94aa04dc",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 242000
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "2b8a14d8-afad-480f-98be-47a8c5b2cbaa",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "2018-05-16",
+     "country": "XW",
+     "release-events": [
+      {
+       "date": "2018-05-16",
+       "area": {
+        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+        "name": "[Worldwide]",
+        "sort-name": "[Worldwide]",
+        "iso-3166-1-codes": [
+         "XW"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "5606896c-a6bc-3f9c-9691-60827139de3c",
+       "position": 1,
+       "format": "Digital Media",
+       "track": [
+        {
+         "id": "9e095c10-0817-4575-9bca-57fcbf1c6d6a",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 235107
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "80daf4d2-4718-4527-ad31-500c4fbe218f",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 3,
+     "title": "Последний герой",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "2023-06-16",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2023-06-16",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 26,
+     "media": [
+      {
+       "id": "f6d33319-8d9c-3343-b8c5-7d212ab8b4d5",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "e13380ad-6dd3-47b8-aa24-c89b8b6c4e82",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 246426
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "44439942-7ef4-4a99-b546-5674475d37d8",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Легенда",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "89ace69f-7856-43ec-8b59-4e6933047a57",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Легенда",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "2018-04-24",
+     "country": "XW",
+     "release-events": [
+      {
+       "date": "2018-04-24",
+       "area": {
+        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+        "name": "[Worldwide]",
+        "sort-name": "[Worldwide]",
+        "iso-3166-1-codes": [
+         "XW"
+        ]
+       }
+      }
+     ],
+     "track-count": 85,
+     "media": [
+      {
+       "id": "35f5e79a-0241-39f7-8c48-eaf4603f0d56",
+       "position": 1,
+       "format": "Digital Media",
+       "track": [
+        {
+         "id": "72b3527b-ee6a-4c4f-b2c5-ab86083294c1",
+         "number": "3",
+         "title": "Группа крови",
+         "length": 239827
+        }
+       ],
+       "track-count": 85,
+       "track-offset": 2
+      }
+     ]
+    },
+    {
+     "id": "2af8b303-7838-4f80-8d63-e06eeea03573",
+     "status-id": "41121bb9-3413-3818-8a9a-9742318349aa",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Pseudo-Release",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1989",
+     "country": "FR",
+     "release-events": [
+      {
+       "date": "1989",
+       "area": {
+        "id": "08310658-51eb-3801-80de-5a0739207115",
+        "name": "France",
+        "sort-name": "France",
+        "iso-3166-1-codes": [
+         "FR"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "8e0012f6-0329-3d82-b435-3c7241244252",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "bb0c2503-b2ba-4f62-b406-53ec86432a24",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 242200
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "a5568938-86af-4d29-a8f0-dce7fbced475",
+     "status-id": "41121bb9-3413-3818-8a9a-9742318349aa",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Перемен",
+     "status": "Pseudo-Release",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "7a6fdde5-d7e0-4a4f-8997-fe63159c6a7c",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "변화 (Change)",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "1995",
+     "country": "KR",
+     "release-events": [
+      {
+       "date": "1995",
+       "area": {
+        "id": "b9f7d640-46e8-313e-b158-ded6d18593b3",
+        "name": "South Korea",
+        "sort-name": "South Korea",
+        "iso-3166-1-codes": [
+         "KR"
+        ]
+       }
+      }
+     ],
+     "track-count": 12,
+     "media": [
+      {
+       "id": "fddb48bf-1f44-378d-85bc-7bc23c3c709b",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "f95014e8-062e-4923-9773-20e160a3abe2",
+         "number": "10",
+         "title": "Группа крови",
+         "length": 239906
+        }
+       ],
+       "track-count": 12,
+       "track-offset": 9
+      }
+     ]
+    },
+    {
+     "id": "3496da05-4a90-4aad-b939-7754086fe1d5",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "2012",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2012",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "cfe14ad8-03d0-3439-a90c-1c11bb64f1f6",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "367264a4-efc4-4393-8f3f-5a1999664b9c",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 239826
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "4399c282-bbd8-32f9-967f-3b7aafeac0a4",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "disambiguation": "made in Austria",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1996",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "1996",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "a9c6008d-e0c6-3c02-98a0-09e81274de9f",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "bfbfa933-41ae-3f36-a757-dced33865b1a",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 239826
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "02c797d6-74e5-4b98-88a6-44673c8422df",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "disambiguation": "made in the Czech Republic",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1998",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "1998",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "bcc6ef0a-7265-3335-9ca8-cc967de36060",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "548de304-0b2d-4d36-bc04-27ac91eac4b1",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 239893
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    },
+    {
+     "id": "c1019378-794b-476f-8341-d3455512f322",
+     "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Последний герой",
+     "status": "Official",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "73c0992b-766f-35b7-aa8b-e1d660d11565",
+      "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Последний герой",
+      "primary-type": "Album"
+     },
+     "date": "1998",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "1998",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 10,
+     "media": [
+      {
+       "id": "e1a13e7f-075d-323d-96b0-911443703b87",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "2d702860-e3df-309c-a0bd-85e282adcb7d",
+         "number": "7",
+         "title": "Группа крови",
+         "length": 239893
+        }
+       ],
+       "track-count": 10,
+       "track-offset": 6
+      }
+     ]
+    }
+   ],
+   "isrcs": [
+    "RUB421401399"
+   ],
+   "tags": [
+    {
+     "count": 1,
+     "name": "rock"
+    },
+    {
+     "count": 1,
+     "name": "new wave"
+    },
+    {
+     "count": 1,
+     "name": "russian rock"
+    }
+   ]
+  },
+  {
+   "id": "5daf4580-86dd-4292-b813-470d0aefa043",
+   "score": 100,
+   "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+   "title": "Группа крови",
+   "length": 267000,
+   "disambiguation": "live, 1989-09-04: СКК имени Ленина, Leningrad, USSR",
+   "video": null,
+   "artist-credit": [
+    {
+     "name": "Кино",
+     "artist": {
+      "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+      "name": "Кино",
+      "sort-name": "Kino",
+      "disambiguation": "Soviet rock band active in 1980s",
+      "aliases": [
+       {
+        "sort-name": "Абсолютное кино",
+        "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+        "name": "Абсолютное кино",
+        "locale": null,
+        "type": "Search hint",
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Kino",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Kino",
+        "locale": "en",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кіно",
+        "name": "Кіно",
+        "locale": "uk",
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Кино",
+        "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+        "name": "Кино",
+        "locale": "ru",
+        "type": "Artist name",
+        "primary": true,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Gruppa Kino",
+        "name": "Gruppa Kino",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       },
+       {
+        "sort-name": "Êèíî",
+        "name": "Êèíî",
+        "locale": null,
+        "type": null,
+        "primary": null,
+        "begin-date": null,
+        "end-date": null
+       }
+      ]
+     }
+    }
+   ],
+   "first-release-date": "2008",
+   "releases": [
+    {
+     "id": "e84ca7f8-53bb-45bb-b0d5-948d2c9f5dfb",
+     "artist-credit-id": "30e43bf6-1c9e-4bb8-8d04-95d930d288ae",
+     "count": 1,
+     "title": "Полное собрание сочинений, mp3 коллекция в XI томах",
+     "artist-credit": [
+      {
+       "joinphrase": ", ",
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      },
+      {
+       "name": "Виктор Цой",
+       "artist": {
+        "id": "7da030e4-3b08-4e29-b497-344d809589fd",
+        "name": "Виктор Цой",
+        "sort-name": "Tsoy, Viktor"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "03deea60-202d-4c87-b6e2-99d49ecff4b6",
+      "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Полное собрание сочинений, mp3 коллекция в XI томах",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Compilation"
+      ],
+      "secondary-type-ids": [
+       "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+      ]
+     },
+     "date": "2008",
+     "country": "RU",
+     "release-events": [
+      {
+       "date": "2008",
+       "area": {
+        "id": "1f1fc3a4-9500-39b8-9f10-f0a465557eef",
+        "name": "Russia",
+        "sort-name": "Russia",
+        "iso-3166-1-codes": [
+         "RU"
+        ]
+       }
+      }
+     ],
+     "track-count": 894,
+     "media": [
+      {
+       "id": "f233a8c6-133d-30e6-8915-68e41dad01cd",
+       "position": 1,
+       "format": "CD",
+       "track": [
+        {
+         "id": "9df0db58-9f68-44f4-8a4d-b293e9e938a8",
+         "number": "820",
+         "title": "Группа крови"
+        }
+       ],
+       "track-count": 894,
+       "track-offset": 819
+      }
+     ]
+    },
+    {
+     "id": "cb1783fb-f897-4ac3-a1fc-55c9201a7be5",
+     "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+     "artist-credit-id": "edaa6d19-03c2-367b-b4d1-bab8f6834fd9",
+     "count": 1,
+     "title": "Концерт в СКК имени Ленина (конец концерта) (Ленинград, 4 сентября 1989 г.)",
+     "status": "Bootleg",
+     "artist-credit": [
+      {
+       "name": "Кино",
+       "artist": {
+        "id": "064db6e8-fdfb-4acb-a327-fc2de75b37de",
+        "name": "Кино",
+        "sort-name": "Kino",
+        "disambiguation": "Soviet rock band active in 1980s"
+       }
+      }
+     ],
+     "release-group": {
+      "id": "70ea458c-7450-4e6e-8f7f-7f04992791bc",
+      "type-id": "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0",
+      "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+      "title": "Концерт в СКК имени Ленина (конец концерта) (Ленинград, 4 сентября 1989 г.)",
+      "primary-type": "Album",
+      "secondary-types": [
+       "Live"
+      ],
+      "secondary-type-ids": [
+       "6fd474e2-6b58-3102-9d17-d6f7eb7da0a0"
+      ]
+     },
+     "date": "2015-08-05",
+     "country": "XW",
+     "release-events": [
+      {
+       "date": "2015-08-05",
+       "area": {
+        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+        "name": "[Worldwide]",
+        "sort-name": "[Worldwide]",
+        "iso-3166-1-codes": [
+         "XW"
+        ]
+       }
+      }
+     ],
+     "track-count": 3,
+     "media": [
+      {
+       "id": "ad332dbc-9e4f-3f53-9217-775eaecd7e74",
+       "position": 1,
+       "format": "Digital Media",
+       "track": [
+        {
+         "id": "366080df-24b0-4740-91a3-e6ea65fbe339",
+         "number": "1",
+         "title": "Группа крови",
+         "length": 267000
+        }
+       ],
+       "track-count": 3,
+       "track-offset": 0
+      }
+     ]
+    }
+   ],
+   "isrcs": [
+    "FRX871537273"
+   ]
+  }
+ ]
+}

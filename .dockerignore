@@ -1,0 +1,14 @@
+.git
+**/node_modules
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+hub/data
+hub/app/static
+web/dist
+eval
+data
+.env
+config.yaml
+gateway/tunnel/tunnel_key*
