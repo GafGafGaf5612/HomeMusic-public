@@ -239,7 +239,7 @@ playback_id)`, never their sum. On a crash the last unsaved interval can be miss
 ### Planned compatible extension: typed favorite events (not implemented)
 
 The current `PlayEventIn`, `/api/star`, `/api/starred` and `/healthz` contracts above/below remain in force.
-The [taste v2 target contract](../MIXES.md#taste-v2) plans additive fields: `target_type` (`track` by default,
+The taste v2 target contract (MIXES.md, taste v2) plans additive fields: `target_type` (`track` by default,
 `album`, `artist`), matching Navidrome ids, bounded `target_data` metadata and `reverts_event_id` for a causal
 compensation. `ref` is interpreted by target type; `start`/`skip`/`finish` remain track-only. Existing track
 payloads, per-user `event_id` deduplication, batch limits and `accepted`/`duplicates`/`rejected` semantics stay valid;
