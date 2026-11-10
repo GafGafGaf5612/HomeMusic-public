@@ -8,8 +8,6 @@
 (все версии — [Releases](https://github.com/justman-1/HomeMusic-public/releases)). Приложению нужен свой сервер HomeMusic:
 вход только по приглашению его владельца.
 
-**Поднять свой сервер в домашней сети** — ограничения и пошаговая инструкция в [SELF-HOSTING.md](SELF-HOSTING.md).
-
 ```
 Телефон ──HTTPS──> VPS 203.0.113.10 (Caddy, сертификат Let's Encrypt на IP)
                      :8444 → 127.0.0.1:4533 ─┐
