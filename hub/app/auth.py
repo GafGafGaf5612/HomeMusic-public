@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import timedelta
+from time import monotonic
 
 from fastapi import Depends, HTTPException, Request, Response
 from sqlalchemy import delete, select
@@ -16,6 +17,38 @@ from app.security import decrypt, encrypt, hash_token, new_token
 
 COOKIE = "hm_session"
 SEEN_EVERY = timedelta(minutes=5)  # how often a request refreshes User.last_seen_at (admin's user list)
+
+
+# Navidrome also counts Subsonic failures from the Hub against signed-in library requests.
+# Reserve fewer attempts than Navidrome's default budget (5 in 20 seconds).
+_PASSWORD_WINDOW_S = 30
+_PASSWORD_USER_LIMIT = 3
+_PASSWORD_TOTAL_LIMIT = 120
+_password_attempts: dict[object, tuple[str, float | None]] = {}
+
+
+async def password_login(s: AsyncSession, username: str, password: str) -> tuple[User, str]:
+    now = monotonic()
+    name = username.lower()
+    for key, (_, until) in list(_password_attempts.items()):
+        if until is not None and until <= now:
+            del _password_attempts[key]
+    if (len(_password_attempts) >= _PASSWORD_TOTAL_LIMIT
+            or sum(account == name for account, _ in _password_attempts.values()) >= _PASSWORD_USER_LIMIT):
+        raise HTTPException(429, "Слишком много попыток входа. Попробуйте через 30 секунд.",
+                            headers={"Retry-After": str(_PASSWORD_WINDOW_S)})
+
+    attempt = object()
+    _password_attempts[attempt] = name, None
+    try:
+        return await login(s, username, password)
+    except HTTPException as exc:
+        if exc.status_code == 401:
+            _password_attempts[attempt] = name, monotonic() + _PASSWORD_WINDOW_S
+        raise
+    finally:
+        if _password_attempts[attempt][1] is None:
+            del _password_attempts[attempt]
 
 
 async def login(s: AsyncSession, username: str, password: str) -> tuple[User, str]:

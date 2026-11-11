@@ -113,6 +113,31 @@ async def make_invite(admin: httpx.AsyncClient, note: str = "Анна") -> dict:
     return r.json()
 
 
+async def test_password_failures_leave_the_library_accessible(env, monkeypatch):
+    from app import auth
+
+    now = 100.0
+    monkeypatch.setattr(auth, "monotonic", lambda: now)
+    async with env["client"]() as client:
+        for username in ("admin", "ADMIN", "admin"):
+            response = await client.post("/api/auth/login", json={"username": username, "password": "wrong"})
+            assert response.status_code == 401, response.text
+        upstream_calls = len(env["mock"].calls)
+        response = await client.post("/api/auth/login", json={"username": "ADMIN", "password": "wrong"})
+        assert response.status_code == 429, response.text
+        assert response.headers["retry-after"] == "30"
+        assert len(env["mock"].calls) == upstream_calls
+
+        library = await env["admin"].get("/api/nd/home")
+        assert library.status_code == 200, library.text
+        response = await client.post("/api/auth/login", json={"username": "boris", "password": "borispw"})
+        assert response.status_code == 200, response.text
+
+        now += 31
+        response = await client.post("/api/auth/login", json={"username": "admin", "password": "adminpw"})
+        assert response.status_code == 200, response.text
+
+
 async def test_search_history_is_shared_between_sessions_and_isolated_between_accounts(env):
     from app.events import bus
 

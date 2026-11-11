@@ -63,7 +63,7 @@ def hub_env(db_file: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> I
 
 
 def _clear_caches() -> None:
-    from app import accounts, config, google_auth, security
+    from app import accounts, auth, config, google_auth, security
     from app.library.navidrome import NavidromeAdmin, NavidromeHistory
     from app.mixes import sources, wave
     from app.providers import ytdlp
@@ -71,6 +71,7 @@ def _clear_caches() -> None:
     config.get_settings.cache_clear()
     security._fernet.cache_clear()
     accounts._failures.clear()
+    auth._password_attempts.clear()
     google_auth._keys.clear()
     NavidromeAdmin.forget_token()
     NavidromeHistory.forget_tokens()

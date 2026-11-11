@@ -37,7 +37,8 @@ async def options():
 
 @router.post("/login", response_model=MeOut)
 async def login(body: LoginIn, request: Request, response: Response, s: AsyncSession = Depends(get_session, scope="function")):
-    user, token = await auth.login(s, await accounts.username_for_login(s, body.username), body.password)
+    username = await accounts.username_for_login(s, body.username)
+    user, token = await auth.password_login(s, username, body.password)
     auth.set_session_cookie(request, response, token)
     return me_out(user)
 
