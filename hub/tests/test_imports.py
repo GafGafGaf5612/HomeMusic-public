@@ -42,6 +42,30 @@ def snapshot():
     ])
 
 
+@pytest.mark.parametrize("suffix", ["", " (из фильма «Город»)", " (prod. by Producer)"],
+                         ids=["latin-only", "soundtrack", "producer"])
+async def test_import_matches_hitmoz_after_deezer_miss(monkeypatch, suffix):
+    from app.imports.resolve import catalog_track
+    from app.services import svc
+
+    def search(q):
+        if q.title == "Midnight":
+            candidate = cand("7", "https://audio.test/7", title="Midnight")
+            return [candidate.model_copy(update={"artist": "Example", "duration_s": 200})]
+        return []
+
+    deezer = FakeDeezer()
+    hitmoz = FakeProvider(cands=search)
+    monkeypatch.setattr(svc, "deezer", deezer)
+    monkeypatch.setattr(svc, "providers", {"hitmoz": hitmoz})
+
+    result = await catalog_track(track("Example", f"Midnight{suffix}"))
+
+    assert deezer.searched == (2 if suffix else 1)
+    assert hitmoz.searched == 1
+    assert (result.match, result.ref) == ("probable", "hm:7")
+
+
 @pytest.fixture
 async def env(hub_env, monkeypatch):
     from app.imports.sources import yandex

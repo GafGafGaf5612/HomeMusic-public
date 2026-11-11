@@ -138,6 +138,10 @@ _BENIGN = (
 _BENIGN += r"deluxe|bonus\s+track|anniversary|single\s+version|edition"
 _VERSION_RE = re.compile(rf"(?<!\w)(?:{'|'.join(p for _, p in _KIND_PATTERNS)}|{_BENIGN})(?!\w)", re.IGNORECASE)
 
+_TITLE_CREDIT_RE = re.compile(
+    r"^(?:(?:из\s+)?(?:фильма|сериала|к\s*/\s*ф)|саундтрек|prod\.?\s+by)(?!\w)", re.IGNORECASE
+)
+
 _BRACKET_FEAT_RE = re.compile(
     r"^\s*(?:featuring|feat|ft|при\s+участии|при\s+уч|with|vs|versus)(?:\.|(?=\s))\s*(.*)$", re.IGNORECASE | re.DOTALL
 )
@@ -213,7 +217,7 @@ def _classify(c: str) -> tuple[str, str]:
         return "marker", ""
     if m := _BRACKET_FEAT_RE.match(c):
         return "feat", m.group(1)
-    if _is_pure_marker(c):
+    if _is_pure_marker(c) or _TITLE_CREDIT_RE.match(c):
         return "marker", ""
     if _VERSION_RE.search(c):
         return "version", c

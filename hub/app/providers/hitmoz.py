@@ -28,6 +28,8 @@ log = logging.getLogger(__name__)
 PAGE_SIZE = 48
 MAX_SEARCH_PAGES = 2
 HEALTH_TTL_S = 600
+DOMAIN_PROBE_TIMEOUT_S = 5
+DOMAIN_FAILURE_TTL_S = 30
 MIN_AUDIO_BYTES = 100 * 1024
 EMPTY_SEARCH_TEXT = "По вашему запросу ничего не найдено"
 
@@ -501,7 +503,8 @@ class HitmozProvider:
             t0 = time.monotonic()
             try:
                 resp = await request_with_backoff(
-                    self.client, "GET", url, limiter=self.limiter, headers=self.headers, retries=0
+                    self.client, "GET", url, limiter=self.limiter, headers=self.headers, retries=0,
+                    timeout=DOMAIN_PROBE_TIMEOUT_S,
                 )
             except httpx.HTTPError as e:
                 failed.add(urlsplit(url).netloc)
@@ -539,17 +542,22 @@ class HitmozProvider:
             "checked_at": datetime.now(UTC).isoformat(),
             "error": "; ".join(errors) or "no domains configured",
         }
-        raise ProviderUnavailable(f"hitmoz: ни один домен не отвечает ({'; '.join(errors)})")
+        raise ProviderUnavailable(f"hitmoz: ни один домен не отвечает ({self._health['error']})")
 
     async def base_url(self, force: bool = False) -> str:
         """Healthy base URL (`https://host`), re-checked every ~10 min or after a failure."""
         async with self._base_lock:
-            fresh = time.monotonic() - self._checked_at < self.health_ttl_s
-            if self._base_url and fresh and not force:
-                return self._base_url
+            elapsed = time.monotonic() - self._checked_at
+            if not force:
+                if self._base_url and elapsed < self.health_ttl_s:
+                    return self._base_url
+                if elapsed < DOMAIN_FAILURE_TTL_S and (error := self._health["error"]):
+                    raise ProviderUnavailable(f"hitmoz: ни один домен не отвечает ({error})")
             self._base_url = None
-            self._checked_at = time.monotonic()
-            self._base_url = await self._check_domains()
+            try:
+                self._base_url = await self._check_domains()
+            finally:
+                self._checked_at = time.monotonic()
             return self._base_url
 
     def invalidate(self) -> None:

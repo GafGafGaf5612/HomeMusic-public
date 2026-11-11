@@ -27,7 +27,7 @@ class SourcesCfg(BaseModel):
 
 
 class HitmozCfg(BaseModel):
-    domains: list[str] = ["ru.hitmoz.org", "rus.hitmotop.com", "hitmos.me"]
+    domains: list[str] = ["ru.hitmoz.org", "ru.hitmox.net", "rus.hitmotop.com", "hitmos.me"]
     accept_language: str = "ru-RU,ru;q=0.9"
     rate_per_sec: float = 1.0
     max_parallel_downloads: int = 2

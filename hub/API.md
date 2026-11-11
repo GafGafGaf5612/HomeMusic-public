@@ -499,7 +499,7 @@ tracks of the likes and playlists: `owned`, `to_download`, `est_bytes` at 320 kb
 `albums`, `artists`, `dislikes` (only kept). Without a sign-in (`profile`) there are no private playlists and no dislikes.
 
 Matching (`ImportItemOut.match`): `owned` — in the library; `exact` — a confident catalog match; `probable` — weaker
-(other duration or version; a Cyrillic track Deezer lacks may be matched on hitmoz, `ref` `hm:…`); `not_found`.
+(other duration or version; a track Deezer lacks may be matched on hitmoz, `ref` `hm:…`); `not_found`.
 What a service id turned out to be is shared by all users (`source_map`); a miss is looked up again after 7 days.
 Row `status`: `pending` (not matched yet), `waiting` (economy: matched, downloaded once listened to), `queued`
 (`download_item_id`, `download_status`), `done`, `failed`, `not_found`, `skipped`.

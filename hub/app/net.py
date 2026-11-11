@@ -154,6 +154,18 @@ class WindowLimiter:
                 await asyncio.sleep(self.per - (now - self._times[0]) + 0.01)
 
 
+def proxy_for_domains(*domains: str) -> str | None:
+    """Select a proxy for an extractor that uses one route for an entire service."""
+    s = get_settings()
+    if "*" in s.proxy_hosts:
+        return s.outbound_proxy or None
+    for host in s.proxy_hosts:
+        host = host.removeprefix("*").lstrip(".")
+        if any(host == domain or host.endswith(f".{domain}") for domain in domains):
+            return s.outbound_proxy or None
+    return None
+
+
 def make_client(
     *,
     headers: dict[str, str] | None = None,
@@ -161,14 +173,15 @@ def make_client(
     proxy_hosts: set[str] | None = None,
     http2: bool = True,
 ) -> httpx.AsyncClient:
-    """AsyncClient with HTTP/2, redirects and the outbound proxy for configured hosts."""
+    """Proxy configured host trees; a wildcard alone selects the proxy for every request."""
     s = get_settings()
     mounts: dict[str, httpx.AsyncHTTPTransport] = {}
     hosts = proxy_hosts if proxy_hosts is not None else s.proxy_hosts
     if s.outbound_proxy and hosts:
         transport = httpx.AsyncHTTPTransport(proxy=s.outbound_proxy, http2=http2)
         for h in hosts:
-            mounts[f"all://{h}"] = transport
+            pattern = h if h.startswith("*") else f"*{h}"
+            mounts[f"all://{pattern}"] = transport
     h = {"User-Agent": DEFAULT_UA}
     h.update(headers or {})
     return httpx.AsyncClient(
@@ -176,6 +189,8 @@ def make_client(
         timeout=httpx.Timeout(timeout, connect=15),
         follow_redirects=True,
         http2=http2,
+        # Env mounts for specific schemes or NO_PROXY can outrank a catch-all mount.
+        trust_env=not (s.outbound_proxy and "*" in hosts),
         mounts=mounts or None,
     )
 

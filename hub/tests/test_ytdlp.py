@@ -4,6 +4,7 @@ import os
 import shutil
 from datetime import date
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
 
 import httpx
@@ -12,6 +13,7 @@ import respx
 from yt_dlp.utils import DownloadError
 
 import app.providers.ytdlp as ytdlp_mod
+from app import net
 from app.config import YtdlpCfg
 from app.providers.base import Candidate, Provider, ProviderError, TrackQuery
 from app.providers.ytdlp import (
@@ -597,6 +599,62 @@ async def test_stream_from_a_cache_server_that_answers(monkeypatch: pytest.Monke
     src = await p.stream(c)
     assert src.url == GV.replace("rr7---sn-isp1", "rr1---sn-far2")
     await p.aclose()
+
+
+PROXY = "http://proxy.test:3128"
+
+
+@pytest.mark.parametrize(("hosts", "youtube", "soundcloud"), [
+    ({"api.deezer.com"}, None, None),
+    ({"music.youtube.com"}, PROXY, None),
+    ({"*.sndcdn.com"}, None, PROXY),
+    ({"youtube.com", "soundcloud.com"}, PROXY, PROXY),
+], ids=["catalog-only", "youtube", "soundcloud-cdn", "both"])
+def test_ytdlp_proxy_is_selected_per_provider(monkeypatch, hosts, youtube, soundcloud):
+    from app.providers.reuploads import SoundcloudProvider
+
+    monkeypatch.setattr(net, "get_settings", lambda: SimpleNamespace(outbound_proxy=PROXY, proxy_hosts=hosts))
+    assert YtdlpProvider(YtdlpCfg())._base_opts().get("proxy") == youtube
+    assert SoundcloudProvider(YtdlpCfg())._base_opts().get("proxy") == soundcloud
+
+
+async def test_proxy_is_used_for_youtube_download_and_stream_redirect(monkeypatch, tmp_path):
+    monkeypatch.setenv("HTTPS_PROXY", "http://other-proxy.test:8888")
+    monkeypatch.setattr(net, "get_settings", lambda: SimpleNamespace(
+        outbound_proxy=PROXY, proxy_hosts={"youtube.com"}))
+    monkeypatch.setattr(ytdlp_mod.yt_dlp, "YoutubeDL", FakeYDL)
+    monkeypatch.setattr(FakeYDL, "formats", [{"format_id": "251", "url": GV}])
+    probed = media_servers(monkeypatch)
+    requested = []
+    redirect = "https://media.test/audio"
+
+    def proxy_response(request):
+        requested.append(str(request.url))
+        if str(request.url) == GV:
+            return httpx.Response(302, headers={"Location": redirect})
+        return httpx.Response(206, content=b"audio")
+
+    def proxy_transport(*, proxy, http2):
+        assert proxy == PROXY
+        return httpx.MockTransport(proxy_response)
+
+    monkeypatch.setattr(httpx, "AsyncHTTPTransport", proxy_transport)
+    p = YtdlpProvider(YtdlpCfg())
+    c = entry_to_candidate(FLAT_TOPIC)
+    assert c is not None
+    try:
+        await p.fetch(c, tmp_path)
+        assert FakeYDL.last_opts["proxy"] == PROXY
+        assert FakeYDL.processed["formats"][0]["url"] == GV
+
+        monkeypatch.setattr(p, "_extract", lambda url, **opts: {"url": GV, "ext": "m4a"})
+        src = await p.stream(c)
+        response = await src.client.get(src.url)
+        assert response.status_code == 206 and response.content == b"audio"
+        assert requested == [GV, redirect]
+        assert not probed
+    finally:
+        await p.aclose()
 
 
 # --------------------------------------------------------------------------- real network (opt-in)

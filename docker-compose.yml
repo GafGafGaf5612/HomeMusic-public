@@ -57,6 +57,8 @@ services:
     ports:
       - "8080:8080"
     env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       MUSIC_ROOT: /music
       DATA_DIR: /data
@@ -83,6 +85,8 @@ services:
     container_name: homemusic_youtube_pot
     restart: unless-stopped
     init: true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     expose:
       - "4416"
     cap_drop: [ALL]

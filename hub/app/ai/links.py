@@ -22,8 +22,8 @@ import yt_dlp
 from yt_dlp.utils import DownloadError, ExtractorError
 
 from app.ai.extract import ExtractedItem, Extraction, ExtractionContext
-from app.config import get_settings
-from app.net import make_client, request_with_backoff
+from app.net import make_client, proxy_for_domains, request_with_backoff
+from app.providers.ytdlp import YOUTUBE_PROXY_DOMAINS
 
 log = logging.getLogger(__name__)
 
@@ -331,9 +331,8 @@ def _ytdlp_extract(url: str) -> dict:
         "socket_timeout": 30,
         "retries": 2,
     }
-    s = get_settings()
-    if s.outbound_proxy and s.proxy_hosts & {"youtube.com", "www.youtube.com", "music.youtube.com"}:
-        opts["proxy"] = s.outbound_proxy
+    if proxy := proxy_for_domains(*YOUTUBE_PROXY_DOMAINS):
+        opts["proxy"] = proxy
     with yt_dlp.YoutubeDL(opts) as ydl:
         info = ydl.extract_info(url, download=False)
         return ydl.sanitize_info(info) or {}

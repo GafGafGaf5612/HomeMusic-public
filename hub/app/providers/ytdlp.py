@@ -33,7 +33,7 @@ import yt_dlp
 from yt_dlp.utils import DownloadCancelled, DownloadError, ExtractorError
 
 from app.config import YtdlpCfg
-from app.net import PrioritySemaphore, make_client
+from app.net import PrioritySemaphore, make_client, proxy_for_domains
 from app.providers.base import Candidate, ProviderError, StreamSource, TrackQuery
 
 log = logging.getLogger(__name__)
@@ -54,6 +54,8 @@ _AUDIO_EXTS = {".opus", ".m4a", ".mp3", ".ogg", ".flac", ".wav", ".aac", ".webm"
 LISTEN_FORMAT = "bestaudio[ext=m4a]/bestaudio/best"
 _MEDIA_TYPES = {"m4a": "audio/mp4", "mp4": "audio/mp4", "webm": "audio/webm", "mp3": "audio/mpeg", "ogg": "audio/ogg"}
 STREAM_URL_TTL_S = 20 * 60  # audio URLs from a metadata lookup, reused by `stream` (googlevideo links live ~6 h)
+YOUTUBE_PROXY_DOMAINS = ("youtube.com", "youtu.be", "googlevideo.com", "youtube-nocookie.com")
+SOUNDCLOUD_PROXY_DOMAINS = ("soundcloud.com", "sndcdn.com")
 MEDIA_HOST_SUFFIX = ".googlevideo.com"
 MEDIA_PROBE_TIMEOUT_S = 5.0
 MEDIA_PROBE_TTL_S = 10 * 60  # how long a media server's probe result is trusted
@@ -456,6 +458,7 @@ class YtdlpProvider:
         self.use_music_search = use_music_search
         self._youtube = (access or YoutubeAccess(cfg, max_parallel=max_parallel)) if self.name != "soundcloud" else None
         self._sem = self._youtube.sem if self._youtube else PrioritySemaphore(max_parallel or 2)
+        self._proxy = proxy_for_domains(*(YOUTUBE_PROXY_DOMAINS if self._youtube else SOUNDCLOUD_PROXY_DOMAINS))
         self._js = detect_js_runtimes()
         self._remote_ejs = importlib.util.find_spec("yt_dlp_ejs") is None
         self._http: httpx.AsyncClient | None = None  # proxies listening streams
@@ -489,6 +492,8 @@ class YtdlpProvider:
             })
             if base_url := os.environ.get("YTDLP_POT_BASE_URL"):
                 opts["extractor_args"]["youtubepot-bgutilhttp"] = {"base_url": [base_url]}
+        if self._proxy:
+            opts["proxy"] = self._proxy
         if cache_dir := os.environ.get("YTDLP_CACHE_DIR"):
             opts["cachedir"] = cache_dir
         if self._js:
@@ -590,7 +595,8 @@ class YtdlpProvider:
 
     async def _music_api_request(self, text: str, limit: int) -> list[Candidate]:
         if self._api is None:
-            self._api = make_client(timeout=15, headers={"Origin": "https://music.youtube.com"})
+            self._api = make_client(timeout=15, headers={"Origin": "https://music.youtube.com"},
+                                    proxy_hosts={"*"} if self._proxy else None)
         version = ytm_client_version()
         resp = await self._api.post(
             YTM_API_URL,
@@ -757,7 +763,10 @@ class YtdlpProvider:
         def download() -> Path:
             with self._youtube_dl(opts) as ydl:
                 info = ydl.extract_info(self.media_url(c), download=False, process=False)
-                info = ydl.process_ie_result(on_answering_servers(info), download=True)
+                # A direct TLS probe cannot tell whether a cache is reachable through the proxy.
+                if not self._proxy:
+                    info = on_answering_servers(info)
+                info = ydl.process_ie_result(info, download=True)
             for rd in (info or {}).get("requested_downloads") or []:
                 if (fp := rd.get("filepath")) and Path(fp).is_file():
                     return Path(fp)
@@ -794,10 +803,12 @@ class YtdlpProvider:
                 raise ProviderError(f"YouTube: перед {c.provider_id} реклама на {wait:.0f} с")
             log.info("youtube %s: waiting %.1f s for the ad before it", c.provider_id, wait)
             await _sleep(wait)
-        url, original = await asyncio.to_thread(answering_url, url), url
-        _log_switch(original, url)
+        if not self._proxy:
+            url, original = await asyncio.to_thread(answering_url, url), url
+            _log_switch(original, url)
         if self._http is None:
-            self._http = make_client(timeout=60)
+            # Keep the same egress IP as extraction, including on redirects.
+            self._http = make_client(timeout=60, proxy_hosts={"*"} if self._proxy else None)
         headers = {k: v for k, v in (info.get("http_headers") or {}).items() if isinstance(v, str)}
         return StreamSource(url=url, client=self._http, headers=headers,
                             media_type=_MEDIA_TYPES.get(info.get("ext") or "", "audio/mp4"))

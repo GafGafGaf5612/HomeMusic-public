@@ -212,6 +212,40 @@ async def test_no_domain_works(provider):
 
 
 @respx.mock
+async def test_search_uses_new_default_mirror_after_timeout():
+    mirror = "https://ru.hitmox.net"
+    cfg = HitmozCfg(rate_per_sec=0)
+    old = respx.get(f"{BASE}/").mock(side_effect=httpx.ConnectTimeout("TLS timeout"))
+    respx.get(f"{mirror}/").mock(return_value=httpx.Response(
+        200, text=f'<link rel="canonical" href="{BASE}/"/>'))
+    search = respx.get(f"{mirror}/search", params={"q": "Кино Группа крови"}).mock(
+        return_value=httpx.Response(200, text=fx("search_kino.html")))
+    p = HitmozProvider(cfg)
+    try:
+        results = await p.search(TrackQuery(artist="Кино", title="Группа крови"), limit=1)
+        assert results[0].provider_id == "79436285"
+        assert old.call_count == search.call_count == 1
+    finally:
+        await p.aclose()
+
+
+@respx.mock
+async def test_repeated_misses_share_failed_domain_probe():
+    domain = respx.get(f"{BASE}/").mock(return_value=httpx.Response(403))
+    p = HitmozProvider(HitmozCfg(domains=["ru.hitmoz.org"], rate_per_sec=0))
+    try:
+        for _ in range(2):
+            with pytest.raises(ProviderUnavailable, match="HTTP 403"):
+                await p.base_url()
+        assert domain.call_count == 1
+        domain.mock(return_value=httpx.Response(200))
+        assert (await p.health(force=True))["ok"]
+        assert domain.call_count == 2
+    finally:
+        await p.aclose()
+
+
+@respx.mock
 async def test_retry_on_429(provider):
     respx.get(f"{BASE}/").mock(return_value=httpx.Response(200, text=""))
     route = respx.get(f"{BASE}/song/47829428").mock(

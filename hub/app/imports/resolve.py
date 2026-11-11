@@ -20,7 +20,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.catalog.models import make_ref, split_ref
 from app.config import get_settings
 from app.library.owned import find_existing
-from app.matching.normalize import has_cyrillic, normalize_artist, split_version
+from app.matching.normalize import normalize_artist, split_version, version_kind
 from app.matching.score import score
 from app.matching.select import classify_scores, match_catalog, rank_candidates
 from app.models import SourceMap, Track, utcnow
@@ -74,11 +74,11 @@ async def _owned(s: AsyncSession, raw: dict[str, Any], ref: str | None = None) -
 
 
 async def catalog_track(raw: dict[str, Any]) -> Resolution:
-    """Deezer first; a Cyrillic track Deezer lacks may be found on hitmoz (never `exact`: no curated metadata)."""
+    """Deezer first; a track Deezer lacks may be found on hitmoz (never `exact`: no curated metadata)."""
     cfg = get_settings().cfg.matching
     artist, title = raw.get("artist") or "", raw.get("title") or ""
     main = (raw.get("artists") or [artist])[0]
-    base, _ = split_version(title)
+    base, version = split_version(title)
     best: list = []
     if svc.deezer is not None:
         for qa, qt in dict.fromkeys([(main, title), (main, base), (artist, title)]):
@@ -97,10 +97,11 @@ async def catalog_track(raw: dict[str, Any]) -> Resolution:
         verdict = VERDICT[classify_scores([x[1].total for x in best], cfg)]
         if verdict != "not_found":
             return Resolution(verdict, best[0][0].ref, round(best[0][1].total, 3))
-    if has_cyrillic(artist + title) and (hm := svc.providers.get("hitmoz")) is not None:
+    if (hm := svc.providers.get("hitmoz")) is not None:
         q = TrackQuery(artist=main, title=title, album=raw.get("album"), duration_s=raw.get("duration_s"))
+        search_title = title if version_kind(version) else base or title
         try:
-            ranked = rank_candidates(q, await hm.search(q, limit=5), cfg)
+            ranked = rank_candidates(q, await hm.search(q.model_copy(update={"title": search_title}), limit=5), cfg)
         except Exception as e:
             log.info("import: hitmoz search failed for %s - %s: %r", artist, title, e)
             ranked = []

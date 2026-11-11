@@ -18,7 +18,7 @@ sources:
 
 hitmoz:
   # First healthy domain wins; the current host is re-detected via <link rel=canonical>.
-  domains: [ru.hitmoz.org, rus.hitmotop.com, hitmos.me]
+  domains: [ru.hitmoz.org, ru.hitmox.net, rus.hitmotop.com, hitmos.me]
   accept_language: "ru-RU,ru;q=0.9"
   rate_per_sec: 1.0
   max_parallel_downloads: 2
