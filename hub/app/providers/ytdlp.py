@@ -72,6 +72,12 @@ COOKIES_MESSAGE = (
     "Пока выберите другой источник."
 )
 RATE_MESSAGE = "YouTube временно ограничил запросы. Попробуйте позже или выберите другой источник."
+# YouTube's SABR-only streaming experiment, given to a session now and then, leaves the mweb client without working
+# audio URLs (formats without a URL, the rest answer 403). Then, and when an audio URL didn't open, extraction takes
+# yt-dlp's default clients for this long (yt-dlp keeps that set working), then mweb with PO tokens again.
+DEFAULT_CLIENTS_S = 30 * 60
+SABR_MARKERS = ("sabr", "formats have been skipped as they are missing a url")
+STREAM_RENEWAL_S = 10 * 60  # a video's audio URL asked for again this soon: the previous one didn't open
 
 ProgressCb = Callable[[float], Any]
 
@@ -112,6 +118,7 @@ class YoutubeAccess:
         self._revision = _cookie_revision()
         self._blocked_until = 0.0
         self._message = ""
+        self._default_clients_until = 0.0
         self.metadata: dict[str, tuple[float, dict]] = {}
         self.pending: dict[str, asyncio.Task] = {}
 
@@ -135,6 +142,16 @@ class YoutubeAccess:
         if self.refresh() == revision:
             self._blocked_until = self.clock() + self.cooldown_s
             self._message = message
+
+    def default_clients(self) -> bool:
+        """Extract with yt-dlp's default clients instead of mweb (`DEFAULT_CLIENTS_S`)."""
+        return self.clock() < self._default_clients_until
+
+    def mweb_trouble(self, why: str) -> None:
+        """mweb gives no working audio for now: yt-dlp's default clients take over for a while."""
+        if not self.default_clients():
+            log.info("youtube: %s; yt-dlp's default clients for %d min", why, DEFAULT_CLIENTS_S // 60)
+        self._default_clients_until = self.clock() + DEFAULT_CLIENTS_S
 
 
 _media_hosts: dict[str, tuple[float, bool]] = {}  # googlevideo host -> (monotonic time, answers)
@@ -211,8 +228,9 @@ def on_answering_servers(info: dict) -> dict:
 class _YdlLogger:
     """Route yt-dlp output to logging (it calls debug() for both [debug] and info lines)."""
 
-    def __init__(self, *, youtube: bool = True) -> None:
+    def __init__(self, *, youtube: bool = True, access: YoutubeAccess | None = None) -> None:
         self.youtube = youtube
+        self.access = access
 
     def debug(self, msg: str) -> None:
         # Plugin trace messages can contain PO tokens. Never persist diagnostic traces.
@@ -225,6 +243,8 @@ class _YdlLogger:
     def warning(self, msg: str) -> None:
         if self.youtube and (message := _refusal_message(msg)):
             raise _YoutubeRefusal(message)
+        if self.access and any(m in msg.lower() for m in SABR_MARKERS):
+            self.access.mweb_trouble("SABR-only streaming for mweb")
         log.warning("yt-dlp: %s", msg)
 
     def error(self, msg: str) -> None:
@@ -464,6 +484,7 @@ class YtdlpProvider:
         self._http: httpx.AsyncClient | None = None  # proxies listening streams
         self._api: httpx.AsyncClient | None = None  # YouTube Music search
         self._stream_urls: dict[str, tuple[float, dict]] = {}  # video id -> (monotonic time, format) for `stream`
+        self._streamed: dict[str, float] = {}  # video id -> monotonic time `stream` last gave its audio URL
         if not self._js:
             log.warning("no JS runtime (deno/node) on PATH: YouTube downloads may fail or be limited")
 
@@ -475,14 +496,15 @@ class YtdlpProvider:
             "no_warnings": False,
             "noprogress": True,
             "noplaylist": True,
-            "logger": _YdlLogger(youtube=self._youtube is not None),
+            "logger": _YdlLogger(youtube=self._youtube is not None, access=self._youtube),
             "socket_timeout": 30,
             "retries": 3,
             "fragment_retries": 3,
         }
         if self._youtube:
+            # mweb with PO tokens (yt-dlp's PO Token Guide); yt-dlp's default clients while mweb has trouble
             opts.update({
-                "extractor_args": {"youtube": {"player_client": ["mweb"]}},
+                "extractor_args": {} if self._youtube.default_clients() else {"youtube": {"player_client": ["mweb"]}},
                 "retries": 1,
                 "fragment_retries": 1,
                 "extractor_retries": 1,
@@ -549,6 +571,8 @@ class YtdlpProvider:
                 if self._youtube and (message := _refusal_message(msg)):
                     self._youtube.block(message, revision)
                     raise _YoutubeRefusal(message) from None
+                if self._youtube and "http error 403" in msg.lower():
+                    self._youtube.mweb_trouble("an audio URL answered 403")
                 if not self._js and ("challenge" in msg.lower() or "format is not available" in msg):
                     msg += " (no JS runtime found: install Deno 2.3+ or Node 22+)"
                 raise ProviderError(f"yt-dlp: {msg}") from e
@@ -787,11 +811,18 @@ class YtdlpProvider:
     async def stream(self, c: Candidate) -> StreamSource:
         """Direct audio URL of the same video `fetch` would save. googlevideo links are bound to the IP that
         extracted them, so the Hub proxies them (an AAC/m4a format first: every browser plays it).
-        A format found by the search's metadata lookup is used once; a renewal extracts afresh. A media server
+        A format found by the search's metadata lookup is used once; a renewal extracts afresh, with yt-dlp's
+        default clients for a while (`YoutubeAccess.mweb_trouble`): the URL it renews didn't open. A media server
         that doesn't answer gives way to another of the video's (`answering_url`). A URL behind an ad is
         returned once the ad could be skipped (`MAX_AD_WAIT_S`)."""
+        now = time.monotonic()
+        renewal = now - self._streamed.get(c.provider_id, -STREAM_RENEWAL_S) < STREAM_RENEWAL_S
+        self._streamed = {k: v for k, v in self._streamed.items() if now - v < STREAM_RENEWAL_S}
+        self._streamed[c.provider_id] = now
+        if renewal and self._youtube:
+            self._youtube.mweb_trouble(f"{c.provider_id}: its audio URL didn't open")
         cached = self._stream_urls.pop(c.provider_id, None)
-        if cached and time.monotonic() - cached[0] < STREAM_URL_TTL_S:
+        if cached and now - cached[0] < STREAM_URL_TTL_S and not renewal:
             info = cached[1]
         else:
             info = await self._run(self._extract, WATCH_URL.format(id=c.provider_id), format=LISTEN_FORMAT)

@@ -10,7 +10,7 @@ from yt_dlp.utils import DownloadError
 from app.config import YtdlpCfg
 from app.providers.base import ProviderError, TrackQuery
 from app.providers.reuploads import SoundcloudProvider, YtReuploadProvider
-from app.providers.ytdlp import YTM_API_URL, YoutubeAccess, YtdlpProvider, _YdlLogger
+from app.providers.ytdlp import DEFAULT_CLIENTS_S, YTM_API_URL, YoutubeAccess, YtdlpProvider, _YdlLogger
 
 
 @pytest.mark.parametrize("refusal", [
@@ -192,3 +192,22 @@ async def test_metadata_cache_keeps_stream_shortcut_for_both_youtube_providers(m
     assert len(calls) == 1
     await first.aclose()
     await other.aclose()
+
+
+def test_sabr_warning_switches_to_the_default_clients_for_a_while(monkeypatch):
+    monkeypatch.setenv("YTDLP_POT_BASE_URL", "http://youtube-pot:4416")
+    now = [1000.0]
+    cfg = YtdlpCfg()
+    access = YoutubeAccess(cfg, clock=lambda: now[0])
+    p = YtdlpProvider(cfg, access=access)
+    assert p._base_opts()["extractor_args"]["youtube"]["player_client"] == ["mweb"]
+
+    _YdlLogger(access=access).warning(
+        "[youtube] vid1: Some mweb client https formats have been skipped as they are missing a URL. YouTube may "
+        "have enabled the SABR-only streaming experiment for the current session.")
+    args = p._base_opts()["extractor_args"]
+    assert "youtube" not in args  # yt-dlp's default clients
+    assert args["youtubepot-bgutilhttp"]["base_url"] == ["http://youtube-pot:4416"]
+
+    now[0] += DEFAULT_CLIENTS_S + 1
+    assert p._base_opts()["extractor_args"]["youtube"]["player_client"] == ["mweb"]

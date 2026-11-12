@@ -311,6 +311,36 @@ async def test_stream_reuses_the_search_lookup_once(monkeypatch: pytest.MonkeyPa
     await p.aclose()
 
 
+async def test_a_renewed_audio_url_is_extracted_with_the_default_clients(monkeypatch: pytest.MonkeyPatch) -> None:
+    """The Hub asks for a video's audio URL again soon after: the first one didn't open (YouTube's SABR-only
+    experiment gives mweb dead URLs), so yt-dlp's default clients extract it."""
+    p = YtdlpProvider(YtdlpCfg())
+    clients: list[list[str] | None] = []
+
+    def fake_extract(url: str, **opts: Any) -> dict:
+        clients.append(p._base_opts()["extractor_args"].get("youtube", {}).get("player_client"))
+        return {"url": "https://g.test/a", "ext": "m4a"}
+
+    monkeypatch.setattr(p, "_extract", fake_extract)
+    c = entry_to_candidate(FLAT_TOPIC)
+    assert c is not None
+    await p.stream(c)
+    await p.stream(c)
+    assert clients == [["mweb"], None]
+    await p.aclose()
+
+
+async def test_403_from_youtube_switches_to_the_default_clients() -> None:
+    p = YtdlpProvider(YtdlpCfg())
+
+    def download() -> None:
+        raise DownloadError("ERROR: unable to download video data: HTTP Error 403: Forbidden")
+
+    with pytest.raises(ProviderError):
+        await p._run(download)
+    assert p._youtube is not None and p._youtube.default_clients()
+
+
 YT_FILE = Candidate(provider="ytdlp", provider_id="vid1", artist="Кино", title="Группа крови",
                     page_url="https://www.youtube.com/watch?v=vid1")
 
