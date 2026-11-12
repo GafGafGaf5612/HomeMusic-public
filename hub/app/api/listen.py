@@ -24,10 +24,13 @@ async def _choose(ref: str, full_only: bool = False) -> listen.Choice:
 
 
 @router.get("", response_model=ListenOut)
-async def resolve(ref: str, full: bool = False, user: User = Depends(current_user)):
+async def resolve(ref: str, full: bool = False, ahead: bool = False, user: User = Depends(current_user)):
     """Picks the file (may take a while: providers are searched), then the client plays `stream_url`. `full`: no
-    Deezer preview — 503 when no source has the track's file (the web player then plays the next track)."""
+    Deezer preview — 503 when no source has the track's file (the web player then plays the next track). `ahead`:
+    the client plays it next — the Hub also downloads the file to its disk now, so the switch starts at once."""
     c = await _choose(ref, full)
+    if ahead:
+        listen.load_ahead(c)
     cand = c.candidate
     return ListenOut(
         ref=c.ref,

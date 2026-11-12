@@ -12,7 +12,8 @@ import { listeningAccount, newEventId, newLaunch, playEvent, routeContext, type 
  * app only one player plays: starting here pauses the app's player, and its start pauses this one.
  *
  * A tap in a list (album, search results) plays that list from the tapped track on: when a track ends the next
- * one starts, and while one plays the Hub already picks the file for the next (the pick is what takes seconds).
+ * one starts, and while one plays the Hub already picks the file for the next and downloads it to its disk
+ * (`prefetchNext`: picking and opening the source is what takes seconds), so the switch streams from there at once.
  * The tracks on screen are named to the Hub as they appear (`watchOnScreen`): it picks their files in the
  * background and remembers them, so most taps start at once.
  *
@@ -447,7 +448,8 @@ function refreshInfo() {
   );
 }
 
-/** Asks the Hub to pick the next track's file now (it remembers the pick), so it starts at once. */
+/** Asks the Hub to pick the next track's file now (it remembers the pick) and download it to its disk after the
+ * playing one's (`ahead`), so the switch to it starts at once. */
 function prefetchNext() {
   const nextTrack = state.queue[state.index + 1] ?? (state.repeat === 'all' && !onWave() ? state.queue[0] : undefined);
   if (!nextTrack || prefetching?.ref === nextTrack.ref) return;
@@ -461,7 +463,7 @@ function prefetchNext() {
     set({ queue: state.queue.filter((_, j) => j !== i) });
     prefetchNext();
   };
-  api.listen(nextTrack.ref, ctl.signal).then(
+  api.listen(nextTrack.ref, ctl.signal, true).then(
     (info) => { if (info.kind === 'preview') drop(); },
     (e: unknown) => {
       if (e instanceof ApiError && (e.status === 503 || e.status === 404)) drop();

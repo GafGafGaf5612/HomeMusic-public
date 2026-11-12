@@ -277,7 +277,9 @@ export const api = {
 
   // listening before download: picks the file (may take seconds), `stream_url` plays it
   /** `full=1`: never Deezer's 30 s preview — 503 when no source has the track (the player plays the next one). */
-  listen: (ref: string, signal?: AbortSignal) => request<ListenOut>('GET', withQuery('/api/listen', { ref, full: 1 }), { signal }),
+  /** `ahead`: the track plays next — the Hub also downloads its file now, so the switch to it starts at once. */
+  listen: (ref: string, signal?: AbortSignal, ahead = false) =>
+    request<ListenOut>('GET', withQuery('/api/listen', ahead ? { ref, full: 1, ahead: 1 } : { ref, full: 1 }), { signal }),
   // the catalog tracks on screen, top first: the Hub picks their files in the background (replaces the last list)
   listenPrefetch: (refs: string[]) => request<{ queued: number }>('POST', '/api/listen/prefetch', { json: { refs } }),
 
