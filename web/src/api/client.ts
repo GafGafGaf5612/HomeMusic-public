@@ -8,6 +8,8 @@ import type {
   ArtistPageOut,
   AssistantConfirmIn,
   AssistantTaskOut,
+  ChartPageOut,
+  ChartsOut,
   ChatBriefOut,
   ChatConfirmOut,
   ChatMessage,
@@ -263,6 +265,10 @@ export const api = {
     cachedGet<ArtistPageOut>(`/api/catalog/artist/${enc(ref)}`, signal, fresh),
   album: (ref: string, signal?: AbortSignal, fresh = false) =>
     cachedGet<AlbumOut>(`/api/catalog/album/${enc(ref)}`, signal, fresh),
+
+  // «Чарты и жанры»: the list (covers of the charts made already) and a chart (the first request may take a minute)
+  charts: (signal?: AbortSignal) => request<ChartsOut>('GET', '/api/charts', { signal }),
+  chart: (id: string, signal?: AbortSignal) => request<ChartPageOut>('GET', `/api/charts/${enc(id)}`, { signal }),
 
   // listening before download: picks the file (may take seconds), `stream_url` plays it
   listen: (ref: string, signal?: AbortSignal) => request<ListenOut>('GET', withQuery('/api/listen', { ref }), { signal }),

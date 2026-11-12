@@ -297,6 +297,12 @@ session the app makes again after a `404`. The Hub keeps them with the session, 
 | `radio` | the app's «Радиостанции», the PWA's library artists (`nd_artist_id`) |
 | `search_file` | the ⋯ menu of a Files search result (`file:<provider>:<id>`) |
 | `restart` | the app made the session again after a `404` (with `restart_of`) |
+| `chart_page` | «Волна по чарту» on a chart's page (`seed.chart`) |
+
+`seed.chart` — a wave by a chart or genre (`GET /api/charts` ids): the chart's tracks join the pool (generator
+`chart`, «Из чарта»; the higher the place the better), with the YouTube Music and Yandex radios of its first 3 tracks;
+a refill takes the radios of its next ones. `title` «Волна: <chart name>», `seed` `{chart, name}`. Unknown chart →
+`404`, its source down and nothing kept → `502`.
 
 A session's row is kept for the history: one not asked for 7 days has its state cleared to a summary (it answered
 `404` after 24 h anyway); what it handed out stays in `wave_items` (MIXES.md 7.1).
@@ -335,6 +341,22 @@ down in this session and so does what sounds like the track (the embedder's vect
 YouTube Music radio joins the pool (`session_radio`), what sounds like it goes up; `finish` of a track the library
 lacks — a quiet download (`query_json.wave`: not shown in «Загрузки», as a mix's). «Не нравится» set anywhere
 (`/api/dislikes`) counts at the next call. A ♥ downloads the track the usual way (the client's ♥ download).
+
+## «Чарты и жанры» (app/charts.py)
+Charts of countries and genres for «Главная» (a browser) and the catalog (`/search` without a query), played in their
+order, shuffled or as a wave (`seed.chart` above).
+
+| Method | Path | Body → Response |
+|---|---|---|
+| GET | `/api/charts` | → `ChartsOut` `{charts: [{id, title, name, kind: country\|genre, group: main\|europe\|ru_genres\|genres, source, covers: [≤ 4 urls], updated_at}]}` — the rows in order; `covers`/`updated_at` empty until a chart was made once |
+| GET | `/api/charts/{id}` | → `ChartPageOut` `{chart, tracks: [TrackOut + position]}`: the tracks by their places (catalog tracks with the library state). The first request of a chart never made may take up to a minute (Yandex's and Apple's names are matched with the catalog); a chart is fresh for 6 h, an older one is served at once while a new one is made. Unknown → `404`, source down and nothing kept → `502` |
+
+Sources: Russia — Yandex Music's chart (outside Russia `api.music.yandex.net` answers 451: put it in
+`OUTBOUND_PROXY_HOSTS` with a Russian `OUTBOUND_PROXY`), Apple Music's when Yandex fails; USA, UK, Germany, France,
+Italy, Spain, Poland, the Netherlands, Ukraine, the world — the «Top <country>» playlists of Deezer Charts; «Европа» —
+the first places of UK, DE, FR, IT, ES, PL, NL by turns; genres — Deezer's genre charts (by the caller's country: the
+server's); Russian rock, rap, pop and phonk — Yandex's editorial playlists of the tag. A background loop keeps them
+fresh (the first round 90 s after the start).
 
 ## «Умное перемешивание» (MIXES.md 8)
 A playlist or «Понравившиеся» in the shuffle with recommendations "in the mood of the list" between its songs (Spotify's
