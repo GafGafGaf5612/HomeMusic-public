@@ -101,6 +101,35 @@ function trackOut(albumIdx: number, n: number) {
   };
 }
 
+// «Чарты и жанры» (GET /api/charts): a few of the Hub's; a chart is made on its first request (covers appear then).
+// «Германия» answers 502 (its source is down); dz:1304 (only a preview) is left out, so its places skip.
+const MOCK_CHARTS = [
+  { id: 'ru', title: 'Россия', name: 'Чарт России', kind: 'country', group: 'main', source: 'Яндекс Музыка' },
+  { id: 'us', title: 'США', name: 'Чарт США', kind: 'country', group: 'main', source: 'Deezer' },
+  { id: 'eu', title: 'Европа', name: 'Чарт Европы', kind: 'country', group: 'main', source: 'Deezer' },
+  { id: 'world', title: 'Мир', name: 'Мировой чарт', kind: 'country', group: 'main', source: 'Deezer' },
+  { id: 'gb', title: 'Великобритания', name: 'Чарт Великобритании', kind: 'country', group: 'europe', source: 'Deezer' },
+  { id: 'de', title: 'Германия', name: 'Чарт Германии', kind: 'country', group: 'europe', source: 'Deezer' },
+  { id: 'fr', title: 'Франция', name: 'Чарт Франции', kind: 'country', group: 'europe', source: 'Deezer' },
+  { id: 'rusrock', title: 'Русский рок', name: 'Русский рок', kind: 'genre', group: 'ru_genres', source: 'Яндекс Музыка' },
+  { id: 'rusrap', title: 'Русский рэп', name: 'Русский рэп', kind: 'genre', group: 'ru_genres', source: 'Яндекс Музыка' },
+  ...['Поп', 'Хип-хоп', 'Рок', 'Танцевальная', 'Электроника', 'R&B', 'Альтернатива', 'Метал', 'Джаз', 'Классика'].map(
+    (title, i) => ({ id: `g${i}`, title, name: title, kind: 'genre', group: 'genres', source: 'Deezer' })),
+];
+const madeCharts = new Set<string>(['ru']);
+
+function chartTracks(id: string) {
+  const all = searchTracks().filter((t, i, list) => list.findIndex((x) => x.ref === t.ref) === i);
+  const shift = [...id].reduce((s, ch) => s + ch.charCodeAt(0), 0) % 20;
+  return all.slice(shift, shift + 40).map((t, i) => ({ ...t, position: i + 1 })).filter((t) => t.ref !== 'dz:1304');
+}
+
+function chartOut(c: (typeof MOCK_CHARTS)[number]) {
+  const made = madeCharts.has(c.id);
+  return { ...c, covers: made ? [...new Set(chartTracks(c.id).map((t) => t.cover_url).filter(Boolean))].slice(0, 4) : [],
+    updated_at: made ? new Date(Date.now() - 2 * 3600 * 1000).toISOString() : null };
+}
+
 /** Search results: 70 tracks (the 25th listed twice, as Deezer does), served 25 per page. */
 function searchTracks() {
   const all = RELEASES.flatMap((r, i) => Array.from({ length: r.n }, (_, k) => trackOut(i, k + 1))).slice(0, 70);
@@ -260,6 +289,8 @@ let downloads: DL[] = [
 // --- uploads / playlists / assistant ---------------------------------------------------------------
 
 let uploadSeq = 70;
+let torrentSeq = 0;
+let torrents: Json[] = [];
 let uploads: Json[] = [
   { id: 61, orig_name: 'Репетиция - Песня у костра (live).mp3', size: 7_340_032, status: 'uploaded', tags: { title: 'Песня у костра', artist: 'Своя группа', album: 'Записи с репетиции', track_no: 2, year: 2026, has_cover: true, duration_s: 204 }, created_at: now() },
 ];
@@ -1108,6 +1139,16 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<boolea
   }
 
   // «Микс дня» and the taste onboarding
+  if (p === '/api/charts' && m === 'GET') return send(res, 200, { charts: MOCK_CHARTS.map(chartOut) }), true;
+  const chartMatch = /^\/api\/charts\/([a-z_]+)$/.exec(p);
+  if (chartMatch && m === 'GET') {
+    const chart = MOCK_CHARTS.find((c) => c.id === chartMatch[1]);
+    if (!chart) return send(res, 404, { detail: 'Чарт не найден' }), true;
+    if (chart.id === 'de') return send(res, 502, { detail: 'Чарт недоступен: Deezer: 500' }), true;
+    if (!madeCharts.has(chart.id)) await delay(1500); // the first request: the Hub matches the names
+    madeCharts.add(chart.id);
+    return send(res, 200, { chart: chartOut(chart), tracks: chartTracks(chart.id) }), true;
+  }
   if (p === '/api/mixes/today') return send(res, 200, mixToday()), true;
   if (p === '/api/mixes/settings' && m === 'GET') return send(res, 200, mixSettingsOut()), true;
   if (p === '/api/mixes/settings' && m === 'PUT') {
@@ -1164,6 +1205,9 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<boolea
     if (!/^dz:\d+$/.test(ref) && !ref.startsWith('file:')) return send(res, 400, { detail: 'Неверная ссылка на трек' }), true;
     const pick = await listenPick(ref);
     if (!pick) return send(res, 404, { detail: ref.startsWith('file:') ? 'Файл не найден: повторите поиск' : 'Трек не нашёлся ни в одном источнике' }), true;
+    if (pick.kind === 'preview' && url.searchParams.get('full')) {
+      return send(res, 503, { detail: 'Полная версия пока недоступна. Повторите позже или выберите другой источник.' }), true;
+    }
     if (p === '/api/listen') return send(res, 200, pick), true;
     let audio = listenAudio.get(ref);
     if (!audio) listenAudio.set(ref, (audio = wav(Number(pick.duration_s) || 30, String(pick.title))));
@@ -1334,6 +1378,11 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<boolea
     } else if (track) {
       w.title = `Волна по треку «${track.title}»`;
       w.seed = { ref: track.ref, artist: track.artist, title: track.title };
+    } else if (seed?.chart) {
+      const chart = MOCK_CHARTS.find((c) => c.id === seed.chart);
+      if (!chart) return send(res, 404, { detail: 'Чарт не найден' }), true;
+      w.title = `Волна: ${chart.name}`;
+      w.seed = { chart: chart.id, name: chart.name };
     } else if (seed?.artist_ref || seed?.nd_artist_id) {
       const artist = ARTISTS.find((a) => a.ref === seed.artist_ref);
       if (seed.artist_ref && !artist) return send(res, 404, { detail: 'Исполнитель не найден' }), true;
@@ -1509,6 +1558,47 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<boolea
       return send(res, 200, { download_item_id: it.picked }), true;
     }
     return send(res, 404, { detail: 'Строка импорта не найдена' }), true;
+  }
+
+  // releases from rutracker: two found releases, a download that finishes in ~10 s
+  if (p === '/api/torrents/config') return send(res, 200, { enabled: true }), true;
+  if (p === '/api/torrents/search') {
+    const q = url.searchParams.get('q') ?? '';
+    const rel = (n: number, title: string, extra: Json) => ({ title, link: `http://jackett:9117/dl/rutracker/?path=${n}`, details_url: `https://rutracker.org/forum/viewtopic.php?t=${n}`, lossless: false, hires: false, discography: false, ...extra });
+    return send(res, 200, {
+      errors: [],
+      releases: [
+        rel(1, `${q} - 1988, FLAC (tracks+.cue), lossless`, { size: 412_000_000, seeders: 23, leechers: 2, codec: 'FLAC', lossless: true, layout: 'tracks', year: 1988, importable: true, published: '2014-03-03T10:00:00' }),
+        rel(2, `${q} - 1988, MP3, 320 kbps`, { size: 98_000_000, seeders: 11, leechers: 0, codec: 'MP3', bitrate_kbps: 320, layout: 'tracks', year: 1988, importable: true }),
+        rel(3, `${q} - Дискография (1982-1990), APE (image+.cue), lossless`, { size: 5_300_000_000, seeders: 41, leechers: 5, codec: 'APE', lossless: true, layout: 'image', discography: true, importable: false }),
+      ],
+    }), true;
+  }
+  if (p === '/api/torrents/files') {
+    const dir = 'Кино - Группа крови (1988)';
+    const files = ['Группа крови', 'Закрой за мной дверь', 'Война', 'Звезда по имени Солнце'].map((t, i) => ({ path: `${dir}/0${i + 1} - ${t}.flac`, size: 30_000_000 + i * 1_000_000, kind: 'audio', importable: true, image: false }));
+    return send(res, 200, { name: dir, size: 124_000_000, files: [...files, { path: `${dir}/${dir}.cue`, size: 1200, kind: 'cue', importable: false, image: false }, { path: `${dir}/cover.jpg`, size: 200_000, kind: 'image', importable: false, image: false }] }), true;
+  }
+  if (p === '/api/torrents' && m === 'POST') {
+    const b = await readJson(req);
+    const t: Json = { id: ++torrentSeq, title: String(b.title), details_url: b.details_url ?? null, album_ref: b.album_ref ?? null, status: 'downloading', progress: 0, state: 'stalledDL', seeds: 0, speed: 0, eta_s: null, size: 124_000_000, files: Array.isArray(b.files) ? b.files.length : 4, imported: 0, album_id: null, error: null, warnings: [], created_at: now(), finished_at: null };
+    torrents.unshift(t);
+    const timer = setInterval(() => {
+      if (t.status !== 'downloading') return clearInterval(timer);
+      const progress = Math.min(1, Number(t.progress) + 0.2);
+      Object.assign(t, { progress, state: progress < 1 ? 'downloading' : 'stalledUP', seeds: 5, speed: 2_400_000, eta_s: Math.round((1 - progress) * 50) });
+      if (progress >= 1) Object.assign(t, { status: 'done', imported: t.files, album_id: 1, speed: 0, eta_s: null, finished_at: now() });
+      emit('torrent', t);
+      if (progress >= 1) emit('library', { kind: 'imported', album_id: 1 });
+    }, 2000);
+    return send(res, 200, t), true;
+  }
+  if (p === '/api/torrents' && m === 'GET') return send(res, 200, torrents), true;
+  if (p.startsWith('/api/torrents/') && m === 'DELETE') {
+    const t = torrents.find((x) => x.id === Number(p.split('/').pop()));
+    if (t && (t.status === 'downloading' || t.status === 'importing')) Object.assign(t, { status: 'cancelled', finished_at: now() }), emit('torrent', t);
+    else torrents = torrents.filter((x) => x !== t);
+    return send(res, 200, { ok: true }), true;
   }
 
   // uploads

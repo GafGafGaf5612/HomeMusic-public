@@ -20,6 +20,8 @@ DEFAULT_UA = (
     "Chrome/141.0.0.0 Mobile Safari/537.36"
 )
 RETRY_STATUSES = {403, 408, 425, 429, 500, 502, 503, 504}
+# YouTube's domains (and their subdomains): `YOUTUBE_PROXY` takes their requests
+YOUTUBE_DOMAINS = ("youtube.com", "youtu.be", "googlevideo.com", "youtube-nocookie.com")
 
 
 class Priority:
@@ -166,22 +168,37 @@ def proxy_for_domains(*domains: str) -> str | None:
     return None
 
 
+def youtube_proxy() -> str | None:
+    """YouTube's route: `YOUTUBE_PROXY`, else `OUTBOUND_PROXY` when `OUTBOUND_PROXY_HOSTS` name YouTube."""
+    return get_settings().youtube_proxy or proxy_for_domains(*YOUTUBE_DOMAINS)
+
+
 def make_client(
     *,
     headers: dict[str, str] | None = None,
     timeout: float = 30,
     proxy_hosts: set[str] | None = None,
     http2: bool = True,
+    mounts: dict[str, httpx.AsyncBaseTransport] | None = None,
+    proxy: str | None = None,
 ) -> httpx.AsyncClient:
-    """Proxy configured host trees; a wildcard alone selects the proxy for every request."""
+    """AsyncClient with HTTP/2 and redirects. `proxy` takes every request (an extractor that keeps one egress
+    IP, redirects included); otherwise `OUTBOUND_PROXY` takes the configured host trees (a wildcard alone:
+    every request) and `YOUTUBE_PROXY` YouTube's."""
     s = get_settings()
-    mounts: dict[str, httpx.AsyncHTTPTransport] = {}
+    mounts_: dict[str, httpx.AsyncBaseTransport] = {}
     hosts = proxy_hosts if proxy_hosts is not None else s.proxy_hosts
-    if s.outbound_proxy and hosts:
+    if proxy:
+        mounts_["all://*"] = httpx.AsyncHTTPTransport(proxy=proxy, http2=http2)
+    elif s.outbound_proxy and hosts:
         transport = httpx.AsyncHTTPTransport(proxy=s.outbound_proxy, http2=http2)
         for h in hosts:
             pattern = h if h.startswith("*") else f"*{h}"
-            mounts[f"all://{pattern}"] = transport
+            mounts_[f"all://{pattern}"] = transport
+    if s.youtube_proxy and proxy_hosts is None and not proxy:  # an explicit set: a local service
+        transport = httpx.AsyncHTTPTransport(proxy=s.youtube_proxy, http2=http2)
+        for d in YOUTUBE_DOMAINS:
+            mounts_[f"all://*{d}"] = transport
     h = {"User-Agent": DEFAULT_UA}
     h.update(headers or {})
     return httpx.AsyncClient(
@@ -190,8 +207,8 @@ def make_client(
         follow_redirects=True,
         http2=http2,
         # Env mounts for specific schemes or NO_PROXY can outrank a catch-all mount.
-        trust_env=not (s.outbound_proxy and "*" in hosts),
-        mounts=mounts or None,
+        trust_env="all://*" not in mounts_,
+        mounts={**mounts_, **(mounts or {})} or None,
     )
 
 

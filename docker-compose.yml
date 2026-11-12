@@ -140,6 +140,43 @@ services:
       start_period: 20s
     logging: *logging
 
+  # Releases from rutracker (README, «Раздачи с rutracker»). Off by default: `docker compose --profile torrents up -d`.
+  # Jackett logs in to rutracker (captcha, proxy — in its UI at http://localhost:9117); the Hub asks it over Torznab.
+  jackett:
+    image: lscr.io/linuxserver/jackett:v0.24.3036-ls31
+    container_name: homemusic_jackett
+    restart: unless-stopped
+    profiles: [torrents]
+    environment:
+      TZ: ${TIMEZONE:-Europe/Moscow}
+      AUTO_UPDATE: "false"  # the image is pinned; update by changing the tag
+    ports:
+      - "127.0.0.1:9117:9117"  # setup UI: this PC only
+    volumes:
+      - jackett-config:/config
+    logging: *logging
+
+  # Downloads only the chosen files of a release into MUSIC_ROOT/staging/torrents and seeds them after the import
+  # (the library gets copies). Web UI: http://localhost:8081.
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:5.3.0_v2.1.2-ls487
+    container_name: homemusic_qbittorrent
+    restart: unless-stopped
+    profiles: [torrents]
+    environment:
+      TZ: ${TIMEZONE:-Europe/Moscow}
+      WEBUI_PORT: "8081"
+      TORRENTING_PORT: "6881"
+    ports:
+      - "127.0.0.1:8081:8081"
+      - "6881:6881"
+      - "6881:6881/udp"
+    volumes:
+      - qbittorrent-config:/config
+      # the Hub sees this folder as /music/staging/torrents (torrents.save_path in config.yaml)
+      - ${MUSIC_ROOT}/staging/torrents:/downloads
+    logging: *logging
+
   # Reverse SSH tunnel: the VPS listens on 127.0.0.1:4533 / 127.0.0.1:8080 and Caddy serves them over HTTPS.
   # The tunnel key only allows these two remote listens.
   tunnel:
@@ -176,3 +213,5 @@ volumes:
   hub-data:
   embedder-data:
   embedder-models:
+  jackett-config:
+  qbittorrent-config:

@@ -12,6 +12,9 @@ if TYPE_CHECKING:
     from app.catalog.deezer import DeezerClient
     from app.catalog.hitmoz_catalog import HitmozCatalog
     from app.catalog.musicbrainz import MusicBrainzClient
+    from app.torrents.jackett import JackettClient
+    from app.torrents.public import PublicSearchClient
+    from app.torrents.qbit import QbitClient
 
 log = logging.getLogger(__name__)
 
@@ -22,6 +25,9 @@ class Services:
         self.deezer: DeezerClient | None = None
         self.hitmoz_catalog: HitmozCatalog | None = None
         self.musicbrainz: MusicBrainzClient | None = None
+        # releases from rutracker (README, «Раздачи с rutracker»): None while JACKETT_API_KEY is empty
+        self.jackett: JackettClient | PublicSearchClient | None = None
+        self.qbit: QbitClient | None = None
 
     def start(self) -> None:
         from app.catalog.deezer import DeezerClient
@@ -45,6 +51,21 @@ class Services:
         self.deezer = DeezerClient(cfg.catalog)
         self.hitmoz_catalog = HitmozCatalog(hitmoz)
         self.musicbrainz = MusicBrainzClient(cfg.catalog)
+        s = get_settings()
+        if s.torrents_enabled:
+            from app.torrents.jackett import JackettClient
+            from app.torrents.qbit import QbitClient
+            from app.torrents.stream import PROVIDER, TorrentProvider
+
+            if s.torrent_search == "public":
+                from app.torrents.public import PublicSearchClient
+
+                self.jackett = PublicSearchClient()
+            else:
+                self.jackett = JackettClient(s.jackett_url, s.jackett_api_key, cfg.torrents.indexer)
+            self.qbit = QbitClient(s.qbit_url, s.qbit_username, s.qbit_password)
+            # releases' files listened to before downloading (`file:torrent:…`): not a search source
+            self.providers[PROVIDER] = TorrentProvider()
 
     async def stop(self) -> None:
         for p in self.providers.values():
@@ -52,12 +73,13 @@ class Services:
                 await p.aclose()
             except Exception:
                 log.exception("closing provider %s", p.name)
-        for c in (self.deezer, self.musicbrainz):
+        for c in (self.deezer, self.musicbrainz, self.jackett, self.qbit):
             if c is not None:
                 try:
                     await c.aclose()
                 except Exception:
                     log.exception("closing catalog client")
+        self.jackett = self.qbit = None
 
     def provider_order(self, q: TrackQuery, *, for_download: bool = False) -> list[Provider]:
         from app.matching.normalize import is_russian_query

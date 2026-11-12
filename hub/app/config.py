@@ -89,7 +89,7 @@ class UploadsCfg(BaseModel):
 
 
 class LibraryCfg(BaseModel):
-    trash_days: int = 30
+    trash_days: int = 3  # .trash/<date> folders are removed this long after (the daily housekeeping)
     backup_hour: int = 4
 
 
@@ -119,6 +119,22 @@ class AnalyticsCfg(BaseModel):
     exclude_users: list[str] = []
 
 
+class TorrentsCfg(BaseModel):
+    """Releases from a torrent tracker (rutracker) found through Jackett and downloaded by qBittorrent
+    (README, «Раздачи с rutracker»). On when JACKETT_API_KEY is set in .env."""
+
+    indexer: str = "rutracker"  # Jackett indexer id (its Torznab feed URL: /api/v2.0/indexers/<id>/results/torznab)
+    categories: list[int] = [3000]  # Torznab categories: 3000 Audio (MP3, lossless, ...)
+    max_results: int = Field(default=50, ge=1, le=200)
+    # where qBittorrent saves torrents in its container: MUSIC_ROOT/staging/torrents mounted there
+    save_path: str = "/downloads"
+    category: str = "homemusic"  # qBittorrent category of the Hub's torrents
+    poll_s: float = Field(default=15, ge=1)
+    # Leave the release seeding after the import (the library gets copies). False — remove the torrent and its files.
+    keep_seeding: bool = True
+    admin_only: bool = True  # only the Hub's admin searches and downloads releases
+
+
 class AppConfig(BaseModel):
     """Contents of config.yaml."""
 
@@ -134,6 +150,7 @@ class AppConfig(BaseModel):
     library: LibraryCfg = LibraryCfg()
     mixes: MixesCfg = MixesCfg()
     analytics: AnalyticsCfg = AnalyticsCfg()
+    torrents: TorrentsCfg = TorrentsCfg()
 
 
 class Settings(BaseSettings):
@@ -195,6 +212,21 @@ class Settings(BaseSettings):
 
     outbound_proxy: str = ""
     outbound_proxy_hosts: str = ""
+    # YouTube (yt-dlp, YouTube Music search and radio, playback from googlevideo) goes through this proxy, e.g.
+    # socks5://user:pass@host:port, when the server's own IP gets «Sign in to confirm you're not a bot». A media
+    # URL is tied to the IP that extracted it, so its playback takes the same route.
+    youtube_proxy: str = ""
+
+    # Releases from rutracker (README, «Раздачи с rutracker»): Jackett searches, qBittorrent downloads. Both run in the
+    # compose network (profile "torrents"). Empty API key — the feature is off.
+    jackett_url: str = "http://jackett:9117"
+    jackett_api_key: str = ""
+    # "public": search public trackers' own sites instead of Jackett (rutor, Knaben, The Pirate Bay; magnets only) —
+    # the phone app (pocket/), where Jackett can't run. Turns the feature on without JACKETT_API_KEY.
+    torrent_search: Literal["jackett", "public"] = "jackett"
+    qbit_url: str = "http://qbittorrent:8081"
+    qbit_username: str = "admin"
+    qbit_password: str = ""  # empty — no login (the Hub's subnet is whitelisted in qBittorrent's Web UI settings)
 
     # set by tests to skip background workers / scheduled tasks
     disable_background: bool = False
@@ -210,6 +242,15 @@ class Settings(BaseSettings):
     @property
     def staging_dir(self) -> Path:
         return self.music_root / "staging"
+
+    @property
+    def torrents_dir(self) -> Path:
+        """qBittorrent's downloads (`cfg.torrents.save_path` in its container)."""
+        return self.staging_dir / "torrents"
+
+    @property
+    def torrents_enabled(self) -> bool:
+        return bool(self.jackett_api_key) or self.torrent_search == "public"
 
     @property
     def trash_dir(self) -> Path:

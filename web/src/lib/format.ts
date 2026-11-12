@@ -102,6 +102,8 @@ export function providerLabel(p?: string | null): string {
       return 'Soulseek';
     case 'upload':
       return 'Загрузка';
+    case 'torrent':
+      return 'раздача';
     default:
       return p ?? '';
   }

@@ -12,7 +12,10 @@ search + rank). Picking it is what takes seconds, so it is kept off the tap:
   the track. The stream itself opens the file; when it does not open, the next candidate takes over.
 Ranking skips the track page (hitmoz: Explicit/Clean, real bitrate). Once the user has listened, the Hub checks
 the chosen file in the background; a download of that ref tries the heard file first if the check passed.
-Owned tracks play from the library; when no source has the track, Deezer's 30 s preview plays (`kind="preview"`).
+Owned tracks play from the library. When no source has the track, a release with seeders that has its file
+(`app.torrents.tracks`: a torrent tracker, when the Hub has them) plays it as a release's file; only then Deezer's 30 s
+preview (`kind="preview"`). A prefetch doesn't search releases (that adds torrents): the preview it picks is marked
+(`untried_releases`) and a user request searches them (`_upgrade`).
 
 A provider's file found in the Files tab of the search is listened to the same way, by its ref "file:<provider>:<id>"
 (`remember_files`): no pick, the file itself, prefetched while on screen. A source that has no plain HTTP audio
@@ -46,7 +49,7 @@ from typing import Any, Literal
 import httpx
 from sqlalchemy import select
 
-from app import light
+from app import light, no_full
 from app.catalog.cache import cache_delete, cache_get, cache_set, cache_set_many
 from app.catalog.deezer import CatalogNotFound
 from app.catalog.models import split_ref
@@ -61,11 +64,13 @@ from app.jobs.downloads import (
     search_provider,
 )
 from app.library.owned import find_existing
-from app.models import Track
 from app.matching.select import rank_candidates
+from app.models import Track
 from app.net import Priority, in_background, make_client, priority_context
 from app.providers.base import FILE_REF, Candidate, StreamSource, TrackQuery, file_ref
 from app.services import svc
+from app.torrents import tracks as releases
+from app.torrents.stream import PROVIDER as RELEASE_FILES
 
 log = logging.getLogger(__name__)
 
@@ -73,6 +78,9 @@ MEM_TTL_S = 3 * 3600  # a pick in memory (with the upstream link it opened), sin
 MEM_MAX = 2000
 KEEP_S = 30 * 86400  # a remembered pick
 KEEP_PREVIEW_S = 86400  # "no source has it" is looked at again the next day
+NO_FULL_MESSAGE = "Полная версия пока недоступна. Повторите позже или выберите другой источник."
+KEEP_RELEASE_S = 86400  # a release's file (no source had it): the sources are asked again the next day
+RELEASES_TIMEOUT_S = 40.0  # search the trackers, the file lists of the best releases (a magnet's: from peers)
 MISS_TTL_S = 30 * 60  # the prefetch skips a track that was not found for this long
 # A source failed (network, site down): a preview picked meanwhile is not remembered and is kept in memory this long
 TRANSIENT_TTL_S = 60
@@ -126,6 +134,8 @@ class Choice:
     verified: bool = False  # "full": the candidate passed the track-page check (or needs none)
     checking: asyncio.Task | None = None  # the check after the first listen
     transient: bool = False  # picked while a source failed: not remembered, soon looked at again
+    untried_releases: bool = False  # "preview" picked by a prefetch: releases not searched yet (`_upgrade`)
+    sources: list[str] | None = None  # a remembered pick: the sources searched for it, in order
     at: float = field(default_factory=time.monotonic)
 
     def fresh(self) -> bool:
@@ -183,6 +193,7 @@ class Media:
 
 _choices: dict[str, Choice] = {}
 _inflight: dict[str, _Job] = {}
+_upgrading: dict[str, asyncio.Task[Choice]] = {}  # ref -> releases searched for its preview (`_upgrade`)
 _fetching: dict[str, _Job] = {}  # ref -> download of a local copy (`_predownload`)
 _copies: dict[str, _Copy] = {}  # ref -> server copy of its picked file
 _calm: asyncio.Event | None = None  # set while no copy of a played track downloads (`_stir`)
@@ -205,7 +216,7 @@ async def choose(ref: str, *, background: bool = False, stale: Choice | None = N
     hit = _choices.get(ref)
     if hit and hit is not stale and hit.fresh() and _usable(hit) and not (full_only and hit.kind == "preview"):
         hit.at = time.monotonic()
-        return hit
+        return await _upgrade(hit) if _upgradable(hit, background) else hit
     job = _inflight.get(ref)
     if job is None:
         prio = Priority(background)
@@ -225,6 +236,8 @@ async def choose(ref: str, *, background: bool = False, stale: Choice | None = N
     if full_only and choice.kind == "preview":
         # A foreground request may have joined an older browser/prefetch resolution.
         return await choose(ref, background=background, stale=choice, full_only=True)
+    if _upgradable(choice, background):  # a prefetch's preview (or a remembered one): this request searches releases
+        return await _upgrade(choice)
     return choice
 
 
@@ -481,7 +494,10 @@ async def open_stream(choice: Choice, range_header: str | None) -> tuple[httpx.R
 def _media_client() -> httpx.AsyncClient:
     global _media
     if _media is None:
-        _media = make_client(timeout=30, http2=False)
+        from app.torrents.stream import mounts
+
+        # releases' files (`file:torrent:…`) are read from qBittorrent's downloads by their own transport
+        _media = make_client(timeout=30, http2=False, mounts=mounts())
     return _media
 
 
@@ -559,7 +575,8 @@ async def _warm(ref: str) -> None:
 async def reset() -> None:
     """Forget picks in memory, stop the prefetch and server copies, close the clients (app shutdown, tests)."""
     global _http, _media, _wake, _calm
-    tasks = set([*_workers, *_tasks, *(j.task for j in [*_inflight.values(), *_fetching.values()])])
+    tasks = set([*_workers, *_tasks, *_upgrading.values(),
+                 *(j.task for j in [*_inflight.values(), *_fetching.values()])])
     for t in tasks:
         t.cancel()
     # Resolution may still be rolling back its DB session. Finish cancellation before
@@ -569,6 +586,7 @@ async def reset() -> None:
     _workers.clear()
     _tasks.clear()
     _inflight.clear()
+    _upgrading.clear()
     _fetching.clear()
     _copies.clear()
     _choices.clear()
@@ -576,6 +594,8 @@ async def reset() -> None:
     _wanted.clear()
     _wake = _calm = None
     light.reset()
+    releases.reset()
+    no_full.reset()
     for client in (_http, _media):
         if client is not None:
             await client.aclose()
@@ -617,7 +637,11 @@ async def _resolve(ref: str, *, probe: bool, remembered: bool, full_only: bool =
         raise ListenError(400, "Этот трек нельзя послушать")
     choice = await _remembered(ref) if remembered else None
     if choice is not None and full_only and choice.kind == "preview":
-        choice = None
+        if choice.untried_releases or _new_sources(choice):
+            choice = None  # the releases, or a source added since, were not asked: search again
+        else:  # every source said no within a day (`KEEP_PREVIEW_S`): no new search, the player goes on at once
+            await _note_full(choice)
+            raise ListenError(503, NO_FULL_MESSAGE)
     how = "remembered"
     if choice is not None and probe and choice.kind == "full" and not await _opens_bounded(choice):
         choice = None  # the remembered file is gone
@@ -627,8 +651,11 @@ async def _resolve(ref: str, *, probe: bool, remembered: bool, full_only: bool =
         choice = await (_resolve_deezer(ref, id_, probe, full_only=full_only) if src == "dz" else _resolve_hitmoz(ref, id_, probe))
         how = "probed" if probe else "searched"
         if full_only and choice.kind == "preview":
-            raise ListenError(503, "Полная версия пока недоступна. Повторите позже или выберите другой источник.")
+            await _save(choice)  # remembered: the next full request answers at once (above)
+            raise ListenError(503, NO_FULL_MESSAGE)
         await _save(choice)
+    else:
+        await _note_full(choice)  # a pick remembered before the marks existed
     _prune()
     _choices[ref] = choice
     what = choice.candidate.page_url if choice.candidate else choice.path or "deezer preview"
@@ -726,11 +753,24 @@ async def _resolve_deezer(ref: str, id_: str, probe: bool, *, full_only: bool = 
                 return choice
             trouble.append(f"{p.name}: файлы не открываются")
 
+    # A release with seeders before the 30 s preview. Not for a prefetch: it would add torrents for every track on
+    # screen that no source has; its preview is marked, and a tap searches the releases (`_upgrade`).
+    untried = False
+    if releases.enabled():
+        if in_background():
+            untried = True
+        elif cands := await _from_releases(ref, q, pq, trouble):
+            choice = full(cands)
+            if not probe or await _opens_bounded(choice):
+                return choice
+            trouble.append("раздача: файл не открывается")
+
     # A queued heart may have finished importing while these sources were being searched.
     path, nd_song_id = await _library_file(query)
     if path:
         return Choice(ref, "library", q.artist, q.title, q.duration_s, path=path, nd_song_id=nd_song_id, query=query)
-    choice = Choice(ref, "preview", q.artist, q.title, PREVIEW_S, query=query, transient=bool(trouble))
+    choice = Choice(ref, "preview", q.artist, q.title, PREVIEW_S, query=query, pquery=pq.model_dump(),
+                    transient=bool(trouble), untried_releases=untried)
     if t.preview_url and (full_only or not probe or await _opens_bounded(choice)):
         return choice
     if trouble:
@@ -776,6 +816,64 @@ async def _search_all(ref: str, providers: list, pq: TrackQuery, trouble: list[s
     finally:
         for t in tasks:
             t.cancel()
+
+
+async def _from_releases(ref: str, q: TrackQuery, pq: TrackQuery, trouble: list[str]) -> list[Candidate]:
+    """The track's files in a release with seeders (`app.torrents.tracks`), remembered as releases' files (the
+    stream adds the release back to qBittorrent by them when its preview has been removed)."""
+    t0 = time.monotonic()
+    try:
+        cands = await asyncio.wait_for(releases.find(q, pq), RELEASES_TIMEOUT_S)
+    except TimeoutError:
+        cands = []
+        trouble.append("раздачи: превышено время ожидания")
+    except Exception as e:
+        cands = []
+        trouble.append(f"раздачи: {str(e) or repr(e)}")
+    found = f"{cands[0].extra.get('release')} / {cands[0].extra.get('path')}" if cands else "nothing"
+    log.info("listen %s: releases: %s (%.1f s)", ref, found, time.monotonic() - t0)
+    if cands:
+        await remember_files(cands)
+    return cands
+
+
+def _upgradable(c: Choice, background: bool) -> bool:
+    return c.kind == "preview" and c.untried_releases and not background and releases.enabled()
+
+
+async def _upgrade(c: Choice) -> Choice:
+    """A preview a prefetch picked without searching releases: this user request searches them (concurrent requests
+    share the search, which survives the caller going away)."""
+    task = _upgrading.get(c.ref)
+    if task is None:
+        task = asyncio.create_task(_with_releases(c), context=priority_context(Priority(False)))
+        _upgrading[c.ref] = task
+
+        def done(t: asyncio.Task[Choice], _ref: str = c.ref) -> None:
+            _upgrading.pop(_ref, None)
+            if not t.cancelled():
+                t.exception()
+
+        task.add_done_callback(done)
+    return await asyncio.shield(task)
+
+
+async def _with_releases(c: Choice) -> Choice:
+    t0 = time.monotonic()
+    pq = TrackQuery(**c.pquery) if c.pquery else TrackQuery(artist=c.artist, title=c.title)
+    q = TrackQuery(**{k: v for k, v in c.query.items() if k in TrackQuery.model_fields}) if c.query else pq
+    trouble: list[str] = []
+    if cands := await _from_releases(c.ref, q, pq, trouble):
+        choice = Choice(c.ref, "full", c.artist, c.title, q.duration_s or cands[0].duration_s, candidate=cands[0],
+                        alternates=cands[1:], query=c.query, pquery=c.pquery, verified=cands[0].enriched)
+    else:
+        choice = replace(c, untried_releases=False, transient=c.transient or bool(trouble), at=time.monotonic())
+    cur = _choices.get(c.ref)
+    if cur is None or cur is c:  # (a newer pick stays)
+        _choices[c.ref] = choice
+    await _save(choice)
+    log.info("listen %s: %s after the releases (%.1f s)", c.ref, choice.kind, time.monotonic() - t0)
+    return choice
 
 
 async def _resolve_hitmoz(ref: str, id_: str, probe: bool) -> Choice:
@@ -1230,10 +1328,26 @@ def _key(ref: str) -> str:
     return f"listen:{ref}"
 
 
+async def _note_full(c: Choice) -> None:
+    """A pick tells whether the track has a full file: a preview keeps it out of mixes and waves (`app.no_full`).
+    A pick made while a source failed tells nothing."""
+    if c.transient:
+        return
+    if c.kind == "preview":
+        await no_full.mark(c.ref)
+    else:
+        await no_full.clear(c.ref)
+
+
 async def _save(c: Choice) -> None:
+    await _note_full(c)
     if c.kind == "library" or c.transient:
         return
-    await cache_set(_key(c.ref), _payload(c), KEEP_S if c.kind == "full" else KEEP_PREVIEW_S)
+    if c.kind != "full":
+        keep = KEEP_PREVIEW_S
+    else:
+        keep = KEEP_RELEASE_S if c.candidate and c.candidate.provider == RELEASE_FILES else KEEP_S
+    await cache_set(_key(c.ref), _payload(c), keep)
 
 
 def _payload(c: Choice) -> dict:
@@ -1248,8 +1362,14 @@ def _payload(c: Choice) -> dict:
         "pquery": c.pquery,
         "heard": c.heard,
         "verified": c.verified,
+        "untried_releases": c.untried_releases,
         "sources": _source_names(c.pquery),
     }
+
+
+def _new_sources(c: Choice) -> bool:
+    """A source the pick's query is searched in now was not asked when it was made."""
+    return bool(c.pquery) and not set(_source_names(c.pquery)) <= set(c.sources or [])
 
 
 def _source_names(pquery: dict | None) -> list[str]:
@@ -1275,7 +1395,10 @@ async def _remembered(ref: str, *, library: bool = True) -> Choice | None:
         cand = Candidate(**d["candidate"]) if d.get("candidate") else None
         c = Choice(ref, d["kind"], d["artist"], d["title"], d.get("duration_s"), candidate=cand,
                    alternates=[Candidate(**a) for a in d.get("alternates") or []], query=d.get("query"),
-                   pquery=d.get("pquery"), heard=bool(d.get("heard")), verified=bool(d.get("verified")))
+                   pquery=d.get("pquery"), heard=bool(d.get("heard")), verified=bool(d.get("verified")),
+                   sources=d.get("sources"),
+                   # a preview remembered before releases were a step: they were not searched
+                   untried_releases=bool(d.get("untried_releases", d["kind"] == "preview")))
     except Exception as e:
         log.warning("listen %s: remembered pick unreadable: %r", ref, e)
         return None

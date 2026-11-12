@@ -626,3 +626,33 @@ class SmartHidden(Base):
     artist: Mapped[str] = mapped_column(String(256), default="", server_default="")
     title: Mapped[str] = mapped_column(String(256), default="", server_default="")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+
+class TorrentDownload(Base):
+    """A release from a torrent tracker (Jackett → qBittorrent) whose chosen files are imported into the library
+    (README, «Раздачи с rutracker»). The files stay in staging/torrents while the release seeds."""
+
+    __tablename__ = "torrent_downloads"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    info_hash: Mapped[str] = mapped_column(String(40), index=True)
+    title: Mapped[str] = mapped_column(String(1024))
+    details_url: Mapped[str | None] = mapped_column(String(1024))
+    album_ref: Mapped[str | None] = mapped_column(String(64))  # catalog album ("dz:…") to tag the tracks by
+    files_json: Mapped[list[Any]] = mapped_column(JSON, default=list)  # chosen files: [{"path", "size"}]
+    size: Mapped[int] = mapped_column(Integer, default=0)  # of the chosen files
+    # downloading → importing → done; failed / cancelled
+    status: Mapped[str] = mapped_column(String(16), default="downloading", index=True)
+    progress: Mapped[float] = mapped_column(Float, default=0)
+    state: Mapped[str | None] = mapped_column(String(32))  # qBittorrent's state ("stalledDL", "uploading", …)
+    seeds: Mapped[int | None] = mapped_column(Integer)
+    speed: Mapped[int | None] = mapped_column(Integer)  # bytes/s
+    eta_s: Mapped[int | None] = mapped_column(Integer)
+    imported: Mapped[int] = mapped_column(Integer, default=0)
+    album_id: Mapped[int | None] = mapped_column(ForeignKey("albums.id", ondelete="SET NULL"))
+    error: Mapped[str | None] = mapped_column(Text)
+    warnings: Mapped[list[Any]] = mapped_column(JSON, default=list)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime)

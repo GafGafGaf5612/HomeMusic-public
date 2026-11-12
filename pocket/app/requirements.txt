@@ -1,0 +1,62 @@
+# The Hub's runtime dependencies for the phone (Chaquopy, Python 3.12, arm64). From hub/uv.lock (`uv export --no-dev`),
+# except:
+#  - native packages come from Chaquopy's index, at the versions it has: cffi, cryptography, greenlet, markupsafe,
+#    pillow, pyyaml;
+#  - pydantic-core, jiter, selectolax (cross-compiled) and rapidfuzz (pure Python) — native/build-wheels.sh, found
+#    in ../wheels (pip --find-links);
+#  - left out: uvicorn's speed-ups (uvloop, httptools, watchfiles, websockets), bgutil-ytdlp-pot-provider (needs a
+#    Node server), httpx2-jsfetch (emscripten only);
+#  - added: tzdata (Android has no /usr/share/zoneinfo).
+aiosqlite==0.22.1
+alembic==1.20.0
+annotated-doc==0.0.5
+annotated-types==0.8.0
+anyio==4.15.1
+certifi==2026.7.22
+cffi==1.17.1
+charset-normalizer==3.5.2
+click==8.5.0
+cryptography==42.0.8
+fastapi==0.145.0
+greenlet==3.0.1
+h11==0.16.0
+h2==4.4.1
+hpack==4.2.0
+httpcore==1.0.9
+httpcore2==2.13.1
+httpx==0.28.1
+httpx2==2.13.1
+hyperframe==6.1.0
+idna==3.20
+jiter==0.17.0
+mako==1.4.3
+markupsafe==3.0.3
+mutagen==1.48.1
+openai==3.35.1
+opentelemetry-api==1.45.1
+pillow==11.0.0
+pycparser==3.11
+pydantic==2.14.1
+pydantic-core==2.50.1
+pydantic-settings==2.16.0
+pysocks==1.7.1
+python-dotenv==1.2.4
+python-multipart==0.0.32
+pyyaml==6.0.3
+rapidfuzz==3.14.6
+requests==2.34.2
+selectolax==1.0.1
+sniffio==1.3.1
+sqlalchemy==2.1.5
+sse-starlette==3.5.0
+starlette==1.8.0
+truststore==0.10.5
+typing-extensions==4.16.0
+typing-inspection==0.4.4
+tzdata
+unidecode==1.4.0
+urllib3==2.8.0
+uvicorn==0.54.0
+yandex-music==3.2.2
+yt-dlp==2026.10.26
+yt-dlp-ejs==0.8.0

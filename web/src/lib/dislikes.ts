@@ -1,6 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { api } from '../api/client';
 import type { DislikeOut } from '../api/types';
+import { getListenState, next, stopListening } from './listen';
 import { routeContext } from './plays';
 import { toast, toastError } from './ui';
 
@@ -101,4 +102,12 @@ export async function setDisliked(t: DislikeTarget, on: boolean, quiet = false):
     toastError(e);
     return false;
   }
+}
+
+/** «Не нравится» for a track: when the page's player is playing it, the next track starts right away (in the tap
+ * itself, so a browser lets it play; at the end of the queue the player stops), then the track is marked. */
+export function dislikeAndSkip(t: DislikeTarget): Promise<boolean> {
+  const cur = getListenState().track;
+  if (cur && ((!!t.ref && cur.ref === t.ref) || (!!t.nd_song_id && cur.nd_song_id === t.nd_song_id)) && !next()) stopListening();
+  return setDisliked(t, true);
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="settings" android:enabled="true" android:icon="@drawable/ic_settings"
+        android:shortcutShortLabel="@string/settings">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="app.homemusic.pocket"
+            android:targetClass="app.homemusic.pocket.SettingsActivity" />
+    </shortcut>
+</shortcuts>

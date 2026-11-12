@@ -1,11 +1,12 @@
 import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { fmtDuration, providerLabel } from '../lib/format';
-import { downloadRef, hasNext, hasPrev, next, prev, seek, setVolume, stopListening, toggle, useListen } from '../lib/listen';
+import { downloadRef, hasNext, hasPrev, next, prev, seek, setVolume, toggle, useListen } from '../lib/listen';
 import { STANDALONE } from '../lib/embedded';
 import { addRec, hideRec } from '../lib/smartShuffle';
 import { Link, enc } from '../lib/router';
 import { Icon } from './Icon';
 import { LikeButton } from './LikeButton';
+import { DislikeButton } from './DislikeButton';
 import { TrackMenuButton } from './TrackMenu';
 import { Cover, IconButton, Spinner, cx } from './ui';
 
@@ -126,6 +127,7 @@ export function MiniPlayer() {
             </div>
           )}
           <TrackMenuButton track={{ ...track, nd_song_id: info?.nd_song_id }} className="w-9" inPlayer />
+          <DislikeButton track={{ ...track, nd_song_id: info?.nd_song_id }} className="-mr-1 w-10" />
           <LikeButton songId={info?.nd_song_id} refId={track.ref} title={track.title} data={{ ...track }} className="-mr-1" />
           <button
             type="button"
@@ -150,7 +152,6 @@ export function MiniPlayer() {
           ) : (
             <IconButton icon="download" label="Скачать" onClick={download} busy={busy} />
           )}
-          <IconButton icon="x" label="Закрыть плеер" onClick={stopListening} size={18} className="w-9 text-muted" />
         </div>
         {track.rec && (
           <div className="flex items-center gap-1 border-t border-line/60 py-0.5 pl-3 pr-1" role="group" aria-label="Рекомендация">

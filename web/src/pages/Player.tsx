@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Icon } from '../components/Icon';
+import { DislikeButton } from '../components/DislikeButton';
 import { LikeButton } from '../components/LikeButton';
 import { TrackMenuButton } from '../components/TrackMenu';
 import { Button, Cover, Empty, IconButton, Spinner, cx } from '../components/ui';
@@ -45,7 +46,7 @@ export function PlayerPage() {
   const canPrev = useListen(hasPrev);
   const [scrub, setScrub] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
-  const { starting } = useWave();
+  const { starting, title: waveTitle } = useWave();
 
   if (!track)
     return (
@@ -80,7 +81,7 @@ export function PlayerPage() {
     <div className="pt-safe mx-auto flex min-h-dvh max-w-2xl flex-col">
       <div className="flex min-h-14 items-center gap-1 px-2">
         <IconButton icon="down" label="Свернуть" onClick={() => goBack('/home')} />
-        <div className="min-w-0 flex-1 text-center text-xs uppercase tracking-wide text-muted">{contextLabel(context)}</div>
+        <div className="min-w-0 flex-1 text-center text-xs uppercase tracking-wide text-muted">{contextLabel(context, waveTitle)}</div>
         <TrackMenuButton track={{ ...track, nd_song_id: info?.nd_song_id }} inPlayer />
       </div>
 
@@ -113,6 +114,7 @@ export function PlayerPage() {
             )}
           </div>
         </div>
+        <DislikeButton track={{ ...track, nd_song_id: info?.nd_song_id }} size={24} />
         <LikeButton songId={info?.nd_song_id} refId={track.ref} title={track.title} data={{ ...track }} size={26} />
         {owned || dl ? (
           <span className="flex h-11 w-11 shrink-0 items-center justify-center text-accent" title={owned || dl === 'done' ? 'Есть в библиотеке' : 'В загрузках'}>
@@ -206,9 +208,10 @@ export function PlayerPage() {
   );
 }
 
-function contextLabel(context: string): string {
-  if (context.startsWith('wave:')) return 'Моя волна';
+function contextLabel(context: string, waveTitle: string | null): string {
+  if (context.startsWith('wave:')) return waveTitle ?? 'Моя волна'; // «Волна: Чарт России», «Волна по треку «…»»
   if (context.startsWith('mix:')) return 'Микс дня';
+  if (context.startsWith('chart:')) return 'Чарт';
   return (
     { album: 'Альбом', artist: 'Исполнитель', playlist: 'Плейлист', liked: 'Понравившиеся', search: 'Поиск', queue: 'Очередь' } as Record<string, string>
   )[context] ?? 'Сейчас играет';

@@ -22,6 +22,7 @@ def _import_handlers() -> None:
     import app.imports.core
     import app.jobs.downloads
     import app.mixes.core
+    import app.torrents.core
 
     try:
         import app.ai.pipeline  # noqa: F401
@@ -38,7 +39,7 @@ async def lifespan(app: FastAPI):
     await asyncio.to_thread(db.run_migrations)
     db.init_engine()
 
-    from app import listen
+    from app import charts, listen
     from app.housekeeping import scheduler_loop
     from app.jobs.downloads import playlist_adds_loop
     from app.jobs.queue import WorkerPool, recover_stale
@@ -46,9 +47,14 @@ async def lifespan(app: FastAPI):
     from app.mixes.core import schedule_loop
     from app.plays import scrobbles_loop
     from app.services import svc
+    from app.torrents.core import torrents_loop
 
     svc.start()
     _import_handlers()
+    from app import no_full
+
+    if n := await no_full.load():
+        log.info("%s tracks have no full file: left out of mixes and waves", n)
     pool = WorkerPool(s.cfg.jobs.workers)
     tasks: list[asyncio.Task] = []
     if not s.disable_background:
@@ -60,6 +66,9 @@ async def lifespan(app: FastAPI):
         tasks.append(asyncio.create_task(scrobbles_loop(), name="scrobbles"))
         tasks.append(asyncio.create_task(schedule_loop(), name="mixes"))
         tasks.append(asyncio.create_task(playlist_adds_loop(), name="playlist-adds"))
+        tasks.append(asyncio.create_task(charts.charts_loop(), name="charts"))
+        if s.torrents_enabled:
+            tasks.append(asyncio.create_task(torrents_loop(), name="torrents"))
     log.info("hub started")
     try:
         yield
@@ -68,6 +77,7 @@ async def lifespan(app: FastAPI):
             t.cancel()
         await pool.stop()
         await listen.reset()
+        await charts.reset()
         await wave.reset()
         await smart.reset()
         await svc.stop()
@@ -79,6 +89,7 @@ def create_app() -> FastAPI:
         admin,
         auth,
         catalog,
+        charts,
         downloads,
         events,
         imports,
@@ -92,6 +103,7 @@ def create_app() -> FastAPI:
         search,
         smart_shuffle,
         system,
+        torrents,
         uploads,
         wave,
     )
@@ -100,7 +112,7 @@ def create_app() -> FastAPI:
                   openapi_url="/api/openapi.json", redoc_url=None)
     for r in (auth.router, search.router, catalog.router, downloads.router, listen.router, library.router, medialib.router,
               uploads.router, playlists.router, plays.router, mixes.router, wave.router, smart_shuffle.router, imports.router, events.router, system.router, admin.router,
-              insights.router):
+              insights.router, torrents.router, charts.router):
         app.include_router(r)
     try:
         from app.api import assistant

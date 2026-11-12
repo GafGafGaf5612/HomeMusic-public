@@ -297,6 +297,12 @@ session the app makes again after a `404`. The Hub keeps them with the session, 
 | `radio` | the app's «Радиостанции», the PWA's library artists (`nd_artist_id`) |
 | `search_file` | the ⋯ menu of a Files search result (`file:<provider>:<id>`) |
 | `restart` | the app made the session again after a `404` (with `restart_of`) |
+| `chart_page` | «Волна по чарту» on a chart's page (`seed.chart`) |
+
+`seed.chart` — a wave by a chart or genre (`GET /api/charts` ids): the chart's tracks join the pool (generator
+`chart`, «Из чарта»; the higher the place the better), with the YouTube Music and Yandex radios of its first 3 tracks;
+a refill takes the radios of its next ones. `title` «Волна: <chart name>», `seed` `{chart, name}`. Unknown chart →
+`404`, its source down and nothing kept → `502`.
 
 A session's row is kept for the history: one not asked for 7 days has its state cleared to a summary (it answered
 `404` after 24 h anyway); what it handed out stays in `wave_items` (MIXES.md 7.1).
@@ -335,6 +341,21 @@ down in this session and so does what sounds like the track (the embedder's vect
 YouTube Music radio joins the pool (`session_radio`), what sounds like it goes up; `finish` of a track the library
 lacks — a quiet download (`query_json.wave`: not shown in «Загрузки», as a mix's). «Не нравится» set anywhere
 (`/api/dislikes`) counts at the next call. A ♥ downloads the track the usual way (the client's ♥ download).
+
+## «Чарты и жанры» (app/charts.py)
+Charts of countries and genres for «Главная» (a browser) and the catalog (`/search` without a query; the app's «Хаб»
+tab), played in their order, shuffled or as a wave (`seed.chart` above).
+
+| Method | Path | Body → Response |
+|---|---|---|
+| GET | `/api/charts` | → `ChartsOut` `{charts: [{id, title, name, kind: country\|genre, group: main\|europe\|ru_genres\|genres, source, covers: [≤ 4 urls], updated_at}]}` — the rows in order; `covers`/`updated_at` empty until a chart was made once |
+| GET | `/api/charts/{id}` | → `ChartPageOut` `{chart, tracks: [TrackOut + position]}`: the tracks by their places (catalog tracks with the library state); a track no source has in full (`app/no_full.py`) is left out, so the places may skip. The first request of a chart never made may take up to a minute (Yandex's and Apple's names are matched with the catalog); a chart is fresh for 6 h, an older one is served at once while a new one is made. Unknown → `404`, source down and nothing kept → `502` |
+
+Sources: Russia — Yandex Music's chart (through the Russian proxy: `api.music.yandex.net` in `OUTBOUND_PROXY_HOSTS`),
+Apple Music's when Yandex fails; USA, UK, Germany, France, Italy, Spain, Poland, the Netherlands, Ukraine, the world —
+the «Top <country>» playlists of Deezer Charts; «Европа» — the first places of UK, DE, FR, IT, ES, PL, NL by turns;
+genres — Deezer's genre charts (by the caller's country: the server's); Russian rock, rap, pop and phonk — Yandex's
+editorial playlists of the tag. A background loop keeps them fresh (the first round 90 s after the start).
 
 ## «Умное перемешивание» (MIXES.md 8)
 A playlist or «Понравившиеся» in the shuffle with recommendations "in the mood of the list" between its songs (Spotify's
@@ -392,7 +413,7 @@ unlike the wave). The rows are kept for the analytics: `smart_sessions`, `smart_
 | POST | `/api/library/albums/merge` | `AlbumMergeIn` → `LibAlbumOut` (target) |
 | POST | `/api/library/tracks/move` | `TracksMoveIn` → `LibAlbumOut` (target) |
 | PATCH | `/api/library/tracks/{id}` | `TrackPatchIn` → `LibTrackOut` |
-| DELETE | `/api/library/tracks/{id}` | → `{ok}` (moved to `.trash`, kept 30 days) |
+| DELETE | `/api/library/tracks/{id}` | → `{ok}` (moved to `.trash`, kept `library.trash_days`, 3 days) |
 | POST | `/api/star` | Existing `StarIn` fields remain: song_ids, album_ids, artist_ids, catalog_album_ref, refs, unstar. Adds `targets: [{target_type, ref?, nd_song_id?, nd_album_id?, nd_artist_id?, target_data?}]` (≤500), `event_id?`, `ts?`, `client?` (default pwa), `context?`. Successful objects are journaled; response `{ok:true,event_ids:[…]}`. Single target uses the supplied event_id verbatim; bulk uses stable short hashes. `refs + unstar` also clears own pending ♥; explicit/import/mix/wave downloads survive; refs without unstar →400. Typed album/artist refs work without ND ids and do not download/star their songs |
 | GET | `/api/starred` | `StarredOut` `{song_ids, album_ids, artist_ids, refs, subjects}`. ND lists remain visible, refs also include own pending track likes. Own subjects include `{target_type,key,ref,nd_id,liked,liked_since,event_id,aliases,target_data,provenance:"own"}`; known imported objects carry provenance import. Use type plus aliases for button state; an own false state takes precedence over a stale ND list |
 
@@ -415,6 +436,25 @@ quarantined from bootstrap until verified or explicitly acted upon. A stale ND s
 | GET | `/api/uploads/{id}/cover` | embedded cover image (404 if none) |
 | DELETE | `/api/uploads/{id}` | → `{ok}` |
 | POST | `/api/uploads/commit` | multipart: field `payload` = JSON `UploadCommitIn`, optional file `cover` → `UploadCommitOut` |
+
+## Releases from rutracker (README, «Раздачи с rutracker»)
+
+On when `JACKETT_API_KEY` is set; otherwise every route but `config` is `404`. With `torrents.admin_only` (default)
+a non-admin gets `403`. Jackett or qBittorrent failing → `502`/`503` with the reason.
+
+| Method | Path | |
+|---|---|---|
+| GET | `/api/torrents/config` | → `TorrentConfigOut {enabled}`: the feature is set up and open to this user (the PWA shows its buttons by it) |
+| GET | `/api/torrents/search?q=` | → `TorrentSearchOut {releases: [TorrentReleaseOut], errors}`: releases from Jackett (`torrents.indexer` — one indexer or `all`, `torrents.categories`), one per info hash (the most seeded copy; `tracker` — which indexer), at most `torrents.max_results`; parsed from the title: `codec`, `bitrate_kbps`, `lossless`, `hires`, `layout` (`tracks` / `image` — a disc image + .cue), `year`, `discography`; `importable=false` for an image or APE/WavPack/TTA/DSD. Importable first, then by seeders. Jackett's errors come in `errors` (200) |
+| GET | `/api/torrents/files?link=&title=&details_url=` | → `TorrentFilesOut {name, size, files: [{path, size, kind: audio/cue/image/other, importable, image, ref, artist, title}], pending, seeds}` from the release's .torrent: `link` must lead to this Hub's Jackett (`/dl/`), its API key is added by the Hub. A magnet `link` (`magnet: true` in the search: public trackers give no .torrent) is added to qBittorrent as a preview (tag `homemusic-preview`, stops once it has the metadata; removed after an hour unless downloaded): until peers send the file list the answer is `pending: true` with `seeds` — ask again. A file a browser plays (mp3, m4a, aac, flac, ogg, opus, wav) gets a listen `ref` `file:torrent:<info hash>:<index>` (with `artist`/`title` from its name and the release `title`): `/api/listen*` play it before the download — qBittorrent gets the release as a preview, that file at the top priority, in order (first and last pieces early), and the stream answers each Range with the bytes whose pieces are done, waiting for the next (no new piece for 90 s — the stream fails). Only files asked for are wanted in a preview; downloading the release takes the preview over (its choice, not in order). Removed an hour after the last activity like any preview |
+| POST | `/api/torrents` | `TorrentStartIn {link, title, details_url?, album_ref?, files?}` → `TorrentOut`. Adds the torrent to qBittorrent with only `files` wanted (none given — every importable audio file) plus the folder's cover image, and starts it. `400` — nothing importable / a file the library won't take; `409` — this release is downloading already, or a magnet's file list hasn't come yet |
+| GET | `/api/torrents` | → `TorrentOut[]` of this user, newest first: `status` downloading → importing → done (or failed / cancelled), `progress` 0..1 of the chosen files, `state` (qBittorrent's), `seeds`, `speed` (B/s), `eta_s`, `files`, `imported`, `album_id`, `error`, `warnings` (per-file import failures) |
+| DELETE | `/api/torrents/{id}?delete_files=true` | stops the download (or the seeding of an imported release) and removes it from qBittorrent, with its files unless `delete_files=false`. The library keeps what was imported |
+
+A finished download is imported by the `torrent_import` job: copies of the audio files (the originals keep seeding) are
+tagged by the catalog album `album_ref` (tracks matched by disc/track number, title, or order) or by their own tags,
+with the release title ("Артист - Альбом - 1988, …") and file names ("01 - Title") as the fallback. SSE: `torrent`
+(a `TorrentOut`) on every change, `library` `{kind: "imported"}` after the import.
 
 ## Playlists
 | Method | Path | Body → Response |

@@ -96,7 +96,7 @@ export function LibraryAlbumPage({ id }: { id: number }) {
   const deleteTrack = async (t: LibTrackOut) => {
     const ok = await confirmDialog({
       title: 'Удалить трек?',
-      body: `«${t.title}» — ${t.artist}\nФайл переместится в корзину и будет удалён через 30 дней.`,
+      body: `«${t.title}» — ${t.artist}\nФайл переместится в корзину и через 3 дня удалится насовсем.`,
       okLabel: 'Удалить',
       danger: true,
     });

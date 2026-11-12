@@ -11,12 +11,13 @@ import { listen } from '../lib/listen';
 import { fmtLength, recordTypeLabel, tracksWord, yearOf } from '../lib/format';
 import { useAsync } from '../lib/hooks';
 import { canPlay, canPlayAll, playList, playTracks } from '../lib/player';
-import { Link, enc, goBack } from '../lib/router';
+import { Link, enc, goBack, navigate } from '../lib/router';
 import { attempt, toast } from '../lib/ui';
 
 export function AlbumPage({ refId }: { refId: string }) {
   const [rev, setRev] = useState(0);
   const res = useAsync((s) => api.album(refId, s, rev > 0), [refId, rev]);
+  const torrents = useAsync((s) => api.torrentConfig(s), []);
   const [dlBusy, setDlBusy] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [plBusy, setPlBusy] = useState(false);
@@ -180,6 +181,12 @@ export function AlbumPage({ refId }: { refId: string }) {
         <Button icon={starred ? 'check' : 'star'} busy={starBusy} onClick={star} className={starred ? '!text-accent' : ''}>
           {starred ? 'В коллекции' : 'В коллекцию'}
         </Button>
+        {torrents.data?.enabled && (
+          // whole release in lossless: the files are tagged by this album (README, «Раздачи с rutracker»)
+          <Button icon="disc" className="col-span-2" onClick={() => navigate(`/torrents?q=${enc(`${album.artist} ${album.title}`)}&album=${enc(album.ref)}`)}>
+            Найти раздачу
+          </Button>
+        )}
       </div>
 
       <section aria-label="Треки" className="pt-2">

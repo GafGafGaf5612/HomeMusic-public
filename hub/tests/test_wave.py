@@ -118,6 +118,23 @@ def test_disliked_since_it_came_in_is_not_picked() -> None:
     assert [c.track.ref for c in wave.pick(st, p, "discover", {}, n=3)] == ["dz:3"]
 
 
+def test_a_track_found_to_have_only_its_preview_is_not_picked() -> None:
+    import time
+
+    from app import no_full
+
+    owned = cand(2, score=8)
+    owned.nd_song_id = "song-2"  # the library has it: it plays in full whatever the catalog says
+    st = state(cand(1, score=9), owned, cand(3, score=1))
+    no_full._until.update({"dz:1": time.time() + 60, "dz:2": time.time() + 60})
+    try:
+        picked = [c.track.ref for c in wave.pick(st, profile(), "discover", {}, n=3, queued={"dz:1"})]
+    finally:
+        no_full.reset()
+
+    assert picked == ["dz:2", "dz:3"]
+
+
 def test_a_queued_track_is_not_swapped_for_a_hair_better_one() -> None:
     st = state(cand(1, score=1.0), cand(2, score=1.1))
 

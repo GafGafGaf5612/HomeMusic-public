@@ -50,6 +50,8 @@ async def smoke_test_providers() -> dict[str, str]:
     q = TrackQuery(artist="Кино", title="Группа крови")
     out: dict[str, str] = {}
     for name, p in svc.providers.items():
+        if not getattr(p, "searchable", True):  # releases' files: nothing to search by artist and title
+            continue
         try:
             res = await p.search(q, limit=5)
             out[name] = f"ok ({len(res)})" if res else "EMPTY — возможно, сменилась вёрстка"

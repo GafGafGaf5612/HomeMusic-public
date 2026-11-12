@@ -315,16 +315,23 @@ async def test_name_by_ai(db, monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 async def test_build_counts_why_candidates_were_dropped_and_keeps_score_parts(db) -> None:
+    from app import no_full
+
     p = profile(*(known(i, f"Свой {i}", played_days_ago=20) for i in range(30)), known(500, "Недавний", played_days_ago=1))
     p.disliked_ids.add("dz:501")
     radio = [tr(1000 + i, f"Новый {i}", rank=1000 * i) for i in range(60)]
     dropped = [tr(500, "Недавний"), tr(501, "Нелюбимый"), tr(502, title="Песня (Live)"), tr(503, title="Песня (Remix)"),
-               tr(504, duration=80)]
+               tr(504, duration=80), tr(505, "Только превью")]
+    await no_full.mark("dz:505")
 
-    built = await b.build(p, "normal", gens(favorites=b.favorites(p), ytm_radio=radio + dropped))
+    try:
+        built = await b.build(p, "normal", gens(favorites=b.favorites(p), ytm_radio=radio + dropped))
+    finally:
+        no_full.reset()
 
-    assert built.stats["rejected"] == {"disliked": 1, "version": 2, "duration": 1, "recent": 1, "negative_score": 0}
-    assert built.stats["kept"] == built.stats["candidates"] - 5
+    assert built.stats["rejected"] == {"disliked": 1, "no_full": 1, "version": 2, "duration": 1, "recent": 1,
+                                       "negative_score": 0}
+    assert built.stats["kept"] == built.stats["candidates"] - 6
     for c in built.active + built.reserve:
         f = c.features()
         assert f["score_parts"]["total"] == c.score and f["score_parts"]["maturity"] is None

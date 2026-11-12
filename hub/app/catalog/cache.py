@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from collections.abc import Awaitable, Callable
 from datetime import timedelta
 from typing import Any
@@ -48,6 +49,16 @@ async def cache_set_many(values: dict[str, Any], ttl_s: int) -> None:
 async def cache_delete(key: str) -> None:
     async with session_scope() as s:
         await s.execute(delete(CatalogCache).where(CatalogCache.key == key))
+
+
+async def cache_prefix(prefix: str) -> dict[str, float]:
+    """Keys starting with `prefix` that have not expired -> their expiry (Unix time)."""
+    async with session_scope() as s:
+        rows = (await s.execute(select(CatalogCache.key, CatalogCache.fetched_at, CatalogCache.ttl_s)
+                                .where(CatalogCache.key >= prefix, CatalogCache.key < prefix + "\U0010ffff"))).all()
+    now = utcnow()
+    return {k: (at + timedelta(seconds=ttl) - now).total_seconds() + time.time()
+            for k, at, ttl in rows if at + timedelta(seconds=ttl) > now}
 
 
 async def cached(key: str, ttl_s: int, producer: Callable[[], Awaitable[Any]]) -> Any:

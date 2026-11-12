@@ -337,7 +337,8 @@ async def _fill(rt: SmartRuntime, slots: list[int]) -> list[tuple[int, build.Can
     pos = wave._weighted_center(st.positive_weights, vectors) if st.taste_model == "v2" else wave._center(st.pos, vectors)
     neg = None if st.taste_model == "v2" else wave._center(st.neg, vectors)
     neutral = _neutral(rt)
-    pool = [c for c in st.pool.values() if not wave._disliked(c, p) and not _blocked(rt)(c)]
+    pool = [c for c in st.pool.values()
+            if not wave._disliked(c, p) and not build.no_full_file(c) and not _blocked(rt)(c)]
     vals = {c.track.ref: rec_value(rt, c, vectors, pos, neg, neutral) for c in pool}
     ranked = sorted(pool, key=lambda c: -vals[c.track.ref])
     n = len(rt.own)

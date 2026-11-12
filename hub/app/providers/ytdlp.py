@@ -33,7 +33,7 @@ import yt_dlp
 from yt_dlp.utils import DownloadCancelled, DownloadError, ExtractorError
 
 from app.config import YtdlpCfg
-from app.net import PrioritySemaphore, make_client, proxy_for_domains
+from app.net import PrioritySemaphore, make_client, proxy_for_domains, youtube_proxy
 from app.providers.base import Candidate, ProviderError, StreamSource, TrackQuery
 
 log = logging.getLogger(__name__)
@@ -54,7 +54,6 @@ _AUDIO_EXTS = {".opus", ".m4a", ".mp3", ".ogg", ".flac", ".wav", ".aac", ".webm"
 LISTEN_FORMAT = "bestaudio[ext=m4a]/bestaudio/best"
 _MEDIA_TYPES = {"m4a": "audio/mp4", "mp4": "audio/mp4", "webm": "audio/webm", "mp3": "audio/mpeg", "ogg": "audio/ogg"}
 STREAM_URL_TTL_S = 20 * 60  # audio URLs from a metadata lookup, reused by `stream` (googlevideo links live ~6 h)
-YOUTUBE_PROXY_DOMAINS = ("youtube.com", "youtu.be", "googlevideo.com", "youtube-nocookie.com")
 SOUNDCLOUD_PROXY_DOMAINS = ("soundcloud.com", "sndcdn.com")
 MEDIA_HOST_SUFFIX = ".googlevideo.com"
 MEDIA_PROBE_TIMEOUT_S = 5.0
@@ -233,10 +232,11 @@ class _YdlLogger:
 
 
 def detect_js_runtimes() -> dict[str, dict]:
-    """JS runtimes available on PATH, in yt-dlp `js_runtimes` format (deno preferred)."""
+    """JS runtimes available on PATH, in yt-dlp `js_runtimes` format (deno preferred; QuickJS-ng `qjs` in the phone
+    app, where deno and node don't run)."""
     found: dict[str, dict] = {}
-    for name in ("deno", "node", "bun"):
-        if exe := shutil.which(name):
+    for name, exe_name in (("deno", "deno"), ("node", "node"), ("bun", "bun"), ("quickjs", "qjs")):
+        if exe := shutil.which(exe_name):
             found[name] = {"path": exe}
     return found
 
@@ -458,7 +458,7 @@ class YtdlpProvider:
         self.use_music_search = use_music_search
         self._youtube = (access or YoutubeAccess(cfg, max_parallel=max_parallel)) if self.name != "soundcloud" else None
         self._sem = self._youtube.sem if self._youtube else PrioritySemaphore(max_parallel or 2)
-        self._proxy = proxy_for_domains(*(YOUTUBE_PROXY_DOMAINS if self._youtube else SOUNDCLOUD_PROXY_DOMAINS))
+        self._proxy = youtube_proxy() if self._youtube else proxy_for_domains(*SOUNDCLOUD_PROXY_DOMAINS)
         self._js = detect_js_runtimes()
         self._remote_ejs = importlib.util.find_spec("yt_dlp_ejs") is None
         self._http: httpx.AsyncClient | None = None  # proxies listening streams
@@ -596,7 +596,7 @@ class YtdlpProvider:
     async def _music_api_request(self, text: str, limit: int) -> list[Candidate]:
         if self._api is None:
             self._api = make_client(timeout=15, headers={"Origin": "https://music.youtube.com"},
-                                    proxy_hosts={"*"} if self._proxy else None)
+                                    proxy=self._proxy)
         version = ytm_client_version()
         resp = await self._api.post(
             YTM_API_URL,
@@ -808,7 +808,7 @@ class YtdlpProvider:
             _log_switch(original, url)
         if self._http is None:
             # Keep the same egress IP as extraction, including on redirects.
-            self._http = make_client(timeout=60, proxy_hosts={"*"} if self._proxy else None)
+            self._http = make_client(timeout=60, proxy=self._proxy)
         headers = {k: v for k, v in (info.get("http_headers") or {}).items() if isinstance(v, str)}
         return StreamSource(url=url, client=self._http, headers=headers,
                             media_type=_MEDIA_TYPES.get(info.get("ext") or "", "audio/mp4"))

@@ -67,7 +67,7 @@ uploads:
   extensions: [mp3, m4a, aac, flac, ogg, opus, wav]
 
 library:
-  trash_days: 30
+  trash_days: 3    # deleted files (and a mix's songs nobody listened to) stay in MUSIC_ROOT/.trash this long
   backup_hour: 4   # local time; daily copy of Hub and Navidrome DBs to MUSIC_ROOT/.backups
 
 mixes:
@@ -76,3 +76,14 @@ mixes:
 
 analytics:
   exclude_users: []  # Hub user names left out of the admin's totals and taste matrix (a QA account)
+
+torrents:
+  # Releases from rutracker (README, «Раздачи с rutracker»): on when JACKETT_API_KEY is set in .env.
+  indexer: rutracker      # Jackett indexer id
+  categories: [3000]      # Torznab: Audio
+  max_results: 50
+  save_path: /downloads   # qBittorrent's folder for MUSIC_ROOT/staging/torrents (docker-compose.yml)
+  category: homemusic     # qBittorrent category of the Hub's torrents
+  poll_s: 15
+  keep_seeding: true      # false — remove the torrent and its files after the import
+  admin_only: true        # only the admin searches and downloads releases

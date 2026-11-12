@@ -28,6 +28,7 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 
+from app import no_full
 from app.catalog.models import CatalogTrack, split_ref
 from app.config import get_settings
 from app.db import session_scope
@@ -50,7 +51,7 @@ GENERATOR_TITLES = {
     "new_releases": "Новинки", "yandex_wave": "Моя волна Яндекса",
 }
 BANNED_VERSIONS = {"karaoke", "instrumental", "cover", "slowed", "sped up", "8d", "bass boosted", "remix", "live"}
-REJECT_REASONS = ("disliked", "version", "duration", "recent", "negative_score")  # `keep_reason`
+REJECT_REASONS = ("disliked", "no_full", "version", "duration", "recent", "negative_score")  # `keep_reason`
 UNFAMILIAR_MAX_LISTENS = 5
 RECENT_DAYS = 3
 FAVORITE_REST_DAYS = 7
@@ -385,12 +386,20 @@ async def link_library(cands: dict[str, Cand]) -> None:
                 nd[song].nd_song_id, nd[song].library_track_id = song, tid
 
 
+def no_full_file(c: Cand) -> bool:
+    """Only Deezer's 30 s preview of the track plays (no source has its file, `app.no_full`); a library song always
+    plays in full."""
+    return c.track.source == "dz" and not c.nd_song_id and no_full.has(c.track.ref)
+
+
 def keep_reason(c: Cand, p: Profile, cfg) -> str | None:
     """Return the first rejection reason, or None when kept; sets `familiar`."""
     t = c.track
     ref = t.ref if t.source == "dz" else None
     if p.disliked(ref=ref, nd_song_id=c.nd_song_id, artist=t.artist, artist_ref=t.artist_ref):
         return "disliked"
+    if no_full_file(c):
+        return "no_full"
     if version_kind(split_version(t.title)[1]) in BANNED_VERSIONS:
         return "version"
     if t.duration_s and not cfg.min_duration_s <= t.duration_s <= cfg.max_duration_s:

@@ -19,6 +19,7 @@ import httpx
 from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app import no_full
 from app.api.schemas import DownloadItemOut
 from app.catalog.deezer import CatalogNotFound
 from app.catalog.models import CatalogAlbum, CatalogTrack, split_ref
@@ -385,6 +386,8 @@ async def handle_download_item(job: Job) -> None:
     elif not all_cands:
         if errors and len(errors) >= len(providers):
             raise RuntimeError("все источники недоступны: " + "; ".join(errors))
+        if not errors and meta:  # every source answered: the track stays out of mixes and waves for a while
+            await no_full.mark(meta.get("track_ref"))
         await update_item(item_id, status="needs_review", error="Не найдено ни в одном источнике")
     elif not meta:
         sure = classify(all_cands, get_settings().cfg.matching) == "auto"

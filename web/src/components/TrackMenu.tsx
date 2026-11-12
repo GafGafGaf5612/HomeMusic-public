@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { api } from '../api/client';
-import { setDisliked, useDisliked, type DislikeTarget } from '../lib/dislikes';
+import { dislikeAndSkip, setDisliked, useDisliked, type DislikeTarget } from '../lib/dislikes';
 import { STANDALONE } from '../lib/embedded';
-import { addToQueue, next, playNext, stopListening, useListen, type ListenTrack } from '../lib/listen';
+import { addToQueue, playNext, stopListening, useListen, type ListenTrack } from '../lib/listen';
 import { canPlayAll } from '../lib/player';
 import { enc, navigate } from '../lib/router';
 import { attempt } from '../lib/ui';
@@ -38,7 +38,7 @@ export interface MenuExtra {
  * browser; inside the app its player has them), «В плейлист», «К альбому» / «К исполнителю», «Волна по треку» /
  * «по исполнителю» (MIXES.md 7) where the wave can play, and «Не нравится» for the track and for its artist
  * (MIXES.md 3.2) — it keeps them out of mixes and «Моя волна»; set again, it is taken off. A track disliked while
- * the page's player plays it is skipped. */
+ * the page's player plays it is skipped. Opened from a player, it also closes the player («Закрыть плеер»). */
 export function TrackMenuButton({ track, extra, className, inPlayer }: { track: MenuTrack; extra?: MenuExtra[]; className?: string; inPlayer?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
@@ -95,9 +95,7 @@ function TrackMenu({ track, extra, inPlayer, onClose }: { track: MenuTrack; extr
 
   const toggle = (t: DislikeTarget, on: boolean) => {
     onClose();
-    void setDisliked(t, !on).then((ok) => {
-      if (ok && !on && playing && !next()) stopListening();
-    });
+    void (on ? setDisliked(t, false) : t.artist_ref ? setDisliked(t, true) : dislikeAndSkip(t));
   };
 
   if (picking)
@@ -184,7 +182,7 @@ function TrackMenu({ track, extra, inPlayer, onClose }: { track: MenuTrack; extr
           />
         )}
         <MenuItem
-          icon="ban"
+          icon="dislike"
           active={disliked}
           label={disliked ? 'Убрать «Не нравится»' : 'Не нравится'}
           hint={disliked ? 'Трек снова может попадать в миксы' : 'Трек не будет попадать в миксы и «Мою волну»'}
@@ -197,6 +195,17 @@ function TrackMenu({ track, extra, inPlayer, onClose }: { track: MenuTrack; extr
             label={artistDisliked ? `Убрать «Не нравится» с исполнителя` : 'Не нравится исполнитель'}
             hint={track.artist}
             onClick={() => toggle(artist, artistDisliked)}
+          />
+        )}
+        {inPlayer && hasQueue && !canPlayAll() && (
+          <MenuItem
+            icon="x"
+            label="Закрыть плеер"
+            hint="Музыка остановится, очередь очистится"
+            onClick={() => {
+              onClose();
+              stopListening();
+            }}
           />
         )}
       </div>

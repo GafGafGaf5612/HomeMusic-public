@@ -148,7 +148,7 @@ async def test_slow_listen_releases_auth_connection_before_resolving_and_allows_
 
     entered, release = asyncio.Event(), asyncio.Event()
 
-    async def choose(ref):
+    async def choose(ref, full_only=False):
         entered.set()
         await release.wait()
         return Choice(ref=ref, kind="preview", artist="QA", title="Song", duration_s=214)
@@ -445,6 +445,52 @@ async def test_deezer_preview_when_no_source_has_it(env):
     from app.services import svc
 
     assert svc.deezer.previews >= 1  # a fresh signed link, not the cached catalog one
+
+
+async def test_a_track_with_only_its_preview_is_left_out_of_mixes_until_a_file_turns_up(env):
+    from app import listen, no_full
+    from app.services import svc
+
+    c = env["client"]
+    assert (await c.get("/api/listen", params={"ref": "dz:100"})).json()["kind"] == "preview"
+    assert no_full.has("dz:100")
+    no_full.reset()
+    assert await no_full.load() == 1 and no_full.has("dz:100")  # kept over a restart of the Hub
+
+    svc.providers["soundcloud"] = FakeProvider("soundcloud", [
+        cand("full", "https://cdn.test/good.mp3", provider="soundcloud"),
+    ], client=env["hm"].client)
+    await listen.forget("dz:100")
+    await listen.reset()
+    await no_full.load()  # what the Hub's startup does
+    assert (await c.get("/api/listen", params={"ref": "dz:100"})).json()["kind"] == "full"
+    assert not no_full.has("dz:100") and await no_full.load() == 0
+
+
+async def test_a_full_request_for_a_known_preview_answers_at_once(env):
+    from app import listen, no_full
+
+    c, hm = env["client"], env["hm"]
+    r = await c.get("/api/listen", params={"ref": "dz:100", "full": "1"})
+    assert r.status_code == 503 and "Полная версия" in r.json()["detail"]
+    assert no_full.has("dz:100")
+    searched = hm.searched
+    await listen.reset()  # nothing in memory: the remembered answer is enough
+    await no_full.load()
+    for _ in range(2):
+        r = await c.get("/api/listen", params={"ref": "dz:100", "full": "1"})
+        assert r.status_code == 503
+        assert (await c.get("/api/listen/stream", params={"ref": "dz:100", "full": "1"})).status_code == 503
+    assert hm.searched == searched  # no new search
+    assert not any(call.request.url.host == "preview.test" for call in env["mock"].calls)
+
+
+async def test_a_preview_picked_while_a_source_is_down_marks_nothing(env):
+    from app import no_full
+
+    env["hm"].down = env["fm"].down = True
+    assert (await env["client"].get("/api/listen", params={"ref": "dz:100"})).json()["kind"] == "preview"
+    assert not no_full.has("dz:100")
 
 
 async def test_full_song_request_never_plays_a_preview(env):

@@ -164,7 +164,8 @@ async def search_providers(q: str = Query(min_length=1), provider: str | None = 
     tq = TrackQuery(artist=artist.strip() if title else q.strip(), title=title.strip() if title else "")
     reuploads = {p.name for p in svc.reupload_providers()}
     names = [provider] if provider else [
-        n for n in svc.providers if group is None or (n in reuploads) == (group == "reuploads")
+        n for n, p in svc.providers.items() if getattr(p, "searchable", True)
+        and (group is None or (n in reuploads) == (group == "reuploads"))
     ]
     out = ProviderSearchOut()
 

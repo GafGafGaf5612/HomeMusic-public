@@ -943,19 +943,20 @@ class TasteArtistsIn(BaseModel):
 
 
 class WaveSeedIn(BaseModel):
-    """What a wave starts from: a catalog track, a known search file, a library song or an artist."""
+    """What a wave starts from: a catalog track, a known search file, a library song, an artist or a chart."""
 
     ref: str | None = Field(default=None, max_length=64)  # "dz:…", "nd:<song>" or "file:<provider>:<id>"
     nd_song_id: str | None = Field(default=None, max_length=64)
     artist_ref: str | None = Field(default=None, max_length=64)  # "dz:…"
     nd_artist_id: str | None = Field(default=None, max_length=64)  # a Navidrome artist (the app's «Радиостанции»)
+    chart: str | None = Field(default=None, max_length=32, pattern=r"^[a-z_]+$")  # a chart or genre (GET /api/charts)
 
     by_artist: bool = False  # resolve the artist of the supplied track
 
     @model_validator(mode="after")
     def _names_one(self) -> WaveSeedIn:
-        if not (self.ref or self.nd_song_id or self.artist_ref or self.nd_artist_id):
-            raise ValueError("ref, nd_song_id, artist_ref or nd_artist_id is required")
+        if not (self.ref or self.nd_song_id or self.artist_ref or self.nd_artist_id or self.chart):
+            raise ValueError("ref, nd_song_id, artist_ref, nd_artist_id or chart is required")
         return self
 
 
@@ -995,6 +996,33 @@ class WaveOut(BaseModel):
     tracks: list[WaveTrackOut] = []  # the next ones (up to 5): they replace the client's `queued`
     pending: bool = False  # sources still answer: the pool grows (an empty `tracks` — ask again in a few seconds)
     recorded: PlayEventsOut | None = None  # what became of `played` (next only)
+
+
+# --- charts and genres (app/charts.py) -------------------------------------------------------------------------------
+
+
+class ChartOut(BaseModel):
+    id: str
+    title: str  # the card's: «Россия», «Русский рок»
+    name: str  # the page's and the wave's: «Чарт России»
+    kind: Literal["country", "genre"]
+    group: Literal["main", "europe", "ru_genres", "genres"]  # the Home screen's rows, in this order
+    source: str  # «Яндекс Музыка», «Deezer»
+    covers: list[str] = []  # the first tracks' covers (a collage); none until the chart was made once
+    updated_at: datetime | None = None
+
+
+class ChartsOut(BaseModel):
+    charts: list[ChartOut] = []
+
+
+class ChartTrackOut(TrackOut):
+    position: int  # its place in the chart (tracks no source has in full are left out: the numbers may skip)
+
+
+class ChartPageOut(BaseModel):
+    chart: ChartOut
+    tracks: list[ChartTrackOut] = []
 
 
 # --- smart shuffle (MIXES.md 8) ------------------------------------------------------------------------------------
@@ -1348,3 +1376,88 @@ class InsightsWaveOut(InsightsWaveRow):
     seeds_used: list[str] | None = None
     items: list[dict[str, Any]]
     events: list[dict[str, Any]]
+
+
+# --- releases from rutracker (README, «Раздачи с rutracker») ------------------------------------------------
+
+
+class TorrentConfigOut(BaseModel):
+    enabled: bool  # set up on this Hub and open to this user
+    sub: str = ""  # where releases come from, for the page header
+
+
+class TorrentReleaseOut(BaseModel):
+    """A release found through Jackett (`app.torrents.jackett.Release`) with whether the Hub can import it."""
+
+    title: str
+    link: str  # pass back to /api/torrents/files and POST /api/torrents
+    magnet: bool = False  # no .torrent: the file list comes from peers (seconds or minutes; never without seeders)
+    tracker: str | None = None  # the Jackett indexer that found it
+    details_url: str | None = None
+    size: int | None = None
+    seeders: int | None = None
+    leechers: int | None = None
+    grabs: int | None = None
+    files: int | None = None
+    published: datetime | None = None
+    codec: str | None = None
+    bitrate_kbps: int | None = None
+    lossless: bool = False
+    hires: bool = False
+    layout: str | None = None  # tracks / image
+    year: int | None = None
+    discography: bool = False
+    importable: bool | None = None  # False: a disc image or a format the library doesn't take; None: unknown
+
+
+class TorrentSearchOut(BaseModel):
+    releases: list[TorrentReleaseOut] = []
+    errors: list[str] = []
+
+
+class TorrentFileOut(BaseModel):
+    path: str
+    size: int
+    kind: str  # audio / cue / image / other
+    importable: bool = False
+    image: bool = False
+    ref: str | None = None  # listen to it before downloading (/api/listen*): qBittorrent downloads it in order
+    artist: str | None = None  # for the player (from the file name or the release title)
+    title: str | None = None
+
+
+class TorrentFilesOut(BaseModel):
+    name: str
+    size: int
+    files: list[TorrentFileOut] = []
+    pending: bool = False  # a magnet whose file list hasn't come from peers yet: ask again in a few seconds
+    seeds: int | None = None  # peers with the whole release qBittorrent knows of (while pending)
+
+
+class TorrentStartIn(BaseModel):
+    link: str = Field(min_length=1, max_length=4096)
+    title: str = Field(min_length=1, max_length=1024)
+    details_url: str | None = Field(default=None, max_length=1024)
+    album_ref: str | None = Field(default=None, max_length=64)  # catalog album to tag the tracks by
+    files: list[str] | None = Field(default=None, max_length=5000)  # None — every audio file of the release
+
+
+class TorrentOut(BaseModel):
+    id: int
+    title: str
+    details_url: str | None = None
+    album_ref: str | None = None
+    status: str  # downloading / importing / done / failed / cancelled
+    progress: float = 0
+    state: str | None = None
+    seeds: int | None = None
+    speed: int | None = None
+    eta_s: int | None = None
+    size: int = 0
+    files: int = 0
+    imported: int = 0
+    album_id: int | None = None
+    error: str | None = None
+    warnings: list[str] = []
+    created_at: datetime
+    finished_at: datetime | None = None

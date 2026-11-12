@@ -21,6 +21,7 @@ import { InsightsOverviewPage } from './pages/insights/Overview';
 import { MixDetailPage, WaveDetailPage } from './pages/insights/Recs';
 import { TrackWeightPage } from './pages/insights/Track';
 import { AlbumPage } from './pages/Album';
+import { ChartPage } from './pages/Chart';
 import { ArtistPage } from './pages/Artist';
 import { AssistantChatsPage, AssistantPage } from './pages/Assistant';
 import { AssistantTaskPage } from './pages/AssistantTask';
@@ -38,6 +39,7 @@ import { PlayerPage } from './pages/Player';
 import { PlaylistsPage } from './pages/Playlists';
 import { SearchPage, searchTab } from './pages/Search';
 import { SharePage } from './pages/Share';
+import { TorrentsPage, torrentTab } from './pages/Torrents';
 import { UploadPage } from './pages/Upload';
 
 type RouteDef = [pattern: string, tab: Tab | null, render: (p: Record<string, string>, r: Route) => ReactNode];
@@ -64,6 +66,7 @@ const ROUTES: RouteDef[] = [
   ['/artist/:ref', 'search', (p) => <ArtistPage key={p.ref} refId={p.ref} />],
   ['/album/:ref', 'search', (p) => <AlbumPage key={p.ref} refId={p.ref} />],
   ['/mix/:id', 'search', (p) => <MixPage key={p.id} id={Number(p.id)} />],
+  ['/chart/:id', 'search', (p) => <ChartPage key={p.id} id={p.id} />],
   ['/taste', 'search', () => <TastePage />],
   ['/downloads', 'downloads', () => <DownloadsPage />],
   ['/downloads/:id', 'downloads', (p) => <DownloadDetailPage key={p.id} id={Number(p.id)} />],
@@ -73,6 +76,11 @@ const ROUTES: RouteDef[] = [
   ['/assistant/chats', 'assistant', () => <AssistantChatsPage />],
   ['/assistant/:id', 'assistant', (p) => <AssistantTaskPage key={p.id} id={Number(p.id)} />],
   ['/upload', 'more', () => <UploadPage />],
+  [
+    '/torrents',
+    'more',
+    (_, r) => <TorrentsPage key={r.full} initialQuery={r.query.get('q') ?? ''} albumRef={r.query.get('album') ?? undefined} initialTab={torrentTab(r.query.get('tab'))} />,
+  ],
   ['/playlists', STANDALONE ? 'library' : 'more', () => <PlaylistsPage />],
   ['/import', 'more', () => <ImportsPage />],
   ['/import/:id', 'more', (p) => <ImportPage key={p.id} id={Number(p.id)} />],

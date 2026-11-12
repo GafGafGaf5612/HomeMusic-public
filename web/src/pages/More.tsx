@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import { api } from '../api/client';
 import { STANDALONE } from '../lib/embedded';
 import { useSession } from '../lib/session';
 import { Icon, type IconName } from '../components/Icon';
@@ -6,6 +7,7 @@ import { PageHeader, cx } from '../components/ui';
 import { notifyPermission, requestNotifyPermission, type NotifyPermission } from '../lib/notify';
 import { Link } from '../lib/router';
 import { setSmartEnabled, useSmartEnabled } from '../lib/smartShuffle';
+import { useAsync } from '../lib/hooks';
 import { confirmDialog, toast } from '../lib/ui';
 
 interface InstallPromptEvent extends Event {
@@ -25,6 +27,7 @@ export function MorePage() {
   const [perm, setPerm] = useState<NotifyPermission>(notifyPermission);
   const [canInstall, setCanInstall] = useState(!!deferredInstall);
   const smart = useSmartEnabled();
+  const torrents = useAsync((s) => api.torrentConfig(s), []);
   const standalone = window.matchMedia('(display-mode: standalone)').matches;
 
   useEffect(() => {
@@ -91,6 +94,7 @@ export function MorePage() {
         )}
         <Item icon="upload" to="/upload" title="Загрузить файлы" sub="Свои аудиофайлы с телефона" />
         <Item icon="playlist" to="/playlists" title="Плейлисты" sub="Ваши плейлисты в Navidrome" />
+        {torrents.data?.enabled && <Item icon="disc" to="/torrents" title="Раздачи" sub="Альбомы и дискографии с торрент-трекеров" />}
         <Item icon="transfer" to="/import" title="Перенести музыку" sub="Из Яндекс Музыки: ♥, плейлисты, альбомы" />
         {me.is_admin && <Item icon="user" to="/admin" title="Пользователи и приглашения" sub="Расходы на ИИ, песни, коды для новых людей" />}
         {/* the player is here: in the browser, and the app's own on Android */}

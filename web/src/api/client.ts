@@ -8,6 +8,8 @@ import type {
   ArtistPageOut,
   AssistantConfirmIn,
   AssistantTaskOut,
+  ChartPageOut,
+  ChartsOut,
   ChatBriefOut,
   ChatConfirmOut,
   ChatMessage,
@@ -55,6 +57,11 @@ import type {
   SearchOut,
   SearchHistoryOut,
   SearchTracksOut,
+  TorrentConfigOut,
+  TorrentFilesOut,
+  TorrentOut,
+  TorrentSearchOut,
+  TorrentStartIn,
   StarIn,
   StarOut,
   StarredOut,
@@ -264,8 +271,13 @@ export const api = {
   album: (ref: string, signal?: AbortSignal, fresh = false) =>
     cachedGet<AlbumOut>(`/api/catalog/album/${enc(ref)}`, signal, fresh),
 
+  // «Чарты и жанры»: the list (covers of the charts made already) and a chart (the first request may take a minute)
+  charts: (signal?: AbortSignal) => request<ChartsOut>('GET', '/api/charts', { signal }),
+  chart: (id: string, signal?: AbortSignal) => request<ChartPageOut>('GET', `/api/charts/${enc(id)}`, { signal }),
+
   // listening before download: picks the file (may take seconds), `stream_url` plays it
-  listen: (ref: string, signal?: AbortSignal) => request<ListenOut>('GET', withQuery('/api/listen', { ref }), { signal }),
+  /** `full=1`: never Deezer's 30 s preview — 503 when no source has the track (the player plays the next one). */
+  listen: (ref: string, signal?: AbortSignal) => request<ListenOut>('GET', withQuery('/api/listen', { ref, full: 1 }), { signal }),
   // the catalog tracks on screen, top first: the Hub picks their files in the background (replaces the last list)
   listenPrefetch: (refs: string[]) => request<{ queued: number }>('POST', '/api/listen/prefetch', { json: { refs } }),
 
@@ -325,6 +337,18 @@ export const api = {
     request<SmartAddOut>('POST', `/api/smart-shuffle/${encodeURIComponent(id)}/add`, { json: body }),
   waveStart: (body: WaveStartIn) => request<WaveOut>('POST', '/api/wave/start', { json: body }),
   waveNext: (id: string, body: WaveNextIn) => request<WaveOut>('POST', `/api/wave/${encodeURIComponent(id)}/next`, { json: body }),
+
+  // releases from rutracker (Jackett → qBittorrent)
+  torrentConfig: (signal?: AbortSignal) => cachedGet<TorrentConfigOut>('/api/torrents/config', signal),
+  torrentSearch: (q: string, signal?: AbortSignal) =>
+    request<TorrentSearchOut>('GET', withQuery('/api/torrents/search', { q }), { signal }),
+  /** `title`, `details_url`: the player names the release's tracks by them. */
+  torrentFiles: (link: string, signal?: AbortSignal, release?: { title: string; details_url?: string | null }) =>
+    request<TorrentFilesOut>('GET', withQuery('/api/torrents/files', { link, title: release?.title, details_url: release?.details_url }), { signal }),
+  startTorrent: (body: TorrentStartIn) => request<TorrentOut>('POST', '/api/torrents', { json: body }),
+  torrents: (signal?: AbortSignal) => request<TorrentOut[]>('GET', '/api/torrents', { signal }),
+  deleteTorrent: (id: number, deleteFiles = true) =>
+    request<OkOut>('DELETE', withQuery(`/api/torrents/${id}`, { delete_files: deleteFiles })),
 
   // uploads
   uploads: (status = 'uploaded', signal?: AbortSignal) =>
@@ -401,7 +425,8 @@ export const api = {
 export const libraryCoverUrl = (albumId: number, size = 300, bust?: string | number) =>
   withQuery(`/api/library/albums/${albumId}/cover`, { size, v: bust });
 
-/** Audio of a catalog track for `<audio src>`; the Hub picks the file on the first request if needed. */
-export const listenStreamUrl = (ref: string) => withQuery('/api/listen/stream', { ref });
+/** Audio of a catalog track for `<audio src>`; the Hub picks the file on the first request if needed. Never the
+ * preview (`full=1`, as `api.listen`). */
+export const listenStreamUrl = (ref: string) => withQuery('/api/listen/stream', { ref, full: 1 });
 
 export const uploadCoverUrl = (uploadId: number) => `/api/uploads/${uploadId}/cover`;

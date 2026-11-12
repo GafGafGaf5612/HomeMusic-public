@@ -5,7 +5,7 @@ import type { HubEventMap } from '../api/types';
 type EventName = keyof HubEventMap;
 type Handler<K extends EventName> = (data: HubEventMap[K]) => void;
 
-const NAMED: EventName[] = ['download', 'assistant', 'library', 'batch', 'import', 'search_history', 'ping'];
+const NAMED: EventName[] = ['download', 'torrent', 'assistant', 'library', 'batch', 'import', 'search_history', 'ping'];
 
 class HubEvents {
   private es: EventSource | null = null;

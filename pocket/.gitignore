@@ -1,0 +1,9 @@
+# build output and machine-specific paths
+.gradle/
+build/
+app/build/
+local.properties
+# produced by native/build-*.sh (big binaries, rebuilt from source / downloaded with checksums)
+app/src/main/jniLibs/
+wheels/
+build-native/

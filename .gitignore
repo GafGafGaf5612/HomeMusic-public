@@ -21,6 +21,7 @@ web/dist/
 hub/app/static/
 
 # local data
+dist/
 .agent-work/
 data/
 eval/screenshots/
@@ -46,3 +47,7 @@ PROGRESS.md
 OPTIMIZE-TODO.md
 OPTIMIZE-DONE.md
 design-review/
+
+# OS and build caches
+.DS_Store
+*.tsbuildinfo

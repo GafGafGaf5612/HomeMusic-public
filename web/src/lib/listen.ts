@@ -1,7 +1,8 @@
 import { useSyncExternalStore } from 'react';
-import { api, errorMessage, isAbort, listenStreamUrl } from '../api/client';
+import { ApiError, api, errorMessage, isAbort, listenStreamUrl } from '../api/client';
 import type { LaunchOrigin, ListenOut } from '../api/types';
 import { startDownload } from './actions';
+import { toast } from './ui';
 import { hubEvents } from './events';
 import { NATIVE_PLAYING_EVENT, canPlayAll, pauseNative, webPlayerShown } from './player';
 import { listeningAccount, newEventId, newLaunch, playEvent, routeContext, type Launch } from './plays';
@@ -21,7 +22,11 @@ import { listeningAccount, newEventId, newLaunch, playEvent, routeContext, type 
  *
  * What plays here is reported to the Hub for mixes (`lib/plays.ts`, MIXES.md 3.2): `start` once sound plays, then
  * `finish` (played to its end, or left after ≥ 90 %) or `skip` (left earlier: another track, the player closed),
- * with the screen the list was started from. A Deezer preview is no listen of the track and is not reported. */
+ * with the screen the list was started from.
+ *
+ * Deezer's 30 s preview is never played: both requests ask for the full file (`full=1`), a track no source has gets
+ * 503 and the next one starts, and so does a track that would not play (`skipBroken`). The Hub also leaves such
+ * tracks out of its mixes and waves (`app/no_full.py`). */
 
 export interface ListenTrack {
   ref: string;
@@ -313,6 +318,7 @@ function el(): HTMLAudioElement {
   a.addEventListener('durationchange', sync);
   a.addEventListener('play', pauseNative);
   a.addEventListener('playing', () => {
+    brokenInRow = 0;
     set({ phase: 'playing', error: null });
     refreshInfo();
     reportStart();
@@ -341,7 +347,10 @@ function el(): HTMLAudioElement {
     else set({ phase: 'ended' });
   });
   a.addEventListener('error', () => {
-    if (a.getAttribute('src')) { reportEnd(false, true); set({ phase: 'error', error: state.error ?? 'Не удалось воспроизвести' }); }
+    if (!a.getAttribute('src')) return;
+    // the pick is still being asked for: its answer says why (no full file, found nowhere) and moves on
+    if (!state.info && state.phase === 'resolving') return;
+    failed();
   });
   // the app's player started: one player on screen, so this one closes (the app shows its own again)
   window.addEventListener(NATIVE_PLAYING_EVENT, stopListening);
@@ -356,7 +365,32 @@ function play(a: HTMLAudioElement) {
   });
 }
 
-/** `auto`: reached by the previous track ending; a track that can't be played is then skipped. */
+/** Tracks skipped in a row because they would not play: past this many the player stops and says why (the Hub or
+ * the network is down, skipping through the whole list would be no use). Tracks without a full file don't count:
+ * each is a real answer. */
+const BROKEN_MAX = 5;
+let brokenInRow = 0;
+const NO_FULL = 'Полной версии нет ни в одном источнике';
+
+/** The current track can't be played: `failed` — it would not play, `no_full` — no source has its file (Deezer's 30 s
+ * preview is never played). The next one starts (a toast says why when `announce`); false when there is none or too
+ * many failed in a row. */
+function skipBroken(why: 'failed' | 'no_full', announce: boolean): boolean {
+  if (!hasNext(state) || (why === 'failed' && brokenInRow >= BROKEN_MAX)) return false;
+  if (why === 'failed') brokenInRow++;
+  const t = state.track;
+  if (announce && t) toast(`«${t.title}»: ${why === 'failed' ? 'не воспроизводится' : 'полной версии нет'} — включаю следующий`);
+  start(state.queue, state.index + 1, true);
+  return true;
+}
+
+/** The current track's audio would not play. */
+function failed() {
+  reportEnd(false, true);
+  if (!skipBroken('failed', true)) set({ phase: 'error', error: state.error ?? 'Не удалось воспроизвести' });
+}
+
+/** `auto`: reached by the previous track ending (or skipped to). */
 function start(queue: readonly ListenTrack[], index: number, auto = false, position = 0, autoplay = true) {
   const track = queue[index];
   const a = el();
@@ -375,16 +409,25 @@ function start(queue: readonly ListenTrack[], index: number, auto = false, posit
   // the prefetch of this very track (it was next) is the request to wait for: don't abort it
   if (prefetching?.ref !== track.ref) prefetching?.ctl.abort();
   prefetching = null;
+  if (!auto) brokenInRow = 0; // a tap or ⏭ starts the count over
+  const noFull = () => {
+    if (skipBroken('no_full', !auto)) return; // a tapped track says why; one reached in a list just passes
+    set({ phase: 'error', error: NO_FULL });
+    a.pause();
+  };
   api.listen(track.ref, ctl.signal).then(
     (info) => {
       if (resolving !== ctl) return;
-      set({ info, duration: info.kind === 'preview' ? (info.duration_s ?? 30) : state.duration });
+      if (info.kind === 'preview') return noFull(); // a Hub that doesn't know `full` on /api/listen
+      if (a.error) return failed(); // the stream already failed while the pick was asked for
+      set({ info });
       reportStart();
       prefetchNext();
     },
     (e: unknown) => {
       if (isAbort(e) || resolving !== ctl) return;
-      if (auto && hasNext(state)) return void start(state.queue, state.index + 1, true);
+      if (e instanceof ApiError && e.status === 503) return noFull();
+      if (skipBroken('failed', true)) return;
       set({ phase: 'error', error: errorMessage(e) });
       a.pause();
     },
@@ -411,9 +454,20 @@ function prefetchNext() {
   prefetching?.ctl.abort();
   const ctl = new AbortController();
   prefetching = { ref: nextTrack.ref, ctl };
-  api.listen(nextTrack.ref, ctl.signal).catch(() => {
-    /* the track itself will show the error when it is reached */
-  });
+  // a track no source has (only its preview, or nothing at all) leaves the queue before it is reached: no gap
+  const drop = () => {
+    const i = state.queue.indexOf(nextTrack);
+    if (i <= state.index) return;
+    set({ queue: state.queue.filter((_, j) => j !== i) });
+    prefetchNext();
+  };
+  api.listen(nextTrack.ref, ctl.signal).then(
+    (info) => { if (info.kind === 'preview') drop(); },
+    (e: unknown) => {
+      if (e instanceof ApiError && (e.status === 503 || e.status === 404)) drop();
+      /* anything else: the track itself shows the error when it is reached */
+    },
+  );
 }
 
 // --- tracks on screen -------------------------------------------------------------------------------------

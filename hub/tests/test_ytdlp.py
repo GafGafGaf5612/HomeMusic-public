@@ -613,7 +613,8 @@ PROXY = "http://proxy.test:3128"
 def test_ytdlp_proxy_is_selected_per_provider(monkeypatch, hosts, youtube, soundcloud):
     from app.providers.reuploads import SoundcloudProvider
 
-    monkeypatch.setattr(net, "get_settings", lambda: SimpleNamespace(outbound_proxy=PROXY, proxy_hosts=hosts))
+    monkeypatch.setattr(net, "get_settings", lambda: SimpleNamespace(outbound_proxy=PROXY, proxy_hosts=hosts,
+                                                                       youtube_proxy=""))
     assert YtdlpProvider(YtdlpCfg())._base_opts().get("proxy") == youtube
     assert SoundcloudProvider(YtdlpCfg())._base_opts().get("proxy") == soundcloud
 
@@ -621,7 +622,7 @@ def test_ytdlp_proxy_is_selected_per_provider(monkeypatch, hosts, youtube, sound
 async def test_proxy_is_used_for_youtube_download_and_stream_redirect(monkeypatch, tmp_path):
     monkeypatch.setenv("HTTPS_PROXY", "http://other-proxy.test:8888")
     monkeypatch.setattr(net, "get_settings", lambda: SimpleNamespace(
-        outbound_proxy=PROXY, proxy_hosts={"youtube.com"}))
+        outbound_proxy=PROXY, proxy_hosts={"youtube.com"}, youtube_proxy=""))
     monkeypatch.setattr(ytdlp_mod.yt_dlp, "YoutubeDL", FakeYDL)
     monkeypatch.setattr(FakeYDL, "formats", [{"format_id": "251", "url": GV}])
     probed = media_servers(monkeypatch)
